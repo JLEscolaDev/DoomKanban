@@ -9,19 +9,64 @@
 /* Begin PBXBuildFile section */
 		7835AD042C5BE14C0005C012 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 7835AD032C5BE14C0005C012 /* RealityKitContent */; };
 		7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */; };
-		7835AD082C5BE14C0005C012 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD072C5BE14C0005C012 /* ContentView.swift */; };
+		7835AD082C5BE14C0005C012 /* SprintsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */; };
 		7835AD0A2C5BE14D0005C012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7835AD092C5BE14D0005C012 /* Assets.xcassets */; };
 		7835AD0D2C5BE14D0005C012 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7835AD0C2C5BE14D0005C012 /* Preview Assets.xcassets */; };
+		7835AD172C5BE1980005C012 /* KanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD162C5BE1980005C012 /* KanbanCard.swift */; };
+		7835AD192C5BE5C60005C012 /* RedFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD182C5BE5C60005C012 /* RedFlag.swift */; };
+		7835AD1E2C5C4C5E0005C012 /* FlowArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD1D2C5C4C5E0005C012 /* FlowArrow.swift */; };
+		7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */; };
+		7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD222C5C65F00005C012 /* WarningTriangle.swift */; };
+		784103092C676F0900B00038 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 784103082C676F0900B00038 /* Algorithms */; };
+		787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83322C5FB1B000BB0405 /* WarningStack.swift */; };
+		787A83352C60309700BB0405 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83342C60309100BB0405 /* Debug.swift */; };
+		787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83392C60DB9200BB0405 /* WardenEye.swift */; };
+		7880E1892C622E740088BD70 /* CircularLoaderBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */; };
+		7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */; };
+		7880E1922C6235A40088BD70 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E1912C6235A40088BD70 /* SkillsView.swift */; };
+		7880E1942C62597D0088BD70 /* ConditionalOrientationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E1932C6259740088BD70 /* ConditionalOrientationView.swift */; };
+		7880E22D2C5D08B1000EFA9D /* TriangleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E22C2C5D08B1000EFA9D /* TriangleShape.swift */; };
+		7880E22F2C5D6D19000EFA9D /* CountDownCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */; };
+		7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E2302C5D6FDE000EFA9D /* PieChart.swift */; };
+		7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E2332C5D8949000EFA9D /* KanbanBoardShape.swift */; };
+		7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */; };
+		789B7C8F2C6514AA00DE4EF7 /* View+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */; };
+		789B7C932C651AC400DE4EF7 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C922C651AC400DE4EF7 /* test.swift */; };
+		789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */; };
+		789B7C9B2C66270300DE4EF7 /* FirstWinTrophy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */; };
+		789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EBD222C63691800D0317E /* DoomKanbanLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7835ACFE2C5BE14C0005C012 /* DoomKanban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomKanban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7835AD022C5BE14C0005C012 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanApp.swift; sourceTree = "<group>"; };
-		7835AD072C5BE14C0005C012 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsLayoutView.swift; sourceTree = "<group>"; };
 		7835AD092C5BE14D0005C012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7835AD0C2C5BE14D0005C012 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7835AD0E2C5BE14D0005C012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7835AD162C5BE1980005C012 /* KanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanCard.swift; sourceTree = "<group>"; };
+		7835AD182C5BE5C60005C012 /* RedFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedFlag.swift; sourceTree = "<group>"; };
+		7835AD1D2C5C4C5E0005C012 /* FlowArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowArrow.swift; sourceTree = "<group>"; };
+		7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSprintIndicatorView.swift; sourceTree = "<group>"; };
+		7835AD222C5C65F00005C012 /* WarningTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningTriangle.swift; sourceTree = "<group>"; };
+		787A83322C5FB1B000BB0405 /* WarningStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningStack.swift; sourceTree = "<group>"; };
+		787A83342C60309100BB0405 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		787A83392C60DB9200BB0405 /* WardenEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardenEye.swift; sourceTree = "<group>"; };
+		7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLoaderBackground.swift; sourceTree = "<group>"; };
+		7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex+Darker.swift"; sourceTree = "<group>"; };
+		7880E1912C6235A40088BD70 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
+		7880E1932C6259740088BD70 /* ConditionalOrientationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalOrientationView.swift; sourceTree = "<group>"; };
+		7880E22C2C5D08B1000EFA9D /* TriangleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleShape.swift; sourceTree = "<group>"; };
+		7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownCircle.swift; sourceTree = "<group>"; };
+		7880E2302C5D6FDE000EFA9D /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
+		7880E2332C5D8949000EFA9D /* KanbanBoardShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoardShape.swift; sourceTree = "<group>"; };
+		7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoard.swift; sourceTree = "<group>"; };
+		789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AspectRatio.swift"; sourceTree = "<group>"; };
+		789B7C922C651AC400DE4EF7 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = SESSION_1723114240_6157427_mesh.usdz; sourceTree = "<group>"; };
+		789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = FirstWinTrophy.usdz; sourceTree = "<group>"; };
+		789EBD222C63691800D0317E /* DoomKanbanLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784103092C676F0900B00038 /* Algorithms in Frameworks */,
 				7835AD042C5BE14C0005C012 /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,11 +102,14 @@
 		7835AD002C5BE14C0005C012 /* DoomKanban */ = {
 			isa = PBXGroup;
 			children = (
+				7880E18A2C622F520088BD70 /* Utils */,
+				7835AD142C5BE1550005C012 /* Views */,
 				7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */,
-				7835AD072C5BE14C0005C012 /* ContentView.swift */,
+				789EBD222C63691800D0317E /* DoomKanbanLayout.swift */,
 				7835AD092C5BE14D0005C012 /* Assets.xcassets */,
 				7835AD0E2C5BE14D0005C012 /* Info.plist */,
 				7835AD0B2C5BE14D0005C012 /* Preview Content */,
+				789B7C922C651AC400DE4EF7 /* test.swift */,
 			);
 			path = DoomKanban;
 			sourceTree = "<group>";
@@ -76,9 +125,100 @@
 		7835AD0B2C5BE14D0005C012 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */,
+				787A83342C60309100BB0405 /* Debug.swift */,
 				7835AD0C2C5BE14D0005C012 /* Preview Assets.xcassets */,
+				789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7835AD142C5BE1550005C012 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7880E1872C622E640088BD70 /* Basics */,
+				7835AD1F2C5C53AD0005C012 /* Indicators */,
+				7835AD1C2C5C4BF90005C012 /* Shapes */,
+				7835AD152C5BE15D0005C012 /* Card */,
+				7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */,
+				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
+				7880E1912C6235A40088BD70 /* SkillsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7835AD152C5BE15D0005C012 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				7835AD162C5BE1980005C012 /* KanbanCard.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		7835AD1C2C5C4BF90005C012 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				7835AD182C5BE5C60005C012 /* RedFlag.swift */,
+				7835AD1D2C5C4C5E0005C012 /* FlowArrow.swift */,
+				7880E22C2C5D08B1000EFA9D /* TriangleShape.swift */,
+				7880E2302C5D6FDE000EFA9D /* PieChart.swift */,
+				7880E2332C5D8949000EFA9D /* KanbanBoardShape.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		7835AD1F2C5C53AD0005C012 /* Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				787A832E2C5FB14800BB0405 /* Warnings */,
+				7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */,
+				7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */,
+			);
+			path = Indicators;
+			sourceTree = "<group>";
+		};
+		787A832E2C5FB14800BB0405 /* Warnings */ = {
+			isa = PBXGroup;
+			children = (
+				787A83382C60DB5900BB0405 /* Eye */,
+				787A832F2C5FB14E00BB0405 /* Triangles */,
+			);
+			path = Warnings;
+			sourceTree = "<group>";
+		};
+		787A832F2C5FB14E00BB0405 /* Triangles */ = {
+			isa = PBXGroup;
+			children = (
+				7835AD222C5C65F00005C012 /* WarningTriangle.swift */,
+				787A83322C5FB1B000BB0405 /* WarningStack.swift */,
+			);
+			path = Triangles;
+			sourceTree = "<group>";
+		};
+		787A83382C60DB5900BB0405 /* Eye */ = {
+			isa = PBXGroup;
+			children = (
+				787A83392C60DB9200BB0405 /* WardenEye.swift */,
+			);
+			path = Eye;
+			sourceTree = "<group>";
+		};
+		7880E1872C622E640088BD70 /* Basics */ = {
+			isa = PBXGroup;
+			children = (
+				7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */,
+			);
+			path = Basics;
+			sourceTree = "<group>";
+		};
+		7880E18A2C622F520088BD70 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */,
+				7880E1932C6259740088BD70 /* ConditionalOrientationView.swift */,
+				7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +239,7 @@
 			name = DoomKanban;
 			packageProductDependencies = (
 				7835AD032C5BE14C0005C012 /* RealityKitContent */,
+				784103082C676F0900B00038 /* Algorithms */,
 			);
 			productName = DoomKanban;
 			productReference = 7835ACFE2C5BE14C0005C012 /* DoomKanban.app */;
@@ -128,6 +269,9 @@
 				Base,
 			);
 			mainGroup = 7835ACF52C5BE14C0005C012;
+			packageReferences = (
+				784103072C676F0900B00038 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = 7835ACFF2C5BE14C0005C012 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,7 +287,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7835AD0D2C5BE14D0005C012 /* Preview Assets.xcassets in Resources */,
+				789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */,
 				7835AD0A2C5BE14D0005C012 /* Assets.xcassets in Resources */,
+				789B7C9B2C66270300DE4EF7 /* FirstWinTrophy.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +300,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7835AD082C5BE14C0005C012 /* ContentView.swift in Sources */,
+				7835AD082C5BE14C0005C012 /* SprintsLayoutView.swift in Sources */,
+				787A83352C60309700BB0405 /* Debug.swift in Sources */,
+				7880E1892C622E740088BD70 /* CircularLoaderBackground.swift in Sources */,
+				789B7C8F2C6514AA00DE4EF7 /* View+AspectRatio.swift in Sources */,
+				787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */,
+				7835AD1E2C5C4C5E0005C012 /* FlowArrow.swift in Sources */,
+				789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */,
+				7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */,
+				7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */,
+				7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */,
+				7835AD192C5BE5C60005C012 /* RedFlag.swift in Sources */,
+				7880E22F2C5D6D19000EFA9D /* CountDownCircle.swift in Sources */,
+				7880E22D2C5D08B1000EFA9D /* TriangleShape.swift in Sources */,
+				7835AD172C5BE1980005C012 /* KanbanCard.swift in Sources */,
+				7880E1922C6235A40088BD70 /* SkillsView.swift in Sources */,
+				7880E1942C62597D0088BD70 /* ConditionalOrientationView.swift in Sources */,
 				7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */,
+				7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */,
+				787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */,
+				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
+				7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */,
+				789B7C932C651AC400DE4EF7 /* test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +470,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -330,6 +497,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -356,10 +524,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		784103072C676F0900B00038 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		7835AD032C5BE14C0005C012 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		784103082C676F0900B00038 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 784103072C676F0900B00038 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
