@@ -37,14 +37,6 @@ struct SkillsView: View {
                                     showCountText: false,
                                     style: .continuousCountdown
                                 ){skill.action()}
-//                            CircularLoaderBackground() {
-//                                skill.icon
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .onTapGesture {
-//                                        skill.action()
-//                                    }
-//                            }
                             .shadowOffset(x: shadowOffset.x, y: shadowOffset.y)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                         }
