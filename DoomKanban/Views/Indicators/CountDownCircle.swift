@@ -138,7 +138,7 @@ struct CountDownCircle: View {
                             image
                                 .resizable()
                                 .scaledToFit()
-                                .padding(geometry.size.width*0.05)
+                                .padding(geometry.size.width*0.1)
                         }
                         if showCountText && timerVM.count != 0 {
                             numericText("\(timerVM.count)")
