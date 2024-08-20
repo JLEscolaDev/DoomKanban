@@ -12,7 +12,7 @@ import SwiftUI
 
 struct KanbanBoard: View {
     @State var gameStarted = false
-    let gameStartsIn: CGFloat = 2
+    let secondsUntilGameStarts: CGFloat = 2
     @State private var nextTaskPosition: CGPoint = .zero
     @State private var draggedCard: KanbanTask?
     @State private var dragOffset = CGSize.zero
@@ -24,13 +24,13 @@ struct KanbanBoard: View {
     private let nextTaskAnimationTime: Int = 2
     @State private var animateNextTask: Bool = false
     private let counter = 3
-
-    @State private var nextCards: [KanbanTask] = [
-        .init(title: "Esto es un test", color: .blue, value: 3),
-        .init(title: "Esto es un test", color: .yellow, value: 3),
-        .init(title: "Esto es un test", color: .green, value: 3),
-        .init(title: "Esto es un test", color: .red, value: 5)
-    ]
+//    estoy cambiando de las nextTasks (que eran mixedTasks heredadas como environment) a pasar el kanbanVM entero que tiene las mixedTasks y los sprints. Tengo que comprobar si al modificar mixedTasks se modifica también sprints o tengo que hacer alguna comprobación de a qué sprint pertenece la tarea para luego modificar sprints
+//    @State var nextCards: [KanbanTask]
+    @Environment(\.kanban) private var kanbanVM
+    private var nextCards: [KanbanTask] {
+        get { kanbanVM.wrappedValue.mixedTasks }
+        set { kanbanVM.wrappedValue.mixedTasks = newValue }
+    }
     
     @State private var toDoTasks: [KanbanTask] = []
     @State private var inProgressTasks: [KanbanTask] = []
@@ -80,22 +80,6 @@ struct KanbanBoard: View {
                             if let card = nextCards.first {
                                 KanbanCard(task: card)
                                     .frame(depth: 1)
-//                                    .background {
-//                                        VStack {
-//                                            Spacer()
-//                                            LinearGradient(
-//                                                gradient: Gradient(stops: [
-//                                                    .init(color: .black.opacity(0.4), location: 0.52),
-//                                                    .init(color: .gray.opacity(0.8), location: 1.0)
-//                                                ]),
-//                                                startPoint: .top,
-//                                                endPoint: .bottom
-//                                            )
-//                                            .frame(width: geometry.size.width / 7, height: geometry.size.height * 0.07)
-//                                            .shadow(color: .black, radius: 2, y: geometry.size.height * 0.06)
-//                                            Spacer()
-//                                        }
-//                                    }
                                     .shadow(color: .black.opacity(0.7), radius: 2, x: 0, y: kanbanCardHeight*0.2)
                                     .position(nextTaskPosition)
                                     .offset(draggedCard == card && isDragging ? dragOffset : .zero)
@@ -133,7 +117,7 @@ struct KanbanBoard: View {
                                                     y: nextTaskPosition.y + dragOffset.height
                                                 )
 
-                                                handleDrop(of: card, from: &nextCards, in: globalPosition, ofSize: geometry)
+                                                handleDrop(of: card, from: &kanbanVM.wrappedValue.mixedTasks, in: globalPosition, ofSize: geometry)
                                                 draggedCard = nil
                                                 dragOffset = .zero
                                                 isDragging = false
@@ -143,35 +127,43 @@ struct KanbanBoard: View {
                                         nextTaskPosition = kanbanCardInitialPosition
                                         animateNextTasksSequentially()
                                     }
-                                    // Añadir este modificador para detectar cambios en el tamaño de la vista
-                                    .onChange(of: geometry.size) { newSize in
+                                    .onChange(of: geometry.size) { oldSize, newSize in
                                         let newKanbanCardWidth = newSize.width / 5
                                         nextTaskPosition = CGPoint(x: newKanbanCardWidth / 2, y: geometry.size.height * 0.055)
                                     }
+                                    .hoverEffect(.highlight)
                             }
-                        }
+                        }.padding(.leading, geometry.size.width * 0.01)
                         .frame(width: kanbanCardWidth, height: kanbanCardHeight)
                         .padding(.top, 15)
                         .onChange(of: animateNextTask) {_, newValue in
+//                            print("ANIMATE")
                             if newValue == true {
-                                
+//                                print(newValue)
                                 withAnimation(.easeInOut(duration: TimeInterval(nextTaskAnimationTime))) {
                                     var finalPosition = kanbanCardInitialPosition
                                     finalPosition.y = kanbanCardFinalYPosition
                                     nextTaskPosition = finalPosition
                                 }
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(nextTaskAnimationTime)) {
-                                    //                                        useCard1.toggle()
-                                    if let task = nextCards.first {
-                                        toDoTasks.append(task)
-                                        nextCards.removeFirst()
-                                    }
-                                    nextTaskPosition = kanbanCardInitialPosition
+                                    animateNextTask = false
                                 }
+                            } else {
+//                                print("ENTRA")
+                                if let task = nextCards.first {
+                                    toDoTasks.append(task)
+                                    // We cannot remove from computedProperty nextTasks
+//                                    print("se va a eliminar:  \(kanbanVM.wrappedValue.count)")
+                                    kanbanVM.wrappedValue.mixedTasks.removeFirst()
+//                                    print("se ha eliminado:  \(tasks.wrappedValue.count)")
+                                }
+//                                print("SALE")
+                                nextTaskPosition = kanbanCardInitialPosition
                             }
                         }
                     }
-                    .padding(.leading, geometry.size.width * 0.035)
+                    .padding(.leading, geometry.size.width * 0.025)
                     .padding(.trailing, geometry.size.width * 0.025)
                     .overlay {
                         if gameStarted {
@@ -202,7 +194,7 @@ struct KanbanBoard: View {
                                 }.padding(.top, 30)
                                 RoundedRectangle(cornerRadius: geometry.size.height * 0.05)
                                     .fill(.black)
-                                    .frame(width: .infinity, height: geometry.size.height * 0.001)
+                                    .frame(height: geometry.size.height * 0.001)
                                 HStack {
                                     WarningStack(warnings: [
                                         WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
@@ -229,7 +221,7 @@ struct KanbanBoard: View {
                                     ], offset: geometry.size.width * 0.025)
                                     .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.08)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .frame(alignment: .leading)
                                 .padding(.bottom, geometry.size.height * 0.02)
                                 
 //                                Spacer()
@@ -258,22 +250,6 @@ struct KanbanBoard: View {
                         KanbanColumn(columnType: .Done, title: "Done", headerColor: .green, tasks: $doneTasks, geometry: geometry, toDoTasks: $toDoTasks, inProgressTasks: $inProgressTasks, testingTasks: $testingTasks, doneTasks: $doneTasks)
                             .onDrop(of: [.kanbanTask], isTargeted: nil, perform: { _ in false })
                             .zIndex(draggedCard != nil && doneTasks.contains(draggedCard!) ? 5 : 1)
-                        
-//                        addKanbanColumn(columnType: .ToDo, title: "To Do", headerColor: .red, tasks: $toDoTasks, geometry: geometry)
-//                            .onDrop(of: [.kanbanTask], isTargeted: nil, perform: { _ in false })
-//                            .zIndex(draggedCard != nil && toDoTasks.contains(draggedCard!) ? 5 : 1)
-//                        
-//                        addKanbanColumn(columnType: .Doing, title: "Doing", headerColor: .cyan, tasks: $inProgressTasks, geometry: geometry)
-//                            .onDrop(of: [.kanbanTask], isTargeted: nil, perform: { _ in false })
-//                            .zIndex(draggedCard != nil && inProgressTasks.contains(draggedCard!) ? 5 : 1)
-//                        
-//                        addKanbanColumn(columnType: .Testing, title: "Testing", headerColor: .blue, tasks: $testingTasks, geometry: geometry)
-//                            .onDrop(of: [.kanbanTask], isTargeted: nil, perform: { _ in false })
-//                            .zIndex(draggedCard != nil && testingTasks.contains(draggedCard!) ? 5 : 1)
-//                        
-//                        addKanbanColumn(columnType: .Done, title: "Done", headerColor: .green, tasks: $doneTasks, geometry: geometry)
-//                            .onDrop(of: [.kanbanTask], isTargeted: nil, perform: { _ in false })
-//                            .zIndex(draggedCard != nil && doneTasks.contains(draggedCard!) ? 5 : 1)
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 25.0))
                     KanbanBoardShape()
@@ -314,55 +290,6 @@ struct KanbanBoard: View {
             }
         }
     }
-    
-//    private func columnCardHandleDrop(columnIndex: Int,of card: KanbanTask, from cardList: Binding<[KanbanTask]>, in location: CGPoint, ofSize geometry: GeometryProxy) {
-//        if let index = cardList.wrappedValue.firstIndex(where: { $0 == card }) {
-//            let removedCard = cardList.wrappedValue.remove(at: index)
-//            
-//            if isColumnCardInValidDropArea(columnIndex: columnIndex, location: location, geometry: geometry) == .valid {
-//                let leadingOffset = geometry.size.width * 0.03
-//                let kanbanWidth = geometry.size.width * 0.994
-//                let columnWidth = (kanbanWidth) / 4
-//                let columnHeight = geometry.size.height * 0.75
-//                let cardHorizontalPadding = columnHeight * 0.015
-//                let cardWidth = columnWidth - cardHorizontalPadding*2
-////                let cardHeight = geometry.size.height * 0.145
-////                let yInitKanbanBoardPosition = geometry.size.height * 0.27
-////                let yEndKanbanBoardPosition = yInitKanbanBoardPosition + columnHeight
-//                
-//                // Calcular los límites de la tarjeta
-//                let cardCenter = location.x + cardWidth/2
-//                
-//                // Validación en el rango de la columna y la altura del tablero
-////                let isInYRange = location.y+yInitKanbanBoardPosition+cardHeight >= -yInitKanbanBoardPosition+cardHeight && location.y+yInitKanbanBoardPosition-50 <= yInitKanbanBoardPosition+cardHeight
-//        //        este cálculo falla. Cuando vamos hacia a delante 175 + lo que avancemos = +1 al index pero si vamos hacia atrás queda en 0 y index - 0 sigue siendo x. Por eso hacia atrás no se mueve.
-//                let newColumnIndex = Int(((columnWidth*CGFloat(columnIndex) + cardCenter-leadingOffset) / kanbanWidth)*4)
-////                print("newColumnIndex: \(columnIndex) = columnIndex:\(columnIndex) + \(cardCenter-leadingOffset) / \(columnWidth)")
-//                switch newColumnIndex {
-//                case 0:
-//                    toDoTasks.append(removedCard)
-//                    print("column 0")
-//                case 1:
-//                    inProgressTasks.append(removedCard)
-//                    print("column 1")
-//                case 2:
-//                    testingTasks.append(removedCard)
-//                    print("column 2")
-//                case 3:
-//                    doneTasks.append(removedCard)
-//                    print("column 3")
-//                default:
-//                    cardList.wrappedValue.insert(removedCard, at: index) // Si no es válido, devolver a la lista original
-//                    print("column default")
-//                }
-//                
-//            } else {
-//                // Devolver la tarjeta a la posición original si no es un drop válido
-//                cardList.wrappedValue.insert(removedCard, at: index)
-//                print("column ELSE")
-//            }
-//        }
-//    }
 
     private func isInDropArea(location: CGPoint, geometry: GeometryProxy) -> Bool {
         let kanbanWidth = geometry.size.width * 0.965
@@ -372,8 +299,8 @@ struct KanbanBoard: View {
         
         let isInDropArea = (0...kanbanWidth ~= location.x - leadingPadding) && (yInitKanbanBoardPosition...kanbanHeight + yInitKanbanBoardPosition ~= location.y)
 
-        print("Adjusted X: \(location.x), Adjusted Y: \(location.y)")
-        print("Drop Area Status: \(isInDropArea)")
+//        print("Adjusted X: \(location.x), Adjusted Y: \(location.y)")
+//        print("Drop Area Status: \(isInDropArea)")
         
         return isInDropArea
     }
@@ -389,428 +316,70 @@ struct KanbanBoard: View {
         let columnIndex = Int((location.x - geometry.size.width * 0.015) / columnWidth)
         let isInXRange = columnIndex >= 0 && columnIndex <= 3
         
-//        print("Y Start: \(yInitKanbanBoardPosition), Y End: \(yEndKanbanBoardPosition)")
-//        print("Adjusted Y: \(location.y)")
-//        print("IsInXRange: \(isInXRange), IsInYRange: \(isInYRange)")
-        
         return isInXRange && isInYRange
     }
-//    Las X tienen el mismo problema que la y. Esto se puede solucionar añadiendo el index de la columna actual a el nuevo index (por ejemplo, si es desde la columna To Do será index 0 más el index calculado nuevo)
-//    private func isColumnCardInValidDropArea(columnIndex: Int, location: CGPoint, geometry: GeometryProxy) -> DragStatus {
-//        let leadingOffset = geometry.size.width * 0.03
-//        let kanbanWidth = geometry.size.width * 0.994
-//        let columnWidth = (kanbanWidth) / 4
-//        let columnHeight = geometry.size.height * 0.75
-//        let cardHorizontalPadding = columnHeight * 0.015
-//        let cardWidth = columnWidth - cardHorizontalPadding*2
-//        let cardHeight = geometry.size.height * 0.145
-//        let yInitKanbanBoardPosition = geometry.size.height * 0.27
-//        let yEndKanbanBoardPosition = yInitKanbanBoardPosition + columnHeight
-//        
-//        // Calcular los límites de la tarjeta
-//        let cardCenter = location.x + cardWidth/2
-//        
-//        // Validación en el rango de la columna y la altura del tablero
-//        let isInYRange = location.y+yInitKanbanBoardPosition+cardHeight >= -yInitKanbanBoardPosition+cardHeight && location.y+yInitKanbanBoardPosition-50 <= yInitKanbanBoardPosition+cardHeight
-////        este cálculo falla. Cuando vamos hacia a delante 175 + lo que avancemos = +1 al index pero si vamos hacia atrás queda en 0 y index - 0 sigue siendo x. Por eso hacia atrás no se mueve.
-//        let columnIndex = ((columnWidth*CGFloat(columnIndex) + cardCenter-leadingOffset) / kanbanWidth)*4
-//        let isInXRange = columnIndex >= 0 && columnIndex <= 3.7
-//        let forceOutOfBounds = columnIndex <= -0.2 || columnIndex >= 3.7 || !isInYRange
-//        
-////        print("Y Start: \(yInitKanbanBoardPosition), Y End: \(yEndKanbanBoardPosition)")
-////        print("Adjusted X: \(cardCenter), columnIndex: \(columnIndex)")
-////        print("Y: \(location.y+yInitKanbanBoardPosition) >= \(-yInitKanbanBoardPosition) && \(location.y+yInitKanbanBoardPosition-50) <= \(yInitKanbanBoardPosition+cardHeight)")
-////        print("isInYRange: \(isInYRange), isInXRange: \(isInXRange)")
-////        print("\(location.y+yInitKanbanBoardPosition+cardHeight) >=  \(-yInitKanbanBoardPosition+cardHeight) \(location.y+yInitKanbanBoardPosition-50) <= \(yInitKanbanBoardPosition+cardHeight)")
-//        
-//        if forceOutOfBounds {
-//            return .outOfBounds
-//        }
-//        
-//        return switch (isInXRange, isInYRange) {
-//            case (true, true):
-//                .valid
-//            case (false, false):
-//                .outOfBounds
-//            default:
-//                .notAllowed
-//        }
-//        
-//    }
     
-    
-    
-    
-
-//    private func addKanbanColumn(
-//        columnType: KanbanColumnType,
-//        title: String,
-//        headerColor: Color,
-//        tasks: Binding<[KanbanTask]>,
-//        geometry: GeometryProxy
-//    ) -> some View {
-//        HStack(alignment: .top, spacing: 0) {
-//            VStack(spacing: 0) {
-//                ZStack {
-//                    Rectangle()
-//                        .fill(
-//                            LinearGradient(
-//                                gradient: Gradient(stops: [
-//                                    .init(color: headerColor, location: 0.52),
-//                                    .init(color: headerColor.darker(by: 0.4), location: 1.0)
-//                                ]),
-//                                startPoint: .top,
-//                                endPoint: .bottom
-//                            )
-//                        )
-//                    
-//                    Text(title)
-//                        .font(.title)
-//                        .fontDesign(.serif)
-//                        .foregroundStyle(.black)
-//                }
-//                .frame(height: geometry.size.height * 0.145)
-//                
-//                Rectangle()
-//                    .fill(.clear)
-//                    .background {
-//                        HStack {
-//                            Spacer()
-//                            Rectangle()
-//                                .foregroundStyle(.black.opacity(0.9))
-//                                .frame(width: geometry.size.width * 0.005)
-//                                .zIndex(1)
-//                        }
-//                    }
-//                    .overlay {
-//                        VStack(spacing: geometry.size.height * 0.02) {
-//                            Spacer(minLength: 0)
-//                            ForEach(Array(tasks.wrappedValue.reversed().enumerated()), id: \.element.id) { index, task in
-//                                KanbanCard(task: task)
-//                                    .overlay(
-//                                        Group {
-////                                            if dropTarget {
-//                                            let kanbanCardWidth = geometry.size.width*0.21
-//                                                if cardDragStatus == .notAllowed && isDragging {
-//                                                    Image(systemName: "xmark.circle.fill")
-//                                                        .foregroundColor(.red)
-//                                                        .font(.largeTitle)
-//                                                        .padding()
-//                                                        .position(x: kanbanCardWidth + 3, y: 3)
-//                                                } else if cardDragStatus == .valid && isDragging {
-//                                                    Image(systemName: "xmark.circle.fill")
-//                                                        .foregroundColor(.green)
-//                                                        .font(.largeTitle)
-//                                                        .padding()
-//                                                        .position(x: kanbanCardWidth + 3, y: -3)
-//                                                }
-////                                            }
-//                                        }
-//                                    )
-//                                // Variable shadow based on if we are dragging to create a depth effect
-//                                    .frame(depth: isDragging ? 30 : 4)
-//                                    .shadow(color: .black.opacity(isDragging ? 0.7 : 0.1), radius: isDragging ? 12 : 18, x: 0, y: isDragging ? geometry.size.height*0.03 : geometry.size.height*0.005)
-//                                    .frame(height: geometry.size.height * 0.13)
-//                                    .offset(draggedCard == task && isDragging ? dragOffset : .zero)
-//                                    .gesture(
-//                                        DragGesture()
-//                                            .onChanged { value in
-//                                                if draggedCard == nil {
-//                                                    draggedCard = task
-//                                                    isDragging = true
-//                                                }
-//                                                dragOffset = value.translation
-//                                                
-//                                                // Actualiza la posición global ajustada con el offset del arrastre
-//                                                let globalPosition = CGPoint(
-//                                                    x: geometry.frame(in: .global).origin.x + value.translation.width,
-//                                                    y: geometry.frame(in: .global).origin.y + value.translation.height
-//                                                )
-//                                                
-//                                                // Detecta si el drop sería válido o no usando la posición global
-////                                                if isInDropArea(location: globalPosition, geometry: geometry) {
-////                                                    dropTarget = true
-////                                                } else {
-////                                                    dropTarget = false
-////                                                }
-//                                                self.cardDragStatus = isColumnCardInValidDropArea(columnIndex: columnType.rawValue,location: globalPosition, geometry: geometry)
-//                                            }
-//                                            .onEnded { value in
-//                                                let globalPosition = CGPoint(
-//                                                    x: geometry.frame(in: .global).origin.x + value.translation.width,
-//                                                    y: geometry.frame(in: .global).origin.y + value.translation.height
-//                                                )
-//
-//                                                columnCardHandleDrop(columnIndex: columnType.rawValue, of: task, from: tasks, in: globalPosition, ofSize: geometry)
-//                                                draggedCard = nil
-//                                                dragOffset = .zero
-//                                                isDragging = false
-//                                            }
-//                                    )
-//                                    .allowsHitTesting(true)
-//                            }
-//                        }
-//                        .padding(.bottom, geometry.size.height * 0.05)
-//                        .padding(.leading, geometry.size.height * 0.035)
-//                        .padding(.trailing, geometry.size.height * 0.025)
-//                    }.zIndex(2)
-//            }
-//            
-//        }
-//    }
-//    
     private func animateNextTasksSequentially() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(gameStartsIn)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(secondsUntilGameStarts)) {
             gameStarted = true
-            for index in nextCards.indices {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(index * counter)) {
-                    animateNextTask = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(nextTaskAnimationTime)) {
-                        animateNextTask = false
-                    }
-                }
-            }
         }
     }
+    
+    @State private var countDownViewId = UUID()
+    @State private var isViewA = true
     
     private func addCountDownView(geometry: GeometryProxy) -> some View {
         let nextKanbanCardSize = geometry.size.width / 5
         let minSize = min(geometry.size.width, geometry.size.height)
         let counterSize = minSize * 0.11
 
-        return CountDownCircle(
-            count: counter,
-            startOnAppear: true,
-            action: {
-                print("Pendiente de implementar el lanzamiento de la carta y el reinicio del contador")
-                animateNextTask = false
+        return Group {
+            // We create two Counters to "restart" the counter for the next card
+            if isViewA {
+                CountDownCircle(
+                    count: counter,
+                    startOnAppear: true,
+                    action: {
+//                        print("Contador llegó a 0 en View A")
+                        animateNextTask = true
+                        toggleView() // Cambia la vista cuando el contador llega a 0
+                    }
+                )
+            } else {
+                CountDownCircle(
+                    count: counter,
+                    startOnAppear: true,
+                    action: {
+//                        print("Contador llegó a 0 en View B")
+                        animateNextTask = true
+                        toggleView() // Cambia la vista cuando el contador llega a 0
+                    }
+                )
             }
-        )
-        .id(UUID()) // Force re-creation of the view by changing the id
+        }
         .frame(width: counterSize, height: counterSize)
         .frame(depth: 1)
         .offset(x: nextKanbanCardSize / 2 - 15, y: -10)
+    }
+
+    /// Force redraw
+    private func toggleView() {
+        // Keep reseting the countDownView until there is only one card missing (we will use 2 instead of 1 because the timer executes one time more than we would expect because we are working with delayed animations and timers)
+        if nextCards.count >= 2 {
+            isViewA.toggle()
+        }
     }
 }
 
 
 #Preview(windowStyle: .plain) {
     KanbanBoard().frame(width: 700, height: 700)
+        .environment(\.kanban, .constant(KanbanAppVM()))
 }
 
-struct KanbanColumn: View {
-    enum KanbanColumnType: Int {
-        case ToDo
-        case Doing
-        case Testing
-        case Done
-    }
-    
-    enum DragStatus {
-        case outOfBounds
-        case notAllowed
-        case valid
-    }
-    
-    @State private var cardDragStatus: DragStatus = .outOfBounds
-    let columnType: KanbanColumnType
-    let title: String
-    let headerColor: Color
-    let tasks: Binding<[KanbanTask]>
-    let geometry: GeometryProxy
-    @State private var draggedCard: KanbanTask?
-    
-    @Binding var toDoTasks: [KanbanTask]
-    @Binding var inProgressTasks: [KanbanTask]
-    @Binding var testingTasks: [KanbanTask]
-    @Binding var doneTasks: [KanbanTask]
-    
-    var body: some View {
-        HStack(alignment: .top, spacing: 0) {
-            VStack(spacing: 0) {
-                ZStack {
-                    Rectangle()
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(stops: [
-                                    .init(color: headerColor, location: 0.52),
-                                    .init(color: headerColor.darker(by: 0.4), location: 1.0)
-                                ]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
-                    
-                    Text(title)
-                        .font(.title)
-                        .fontDesign(.serif)
-                        .foregroundStyle(.black)
-                }
-                .frame(height: geometry.size.height * 0.145)
-                
-                Rectangle()
-                    .fill(.clear)
-                    .background {
-                        HStack {
-                            Spacer()
-                            Rectangle()
-                                .foregroundStyle(.black.opacity(0.9))
-                                .frame(width: geometry.size.width * 0.005)
-                                .zIndex(1)
-                        }
-                    }
-                    .overlay {
-                        VStack(spacing: geometry.size.height * 0.02) {
-                            Spacer(minLength: 0)
-                            ForEach(Array(tasks.wrappedValue.reversed().enumerated()), id: \.element.id) { index, task in
-                                
-                                DraggableKanbanCard(
-                                    task: task,
-                                    geometry: geometry,
-                                    cardDragStatus: $cardDragStatus,
-                                    onDrag: { value in
-                                        if draggedCard == nil {
-                                            draggedCard = task
-                                        }
-                                        
-                                        // Actualiza la posición global ajustada con el offset del arrastre
-                                        let globalPosition = CGPoint(
-                                            x: geometry.frame(in: .global).origin.x + value.translation.width,
-                                            y: geometry.frame(in: .global).origin.y + value.translation.height
-                                        )
-                                        
-                                        // Detecta si el drop sería válido o no usando la posición global
-                                        self.cardDragStatus = isInValidDropArea(columnIndex: columnType.rawValue, location: globalPosition, geometry: geometry)
-                                    },
-                                    onEnded: { value in
-                                        
-                                        let globalPosition = CGPoint(
-                                            x: geometry.frame(in: .global).origin.x + value.translation.width,
-                                            y: geometry.frame(in: .global).origin.y + value.translation.height
-                                        )
 
-                                        handleCardDrop(columnIndex: columnType.rawValue, of: task, from: tasks, in: globalPosition, ofSize: geometry)
-                                        draggedCard = nil
-                                    })
-                            }
-                        }
-                        .padding(.bottom, geometry.size.height * 0.05)
-                        .padding(.leading, geometry.size.height * 0.035)
-                        .padding(.trailing, geometry.size.height * 0.025)
-                    }.zIndex(2)
-            }
-        }
-    }
-    
-    private func isInValidDropArea(columnIndex: Int, location: CGPoint, geometry: GeometryProxy) -> DragStatus {
-        let leadingOffset = geometry.size.width * 0.03
-        let kanbanWidth = geometry.size.width * 0.994
-        let columnWidth = (kanbanWidth) / 4
-        let columnHeight = geometry.size.height * 0.75
-        let cardHorizontalPadding = columnHeight * 0.015
-        let cardWidth = columnWidth - cardHorizontalPadding * 2
-        let cardCenter = location.x + cardWidth / 2
-        let yInitKanbanBoardPosition = geometry.size.height * 0.27
-        
-        let isInYRange = location.y + yInitKanbanBoardPosition + cardWidth >= -yInitKanbanBoardPosition + cardWidth && location.y + yInitKanbanBoardPosition - 50 <= yInitKanbanBoardPosition + cardWidth
-        let columnIndex = ((columnWidth * CGFloat(columnIndex) + cardCenter - leadingOffset) / kanbanWidth) * 4
-        let isInXRange = columnIndex >= 0 && columnIndex <= 3.7
-        let forceOutOfBounds = columnIndex <= -0.2 || columnIndex >= 3.7 || !isInYRange
-        
-        if forceOutOfBounds {
-            return .outOfBounds
-        }
-        
-        return switch (isInXRange, isInYRange) {
-            case (true, true): .valid
-            case (false, false): .outOfBounds
-            default: .notAllowed
-        }
-    }
-    
-    private func handleCardDrop(columnIndex: Int, of card: KanbanTask, from cardList: Binding<[KanbanTask]>, in location: CGPoint, ofSize geometry: GeometryProxy) {
-        if let index = cardList.wrappedValue.firstIndex(where: { $0 == card }) {
-            let removedCard = cardList.wrappedValue.remove(at: index)
-            
-            if isInValidDropArea(columnIndex: columnIndex, location: location, geometry: geometry) == .valid {
-                let leadingOffset = geometry.size.width * 0.03
-                let kanbanWidth = geometry.size.width * 0.994
-                let columnWidth = (kanbanWidth) / 4
-                let cardCenter = location.x + (columnWidth - (geometry.size.height * 0.015) * 2) / 2
-                let newColumnIndex = Int(((columnWidth * CGFloat(columnIndex) + cardCenter - leadingOffset) / kanbanWidth) * 4)
-                
-                switch newColumnIndex {
-                case 0:
-                    toDoTasks.append(removedCard)
-                case 1:
-                    inProgressTasks.append(removedCard)
-                case 2:
-                    testingTasks.append(removedCard)
-                case 3:
-                    doneTasks.append(removedCard)
-                default:
-                    cardList.wrappedValue.insert(removedCard, at: index) // Devolver a la lista original si no es válido
-                }
-                
-            } else {
-                // Devolver la tarjeta a la posición original si no es un drop válido
-                cardList.wrappedValue.insert(removedCard, at: index)
-            }
-        }
-    }
-}
 
-struct DraggableKanbanCard: View {
-    let task: KanbanTask
-    let geometry: GeometryProxy
-    @Binding var cardDragStatus: KanbanColumn.DragStatus
-    @State private var dragOffset: CGSize = .zero
-    @State private var isDragging: Bool = false
 
-    let onDrag: (DragGesture.Value) -> Void
-    let onEnded: (DragGesture.Value) -> Void
-
-    var body: some View {
-        KanbanCard(task: task)
-            .overlay(
-                Group {
-                    let kanbanCardWidth = geometry.size.width * 0.21
-                    if cardDragStatus == .notAllowed && isDragging {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.red)
-                            .font(.largeTitle)
-                            .padding()
-                            .position(x: kanbanCardWidth + 3, y: 3)
-                    } else if cardDragStatus == .valid && isDragging {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
-                            .font(.largeTitle)
-                            .padding()
-                            .position(x: kanbanCardWidth + 3, y: -3)
-                    }
-                }
-            )
-            .frame(depth: isDragging ? 30 : 4)
-            .shadow(color: .black.opacity(isDragging ? 0.7 : 0.1), radius: isDragging ? 12 : 18, x: 0, y: isDragging ? geometry.size.height * 0.03 : geometry.size.height * 0.005)
-            .frame(height: geometry.size.height * 0.13)
-            .offset(dragOffset)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        isDragging = true
-                        dragOffset = value.translation
-                        onDrag(value)
-                    }
-                   
-                    .onEnded { value in
-                        isDragging = false
-                        dragOffset = .zero
-                        onEnded(value)
-                    }
-            )
-            .zIndex(isDragging ? 1 : 0)
-    }
-}
 
 //struct KanbanColumn: View {
 //    enum KanbanColumnType: Int {

@@ -15,6 +15,7 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
     let value: Int
     let isWarningEnabled: Bool
     let isFlagged: Bool
+    let isComplete: Bool
     
     static var transferRepresentation: some TransferRepresentation {
         CodableRepresentation(contentType: .kanbanTask)
@@ -25,7 +26,7 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
     }
     
     private enum CodingKeys: String, CodingKey {
-        case id, title, color, value, isWarningEnabled, isFlagged
+        case id, title, color, value, isWarningEnabled, isFlagged, isComplete
     }
     
     func encode(to encoder: Encoder) throws {
@@ -35,6 +36,7 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
         try container.encode(value, forKey: .value)
         try container.encode(isWarningEnabled, forKey: .isWarningEnabled)
         try container.encode(isFlagged, forKey: .isFlagged)
+        try container.encode(isComplete, forKey: .isComplete)
         
         let colorHex = UIColor(color).toHexString()
         try container.encode(colorHex, forKey: .color)
@@ -47,6 +49,7 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
         value = try container.decode(Int.self, forKey: .value)
         isWarningEnabled = try container.decode(Bool.self, forKey: .isWarningEnabled)
         isFlagged = try container.decode(Bool.self, forKey: .isFlagged)
+        isComplete = try container.decode(Bool.self, forKey: .isComplete)
         
         let colorHex = try container.decode(String.self, forKey: .color)
         color = Color(hex: colorHex)
@@ -57,7 +60,8 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
         color: Color,
         value: Int,
         isWarningEnabled: Bool = false,
-        isFlagged: Bool = false
+        isFlagged: Bool = false,
+        isComplete: Bool = false
     ) {
         self.id = UUID()
         self.title = title
@@ -65,6 +69,7 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
         self.value = value
         self.isWarningEnabled = isWarningEnabled
         self.isFlagged = isFlagged
+        self.isComplete = isComplete
     }
 }
 
@@ -83,7 +88,7 @@ struct KanbanCard: View {
             let padding = geometry.size.width*0.03
             let cardInsideHeight = geometry.size.height*0.74
             VStack(spacing: 0) {
-                title(geometry: geometry)
+                header(geometry: geometry)
                 
                 cardContent(
                     padding: padding,
@@ -102,6 +107,20 @@ struct KanbanCard: View {
 // - MARK: Subviews
 extension KanbanCard {
     
+    // - MARK: Header
+    /// Title and check indicator
+    private func header(geometry: GeometryProxy) -> some View {
+        HStack(spacing: 0) {
+            title(geometry: geometry)
+            if task.isComplete {
+                Image(systemName: "checkmark.square.fill")
+                    .resizable()
+                    .frame(width: geometry.size.height*0.15, height: geometry.size.height*0.15)
+                    .padding(.trailing, geometry.size.width*0.03)
+            }
+        }
+    }
+    
     // - MARK: Title
     /// Text used as title inside the top header of the card
     private func title(
@@ -111,7 +130,7 @@ extension KanbanCard {
             Text(task.title)
                 .lineLimit(1)
                 .font(.system(size: geometry.size.height*0.4))
-                .padding(.horizontal, geometry.size.width*0.03)
+                .padding(.leading, geometry.size.width*0.05)
                 .padding(.vertical, geometry.size.width*0.05)
                 .minimumScaleFactor(0.2)
                 .frame(height: geometry.size.height*0.25)
@@ -191,7 +210,8 @@ extension KanbanCard {
         KanbanCard(task: .init(
             title: "Esto es un texto de prueba para ajustar todo",
             color: .blue,
-            value: 3
+            value: 3,
+            isComplete: true
         )).frame(width: 150, height: 100)
         KanbanCard(task: .init(
             title: "Esto es un texto de prueba para ajustar todo",

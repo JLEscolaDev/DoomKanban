@@ -18,6 +18,10 @@
 		7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */; };
 		7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD222C5C65F00005C012 /* WarningTriangle.swift */; };
 		784103092C676F0900B00038 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 784103082C676F0900B00038 /* Algorithms */; };
+		7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */; };
+		7850D6B62C74988E008BF8CA /* Kanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B52C749888008BF8CA /* Kanban.swift */; };
+		786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */; };
+		786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */; };
 		787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83322C5FB1B000BB0405 /* WarningStack.swift */; };
 		787A83352C60309700BB0405 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83342C60309100BB0405 /* Debug.swift */; };
 		787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83392C60DB9200BB0405 /* WardenEye.swift */; };
@@ -50,6 +54,10 @@
 		7835AD1D2C5C4C5E0005C012 /* FlowArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowArrow.swift; sourceTree = "<group>"; };
 		7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSprintIndicatorView.swift; sourceTree = "<group>"; };
 		7835AD222C5C65F00005C012 /* WarningTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningTriangle.swift; sourceTree = "<group>"; };
+		7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientStrokeView.swift; sourceTree = "<group>"; };
+		7850D6B52C749888008BF8CA /* Kanban.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanban.swift; sourceTree = "<group>"; };
+		786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
+		786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableKanbanCard.swift; sourceTree = "<group>"; };
 		787A83322C5FB1B000BB0405 /* WarningStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningStack.swift; sourceTree = "<group>"; };
 		787A83342C60309100BB0405 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		787A83392C60DB9200BB0405 /* WardenEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardenEye.swift; sourceTree = "<group>"; };
@@ -102,10 +110,10 @@
 		7835AD002C5BE14C0005C012 /* DoomKanban */ = {
 			isa = PBXGroup;
 			children = (
+				7850D6B42C74987E008BF8CA /* EnvironmentVars */,
 				7880E18A2C622F520088BD70 /* Utils */,
 				7835AD142C5BE1550005C012 /* Views */,
 				7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */,
-				789EBD222C63691800D0317E /* DoomKanbanLayout.swift */,
 				7835AD092C5BE14D0005C012 /* Assets.xcassets */,
 				7835AD0E2C5BE14D0005C012 /* Info.plist */,
 				7835AD0B2C5BE14D0005C012 /* Preview Content */,
@@ -136,11 +144,12 @@
 		7835AD142C5BE1550005C012 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7850D6B12C748DDA008BF8CA /* Reusable */,
+				786A79702C6F606900BDDF31 /* Board */,
 				7880E1872C622E640088BD70 /* Basics */,
 				7835AD1F2C5C53AD0005C012 /* Indicators */,
 				7835AD1C2C5C4BF90005C012 /* Shapes */,
 				7835AD152C5BE15D0005C012 /* Card */,
-				7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */,
 				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
 				7880E1912C6235A40088BD70 /* SkillsView.swift */,
 			);
@@ -150,6 +159,7 @@
 		7835AD152C5BE15D0005C012 /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */,
 				7835AD162C5BE1980005C012 /* KanbanCard.swift */,
 			);
 			path = Card;
@@ -175,6 +185,32 @@
 				7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */,
 			);
 			path = Indicators;
+			sourceTree = "<group>";
+		};
+		7850D6B12C748DDA008BF8CA /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		7850D6B42C74987E008BF8CA /* EnvironmentVars */ = {
+			isa = PBXGroup;
+			children = (
+				7850D6B52C749888008BF8CA /* Kanban.swift */,
+			);
+			path = EnvironmentVars;
+			sourceTree = "<group>";
+		};
+		786A79702C6F606900BDDF31 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */,
+				786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */,
+				789EBD222C63691800D0317E /* DoomKanbanLayout.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 		787A832E2C5FB14800BB0405 /* Warnings */ = {
@@ -309,7 +345,10 @@
 				789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */,
 				7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */,
 				7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */,
+				7850D6B62C74988E008BF8CA /* Kanban.swift in Sources */,
 				7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */,
+				786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */,
+				786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */,
 				7835AD192C5BE5C60005C012 /* RedFlag.swift in Sources */,
 				7880E22F2C5D6D19000EFA9D /* CountDownCircle.swift in Sources */,
 				7880E22D2C5D08B1000EFA9D /* TriangleShape.swift in Sources */,
@@ -322,6 +361,7 @@
 				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
 				7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */,
 				789B7C932C651AC400DE4EF7 /* test.swift in Sources */,
+				7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
