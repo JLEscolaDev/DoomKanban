@@ -10,28 +10,32 @@ import UniformTypeIdentifiers
 
 struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
     let id: UUID
+    let projectId: Int
+    let sprintId: Int
     let title: String
     let color: Color
     let value: Int
     let isWarningEnabled: Bool
-    let isFlagged: Bool
+    var isFlagged: Bool
     let isComplete: Bool
     
     static var transferRepresentation: some TransferRepresentation {
         CodableRepresentation(contentType: .kanbanTask)
     }
     
-    static func ==(lhs: KanbanTask, rhs: KanbanTask) -> Bool {
-        return lhs.id == rhs.id
-    }
+//    static func ==(lhs: KanbanTask, rhs: KanbanTask) -> Bool {
+//        return lhs.id == rhs.id
+//    }
     
     private enum CodingKeys: String, CodingKey {
-        case id, title, color, value, isWarningEnabled, isFlagged, isComplete
+        case id, projectId, sprintId, title, color, value, isWarningEnabled, isFlagged, isComplete
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encode(projectId, forKey: .id)
+        try container.encode(sprintId, forKey: .id)
         try container.encode(title, forKey: .title)
         try container.encode(value, forKey: .value)
         try container.encode(isWarningEnabled, forKey: .isWarningEnabled)
@@ -45,6 +49,8 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
+        projectId = try container.decode(Int.self, forKey: .projectId)
+        sprintId = try container.decode(Int.self, forKey: .sprintId)
         title = try container.decode(String.self, forKey: .title)
         value = try container.decode(Int.self, forKey: .value)
         isWarningEnabled = try container.decode(Bool.self, forKey: .isWarningEnabled)
@@ -56,6 +62,8 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
     }
     
     init(
+        projectId: Int,
+        sprintId: Int,
         title: String,
         color: Color,
         value: Int,
@@ -64,6 +72,8 @@ struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
         isComplete: Bool = false
     ) {
         self.id = UUID()
+        self.projectId = projectId
+        self.sprintId = sprintId
         self.title = title
         self.color = color
         self.value = value
@@ -82,6 +92,7 @@ extension UTType {
 /// - WARNING: ⚠️ This card is not prepared to work for a height bigger than width.
 struct KanbanCard: View {
     let task: KanbanTask
+    @Environment(\.pointsCounter) private var points
     
     var body: some View {
         GeometryReader { geometry in
@@ -99,7 +110,11 @@ struct KanbanCard: View {
             .background(
                 task.color
             )
-            
+            .onChange(of: task.isComplete) {
+                if task.isComplete {
+                    points.wrappedValue = task.isWarningEnabled ? 20 : 10
+                }
+            }
         }
     }
 }
@@ -208,24 +223,32 @@ extension KanbanCard {
 #Preview {
     VStack(spacing: 20) {
         KanbanCard(task: .init(
+            projectId: 1,
+            sprintId: 1,
             title: "Esto es un texto de prueba para ajustar todo",
             color: .blue,
             value: 3,
             isComplete: true
         )).frame(width: 150, height: 100)
         KanbanCard(task: .init(
+            projectId: 1,
+            sprintId: 2,
             title: "Esto es un texto de prueba para ajustar todo",
             color: .blue,
             value: 7,
             isFlagged: true
         )).frame(width: 150, height: 100)
         KanbanCard(task: .init(
+            projectId: 2,
+            sprintId: 1,
             title: "Esto es un texto de prueba para ajustar todo",
             color: .blue,
             value: 5,
             isWarningEnabled: true
         )).frame(width: 150, height: 100)
         KanbanCard(task: .init(
+            projectId: 2,
+            sprintId: 3,
             title: "Esto es un texto de prueba para ajustar todo",
             color: .blue,
             value: 13,

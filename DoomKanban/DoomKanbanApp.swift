@@ -49,24 +49,24 @@ class KanbanAppVM: Equatable {
     static func generateSprints() -> [KanbanSprint] {
         [
             KanbanSprint(project: 1, projectColor: .blue, sprintNum: 1, tasks: [
-                KanbanTask(title: "Esto es un test", color: .blue, value: 1),
-                KanbanTask(title: "Segunda tarea", color: .blue, value: 1),
-                KanbanTask(title: "Título: Tercera tarea", color: .blue, value: 1)
+                KanbanTask(projectId: 1, sprintId: 1,title: "Esto es un test", color: .blue, value: 1, isFlagged: true),
+                KanbanTask(projectId: 1, sprintId: 1,title: "Segunda tarea", color: .blue, value: 1),
+                KanbanTask(projectId: 1, sprintId: 1,title: "Título: Tercera tarea", color: .blue, value: 1)
             ]),
             KanbanSprint(project: 1, projectColor: .blue, sprintNum: 2, tasks: [
-                KanbanTask(title: "Esto es un test", color: .blue, value: 3),
-                KanbanTask(title: "Segunda tarea", color: .blue, value: 4),
-                KanbanTask(title: "Título: Tercera tarea", color: .blue, value: 2)
+                KanbanTask(projectId: 1, sprintId: 2,title: "Esto es un test", color: .blue, value: 3),
+                KanbanTask(projectId: 1, sprintId: 2,title: "Segunda tarea", color: .blue, value: 4, isFlagged: true),
+                KanbanTask(projectId: 1, sprintId: 2,title: "Título: Tercera tarea", color: .blue, value: 2)
             ]),
             KanbanSprint(project: 2, projectColor: .red, sprintNum: 1, tasks: [
-                KanbanTask(title: "Project 2 - Prueba 1", color: .red, value: 3),
-                KanbanTask(title: "P2.Segunda tarea", color: .red, value: 4)
+                KanbanTask(projectId: 2, sprintId: 1,title: "Project 2 - Prueba 1", color: .red, value: 3, isWarningEnabled: true),
+                KanbanTask(projectId: 2, sprintId: 1,title: "P2.Segunda tarea", color: .red, value: 4)
             ]),
-            KanbanSprint(project: 3, projectColor: .yellow, sprintNum: 1, tasks: [
-                KanbanTask(title: "Esto es un test", color: .yellow, value: 3),
-                KanbanTask(title: "Segunda tarea", color: .yellow, value: 4),
-                KanbanTask(title: "Título: Tercera tarea", color: .yellow, value: 2),
-                KanbanTask(title: "4: La tarea final", color: .yellow, value: 5)
+            KanbanSprint(project: 3, projectColor: .yellow, sprintNum: 2, tasks: [
+                KanbanTask(projectId: 3, sprintId: 2,title: "Esto es un test", color: .yellow, value: 3),
+                KanbanTask(projectId: 3, sprintId: 2,title: "Segunda tarea", color: .yellow, value: 4),
+                KanbanTask(projectId: 3, sprintId: 2,title: "Título: Tercera tarea", color: .yellow, value: 2, isWarningEnabled: true),
+                KanbanTask(projectId: 3, sprintId: 2,title: "4: La tarea final", color: .yellow, value: 5)
             ])
         ]
     }
@@ -82,6 +82,7 @@ struct DoomKanbanApp: App {
     // Although we could attempt to reopen a new view after closing, this might interfere with our countdown logic and other features, so we have decided against it.
     // The user will be responsible for not closing their windows while playing.
     private var bottomWindowControlsVisibility: Visibility = .hidden
+    @State private var points = 0
     
     var body: some Scene {
         WindowGroup(id: "KanbanBoard") {
@@ -89,7 +90,8 @@ struct DoomKanbanApp: App {
                 DoomKanbanLayout()
                     .frame(width: geometry.size.width - 100, height: geometry.size.height - 100)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    .environment(\.kanban, $appVM)
+                    .kanbanVM($appVM)
+                    .pointsCounter($points)
             }.keepAspectRatio()
         }
         .defaultSize(width: 1200, height: 1200)
@@ -99,7 +101,7 @@ struct DoomKanbanApp: App {
                 SprintsLayoutView()
                     .frame(width: 320, height: max(geometry.size.height, 320))
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    .environment(\.kanban, $appVM)
+                    .kanbanVM($appVM)
             }
         }
         .windowStyle(.plain)
@@ -132,5 +134,24 @@ struct DoomKanbanApp: App {
             }
         }
         .persistentSystemOverlays(bottomWindowControlsVisibility)
+        
+        ImmersiveSpace(id: "Points") {
+            ExtrudedPointCounterImmersiveView()
+                .pointsCounter($points)
+        }.defaultSize(width: 1200, height: 1200)
+//        WindowGroup(id: "MobileChat") {
+//            FakeMobileChat()
+//        }
+//        .windowStyle(.plain)
+//        .defaultSize(width: 150, height: 600)
+//        .defaultWindowPlacement { content, context in
+//            if let mainWindow = context.windows.first(where: { $0.id == "KanbanBoard" }) {
+//                return WindowPlacement(.below(mainWindow))
+//            } else {
+//                print("No window with ID 'main' found!")
+//                return WindowPlacement() // Use default placement if main window doesn't exist
+//            }
+//        }
+////        .persistentSystemOverlays(bottomWindowControlsVisibility)
     }
 }

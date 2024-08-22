@@ -124,9 +124,16 @@ struct KanbanColumn: View {
         let yInitKanbanBoardPosition = geometry.size.height * 0.27
         
         let isInYRange = location.y + yInitKanbanBoardPosition + cardWidth >= -yInitKanbanBoardPosition + cardWidth && location.y + yInitKanbanBoardPosition - 50 <= yInitKanbanBoardPosition + cardWidth
-        let columnIndex = ((columnWidth * CGFloat(columnIndex) + cardCenter - leadingOffset) / kanbanWidth) * 4
-        let isInXRange = columnIndex >= 0 && columnIndex <= 3.7
-        let forceOutOfBounds = columnIndex <= -0.2 || columnIndex >= 3.7 || !isInYRange
+        let newColumnIndex = ((columnWidth * CGFloat(columnIndex) + cardCenter - leadingOffset) / kanbanWidth) * 4
+        let isInXRange = newColumnIndex >= 0 && newColumnIndex <= 3.7
+        let forceOutOfBounds = newColumnIndex <= -0.2 || newColumnIndex >= 3.7 || !isInYRange
+        
+        // We don't allow to move tasks directly from toDo or inProgress to Done.
+        // But we allow moving directly from ToDo to testing but the task increase its error probability and will be necessary to move it to ToDo.
+        print("Pendiente de implementar la parte del control de ToDo a Testing")
+        if columnIndex < 2 && newColumnIndex > 2.5 {
+            return .notAllowed
+        }
         
         if forceOutOfBounds {
             return .outOfBounds
@@ -139,6 +146,8 @@ struct KanbanColumn: View {
         }
     }
     
+
+    
     private func handleCardDrop(columnIndex: Int, of card: KanbanTask, from cardList: Binding<[KanbanTask]>, in location: CGPoint, ofSize geometry: GeometryProxy) {
         if let index = cardList.wrappedValue.firstIndex(where: { $0 == card }) {
             let removedCard = cardList.wrappedValue.remove(at: index)
@@ -149,10 +158,12 @@ struct KanbanColumn: View {
                 let columnWidth = (kanbanWidth) / 4
                 let cardCenter = location.x + (columnWidth - (geometry.size.height * 0.015) * 2) / 2
                 let newColumnIndex = Int(((columnWidth * CGFloat(columnIndex) + cardCenter - leadingOffset) / kanbanWidth) * 4)
+//                var addPoints = true
                 
                 switch newColumnIndex {
                 case 0:
                     toDoTasks.append(removedCard)
+//                    addPoints.toggle()
                 case 1:
                     inProgressTasks.append(removedCard)
                 case 2:
@@ -161,7 +172,12 @@ struct KanbanColumn: View {
                     doneTasks.append(removedCard)
                 default:
                     cardList.wrappedValue.insert(removedCard, at: index) // Devolver a la lista original si no es válido
+//                    addPoints.toggle()
                 }
+//                if addPoints {
+//                    print("AÑADIR PUNTOS")
+//                    points.wrappedValue += removedCard.isWarningEnabled ? 20 : 10
+//                }
                 
             } else {
                 // Devolver la tarjeta a la posición original si no es un drop válido
@@ -173,7 +189,7 @@ struct KanbanColumn: View {
 
 #Preview {
     GeometryReader { geometry in
-        KanbanColumn(columnType: .Done, title: "Done", headerColor: .green, tasks: .constant([.init(title: "Test card", color: .red, value: 3)]), geometry: geometry, toDoTasks: .constant([]), inProgressTasks: .constant([]), testingTasks: .constant([]), doneTasks: .constant([]))
+        KanbanColumn(columnType: .Done, title: "Done", headerColor: .green, tasks: .constant([.init(projectId: 1, sprintId: 1,title: "Test card", color: .red, value: 3)]), geometry: geometry, toDoTasks: .constant([]), inProgressTasks: .constant([]), testingTasks: .constant([]), doneTasks: .constant([]))
     }.frame(width: 200, height: 600)
         .background(.white)
         .border(.black)

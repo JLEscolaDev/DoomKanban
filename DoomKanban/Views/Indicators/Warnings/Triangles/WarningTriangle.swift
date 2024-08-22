@@ -46,8 +46,8 @@ struct WarningTriangle: View {
 }
 
 #Preview {
-    WarningTriangle(image: Image("shout"))
-        .accentColor(Color(red: 135/255, green: 199/255, blue: 235/255) )
+    WarningTriangle(image: Image(.shout))
+        .accentColor(.blue.lighter())
         .foregroundStyle(.blue)
         .tint(.blue)
         .frame(width: 200, height: 200)

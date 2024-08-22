@@ -11,7 +11,14 @@ import Algorithms
 import SwiftUI
 
 struct KanbanBoard: View {
-    @State var gameStarted = false
+    enum GameStatus {
+        case notStarted
+        case playing
+        case lost
+        case won
+    }
+    
+    @State var gameStatus = GameStatus.notStarted
     let secondsUntilGameStarts: CGFloat = 2
     @State private var nextTaskPosition: CGPoint = .zero
     @State private var draggedCard: KanbanTask?
@@ -27,10 +34,14 @@ struct KanbanBoard: View {
 //    estoy cambiando de las nextTasks (que eran mixedTasks heredadas como environment) a pasar el kanbanVM entero que tiene las mixedTasks y los sprints. Tengo que comprobar si al modificar mixedTasks se modifica también sprints o tengo que hacer alguna comprobación de a qué sprint pertenece la tarea para luego modificar sprints
 //    @State var nextCards: [KanbanTask]
     @Environment(\.kanban) private var kanbanVM
+    @State private var isChatVisible: (Visibility, KanbanTask?) = (.hidden, nil)
+    
     private var nextCards: [KanbanTask] {
         get { kanbanVM.wrappedValue.mixedTasks }
         set { kanbanVM.wrappedValue.mixedTasks = newValue }
     }
+    /// [projectId: (numberOfWarnings, projectColor)]
+    @State private var warningList: [Int: (numberOfWarnings:Int, projectColor: Color)] = [:]
     
     @State private var toDoTasks: [KanbanTask] = []
     @State private var inProgressTasks: [KanbanTask] = []
@@ -38,7 +49,17 @@ struct KanbanBoard: View {
     @State private var doneTasks: [KanbanTask] = []
 
     var body: some View {
-        GeometryReader { geometry in
+        for project in warningList {
+            // Player looses if he gets 3 warnings in the same project
+            if project.value.numberOfWarnings >= 3 {
+                gameStatus = .lost
+            }
+            // Verify if there are still tasks from the same project. If there are no more cards, we clean the warnings (it's not posible any more to lose for that warnings)
+            if !nextCards.contains(where: { $0.projectId == project.key }) {
+                warningList.removeValue(forKey: project.key)
+            }
+        }
+        return GeometryReader { geometry in
             VStack {
                 HStack(spacing: 0) {
                     VStack(spacing: 5) {
@@ -166,7 +187,7 @@ struct KanbanBoard: View {
                     .padding(.leading, geometry.size.width * 0.025)
                     .padding(.trailing, geometry.size.width * 0.025)
                     .overlay {
-                        if gameStarted {
+                        if gameStatus == .playing {
                             addCountDownView(geometry: geometry)
                                 .opacity(nextCards.isEmpty || counter == 0 ? 0 : 1)
                                 .allowsHitTesting(false) // Disable user interaction so the user can drag and drop the card
@@ -196,30 +217,46 @@ struct KanbanBoard: View {
                                     .fill(.black)
                                     .frame(height: geometry.size.height * 0.001)
                                 HStack {
-                                    WarningStack(warnings: [
-                                        WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
-                                            .foregroundStyle(.blue)
-                                            .tint(.blue)
-                                            .frame(depth: 2),
-                                        WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
-                                            .foregroundStyle(.blue)
-                                            .tint(.blue)
-                                            .frame(depth: 2)
-                                        
-                                    ], offset: geometry.size.width * 0.025)
-                                    .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.08)
+//                                    WarningStack(warnings: [
+//                                        WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
+//                                            .foregroundStyle(.blue)
+//                                            .tint(.blue)
+//                                            .frame(depth: 2),
+//                                        WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
+//                                            .foregroundStyle(.blue)
+//                                            .tint(.blue)
+//                                            .frame(depth: 2)
+//                                        
+//                                    ], offset: geometry.size.width * 0.025)
+//                                    .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.08)
                                     
-                                    WarningStack(warnings: [
-                                        WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
-                                            .foregroundStyle(.blue)
-                                            .tint(.blue)
-                                            .frame(depth: 2),
-                                        WarningTriangle(image: Image("shout")).accentColor(Color(red: 135 / 255, green: 199 / 255, blue: 235 / 255))
-                                            .foregroundStyle(.blue)
-                                            .tint(.blue)
-                                            .frame(depth: 2)
-                                    ], offset: geometry.size.width * 0.025)
-                                    .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.08)
+                                    let warningStacks: [AnyView] = warningList.compactMap { (projectId, arg1) in
+                                        let triangles: [AnyView] = (0..<arg1.numberOfWarnings).map { _ in
+                                            AnyView(
+                                                WarningTriangle(image: Image(.shout))
+                                                    .accentColor(arg1.projectColor.lighter())
+                                                    .foregroundStyle(arg1.projectColor)
+                                                    .tint(arg1.projectColor)
+                                                    .frame(depth: 2)
+                                            )
+                                        }
+                                        
+                                        if !triangles.isEmpty {
+                                            return AnyView(
+                                                WarningStack(warnings: triangles, offset: geometry.size.width * 0.025)
+                                                    .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.08)
+                                            )
+                                        } else {
+                                            return nil
+                                        }
+                                    }
+
+                                    // Luego, podrías mostrar estos `WarningStack` en tu vista, por ejemplo en un VStack o HStack:
+                                    HStack {
+                                        ForEach(0..<warningStacks.count, id: \.self) { index in
+                                            warningStacks[index]
+                                        }
+                                    }
                                 }
                                 .frame(alignment: .leading)
                                 .padding(.bottom, geometry.size.height * 0.02)
@@ -252,6 +289,7 @@ struct KanbanBoard: View {
                             .zIndex(draggedCard != nil && doneTasks.contains(draggedCard!) ? 5 : 1)
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                    .mobileChatVisibility($isChatVisible)
                     KanbanBoardShape()
                         .foregroundStyle(.black)
                 }
@@ -260,6 +298,66 @@ struct KanbanBoard: View {
                         .fill(.white.opacity(0.8))
                 }
                 .frame(height: geometry.size.height * 0.75)
+            }
+        }
+        .onChange(of: toDoTasks) {
+            handleColumnUpdate(column: $toDoTasks)
+        }.onChange(of: inProgressTasks) {
+            handleColumnUpdate(column: $inProgressTasks)
+        }.onChange(of: testingTasks) {
+            handleColumnUpdate(column: $testingTasks)
+        }.onChange(of: doneTasks) {
+            handleColumnUpdate(column: $doneTasks)
+        }
+        .ornament(
+            visibility: isChatVisible.0,
+            attachmentAnchor: .scene(.bottomFront),
+            contentAlignment: .top
+        ) {
+            FakeMobileChat() {
+                if var flaggedTask = isChatVisible.1 {
+                    // Busca y actualiza la tarea en la columna "To Do"
+                    if let index = toDoTasks.firstIndex(where: { $0.id == flaggedTask.id }) {
+                        toDoTasks[index].isFlagged = false
+                    }
+                    // Busca y actualiza la tarea en la columna "In Progress"
+                    else if let index = inProgressTasks.firstIndex(where: { $0.id == flaggedTask.id }) {
+                        inProgressTasks[index].isFlagged = false
+                    }
+                    // Busca y actualiza la tarea en la columna "Testing"
+                    else if let index = testingTasks.firstIndex(where: { $0.id == flaggedTask.id }) {
+                        testingTasks[index].isFlagged = false
+                    }
+                    // Busca y actualiza la tarea en la columna "Done"
+                    else if let index = doneTasks.firstIndex(where: { $0.id == flaggedTask.id }) {
+                        doneTasks[index].isFlagged = false
+                    }
+                }
+            }
+            .labelStyle(.iconOnly)
+            .padding(.vertical)
+//            .glassBackgroundEffect()
+            .frame(width: 150, height: 400)
+            .rotation3DEffect(.degrees(25), axis: (x: 1, y: 0, z: 0))
+            .offset(z: 100)
+            .offset(y: -80)
+            .mobileChatVisibility($isChatVisible)
+        }
+    }
+    
+    private func handleColumnUpdate(column: Binding<[KanbanTask]>) {
+        let unwrappedColumn = column.wrappedValue
+        if unwrappedColumn.count > 4 {
+            if let task = unwrappedColumn.last {
+                // We add 2 warnings instead of one if the task is marked as important
+                print("Pendiente de implementar la ganancia de dobles puntos para tareas importantes.")
+                let numberOfWarningsToAdd = task.isWarningEnabled ? 2 : 1
+                let projectId = task.projectId
+                if let existingWarning = warningList[projectId] {
+                    warningList[projectId] = (existingWarning.numberOfWarnings + numberOfWarningsToAdd, existingWarning.projectColor)
+                } else {
+                    warningList[projectId] = (numberOfWarningsToAdd, task.color)
+                }
             }
         }
     }
@@ -321,7 +419,7 @@ struct KanbanBoard: View {
     
     private func animateNextTasksSequentially() {
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(secondsUntilGameStarts)) {
-            gameStarted = true
+            gameStatus = .playing
         }
     }
     
@@ -374,7 +472,7 @@ struct KanbanBoard: View {
 
 #Preview(windowStyle: .plain) {
     KanbanBoard().frame(width: 700, height: 700)
-        .environment(\.kanban, .constant(KanbanAppVM()))
+        .kanbanVM(.constant(KanbanAppVM()))
 }
 
 

@@ -29,7 +29,7 @@ struct WardenEye: View {
     
     var body: some View {
         GeometryReader { geometry in
-            Image("Eye")
+            Image(.eye)
                 .resizable()
                 .background {
                     Circle()

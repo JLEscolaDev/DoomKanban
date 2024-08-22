@@ -24,7 +24,7 @@ struct WarningStack<T: View>: View {
 
 #Preview {
     WarningStack(warnings: [
-        WarningTriangle(image: Image("shout")),
-        WarningTriangle(image: Image("shout"))
+        WarningTriangle(image: Image(.shout)),
+        WarningTriangle(image: Image(.shout))
     ], offset: 30).frame(width: 200, height: 100)
 }

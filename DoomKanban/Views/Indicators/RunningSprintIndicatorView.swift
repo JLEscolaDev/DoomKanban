@@ -167,19 +167,19 @@ struct RunningSprintIndicatorView: View {
 
 #Preview {
     let tasks1: [KanbanTask] = [
-        .init(title: "Esto es un test", color: .blue, value: 3),
-        .init(title: "Segunda tarea", color: .blue, value: 4),
-        .init(title: "Título: Tercera tarea", color: .blue, value: 2)
+        .init(projectId: 1, sprintId: 3,title: "Esto es un test", color: .blue, value: 3),
+        .init(projectId: 1, sprintId: 3,title: "Segunda tarea", color: .blue, value: 4),
+        .init(projectId: 1, sprintId: 3,title: "Título: Tercera tarea", color: .blue, value: 2)
     ]
     
     let tasks2: [KanbanTask] = [
-        .init(title: "Project 2 - Prueba 1", color: .red, value: 3),
-        .init(title: "P2.Segunda tarea", color: .red, value: 4)
+        .init(projectId: 2, sprintId: 1,title: "Project 2 - Prueba 1", color: .red, value: 3),
+        .init(projectId: 2, sprintId: 1,title: "P2.Segunda tarea", color: .red, value: 4)
     ]
     
     let tasks3: [KanbanTask] = [
-        .init(title: "Project 3: First Task", color: .green, value: 2),
-        .init(title: "Project 3: La tarea final", color: .green, value: 5)
+        .init(projectId: 3, sprintId: 1,title: "Project 3: First Task", color: .green, value: 2),
+        .init(projectId: 3, sprintId: 1,title: "Project 3: La tarea final", color: .green, value: 5)
     ]
     
     VStack {

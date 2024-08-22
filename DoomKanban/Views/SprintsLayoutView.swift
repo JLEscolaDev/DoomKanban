@@ -99,5 +99,5 @@ struct SprintsLayoutView: View {
 
 #Preview {
     SprintsLayoutView().frame(width: 150, height: 700)
-        .environment(\.kanban, .constant(KanbanAppVM()))
+        .kanbanVM(.constant(KanbanAppVM()))
 }

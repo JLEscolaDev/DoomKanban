@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780375802C76B3B900B519FD /* PointsCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803757F2C76B3B600B519FD /* PointsCounter.swift */; };
 		7835AD042C5BE14C0005C012 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 7835AD032C5BE14C0005C012 /* RealityKitContent */; };
 		7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */; };
 		7835AD082C5BE14C0005C012 /* SprintsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */; };
@@ -20,6 +21,11 @@
 		784103092C676F0900B00038 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 784103082C676F0900B00038 /* Algorithms */; };
 		7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */; };
 		7850D6B62C74988E008BF8CA /* Kanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B52C749888008BF8CA /* Kanban.swift */; };
+		7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */; };
+		7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */ = {isa = PBXBuildFile; fileRef = 7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */; };
+		7850D6BF2C756B28008BF8CA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6BE2C756B24008BF8CA /* ChatView.swift */; };
+		7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */; };
+		7850D6C32C763F7E008BF8CA /* ExtrudedPointCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */; };
 		786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */; };
 		786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */; };
 		787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83322C5FB1B000BB0405 /* WarningStack.swift */; };
@@ -42,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7803757F2C76B3B600B519FD /* PointsCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCounter.swift; sourceTree = "<group>"; };
 		7835ACFE2C5BE14C0005C012 /* DoomKanban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomKanban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7835AD022C5BE14C0005C012 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanApp.swift; sourceTree = "<group>"; };
@@ -56,6 +63,11 @@
 		7835AD222C5C65F00005C012 /* WarningTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningTriangle.swift; sourceTree = "<group>"; };
 		7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientStrokeView.swift; sourceTree = "<group>"; };
 		7850D6B52C749888008BF8CA /* Kanban.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanban.swift; sourceTree = "<group>"; };
+		7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMobileChat.swift; sourceTree = "<group>"; };
+		7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeMobileChat.json; sourceTree = "<group>"; };
+		7850D6BE2C756B24008BF8CA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileChatVisibility.swift; sourceTree = "<group>"; };
+		7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrudedPointCounterView.swift; sourceTree = "<group>"; };
 		786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 		786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableKanbanCard.swift; sourceTree = "<group>"; };
 		787A83322C5FB1B000BB0405 /* WarningStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningStack.swift; sourceTree = "<group>"; };
@@ -110,11 +122,11 @@
 		7835AD002C5BE14C0005C012 /* DoomKanban */ = {
 			isa = PBXGroup;
 			children = (
+				7850D6BA2C7567A6008BF8CA /* Resources */,
 				7850D6B42C74987E008BF8CA /* EnvironmentVars */,
 				7880E18A2C622F520088BD70 /* Utils */,
 				7835AD142C5BE1550005C012 /* Views */,
 				7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */,
-				7835AD092C5BE14D0005C012 /* Assets.xcassets */,
 				7835AD0E2C5BE14D0005C012 /* Info.plist */,
 				7835AD0B2C5BE14D0005C012 /* Preview Content */,
 				789B7C922C651AC400DE4EF7 /* test.swift */,
@@ -144,6 +156,7 @@
 		7835AD142C5BE1550005C012 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7850D6B72C750360008BF8CA /* EmergingViews */,
 				7850D6B12C748DDA008BF8CA /* Reusable */,
 				786A79702C6F606900BDDF31 /* Board */,
 				7880E1872C622E640088BD70 /* Basics */,
@@ -183,6 +196,7 @@
 				787A832E2C5FB14800BB0405 /* Warnings */,
 				7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */,
 				7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */,
+				7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */,
 			);
 			path = Indicators;
 			sourceTree = "<group>";
@@ -198,9 +212,37 @@
 		7850D6B42C74987E008BF8CA /* EnvironmentVars */ = {
 			isa = PBXGroup;
 			children = (
+				7803757F2C76B3B600B519FD /* PointsCounter.swift */,
+				7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */,
 				7850D6B52C749888008BF8CA /* Kanban.swift */,
 			);
 			path = EnvironmentVars;
+			sourceTree = "<group>";
+		};
+		7850D6B72C750360008BF8CA /* EmergingViews */ = {
+			isa = PBXGroup;
+			children = (
+				7850D6BD2C756B10008BF8CA /* FakeChat */,
+			);
+			path = EmergingViews;
+			sourceTree = "<group>";
+		};
+		7850D6BA2C7567A6008BF8CA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */,
+				7835AD092C5BE14D0005C012 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7850D6BD2C756B10008BF8CA /* FakeChat */ = {
+			isa = PBXGroup;
+			children = (
+				7850D6BE2C756B24008BF8CA /* ChatView.swift */,
+				7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */,
+			);
+			path = FakeChat;
 			sourceTree = "<group>";
 		};
 		786A79702C6F606900BDDF31 /* Board */ = {
@@ -324,6 +366,7 @@
 			files = (
 				7835AD0D2C5BE14D0005C012 /* Preview Assets.xcassets in Resources */,
 				789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */,
+				7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */,
 				7835AD0A2C5BE14D0005C012 /* Assets.xcassets in Resources */,
 				789B7C9B2C66270300DE4EF7 /* FirstWinTrophy.usdz in Resources */,
 			);
@@ -340,26 +383,31 @@
 				787A83352C60309700BB0405 /* Debug.swift in Sources */,
 				7880E1892C622E740088BD70 /* CircularLoaderBackground.swift in Sources */,
 				789B7C8F2C6514AA00DE4EF7 /* View+AspectRatio.swift in Sources */,
+				7850D6BF2C756B28008BF8CA /* ChatView.swift in Sources */,
 				787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */,
 				7835AD1E2C5C4C5E0005C012 /* FlowArrow.swift in Sources */,
 				789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */,
 				7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */,
 				7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */,
+				7850D6C32C763F7E008BF8CA /* ExtrudedPointCounterView.swift in Sources */,
 				7850D6B62C74988E008BF8CA /* Kanban.swift in Sources */,
 				7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */,
 				786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */,
 				786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */,
 				7835AD192C5BE5C60005C012 /* RedFlag.swift in Sources */,
 				7880E22F2C5D6D19000EFA9D /* CountDownCircle.swift in Sources */,
+				780375802C76B3B900B519FD /* PointsCounter.swift in Sources */,
 				7880E22D2C5D08B1000EFA9D /* TriangleShape.swift in Sources */,
 				7835AD172C5BE1980005C012 /* KanbanCard.swift in Sources */,
 				7880E1922C6235A40088BD70 /* SkillsView.swift in Sources */,
 				7880E1942C62597D0088BD70 /* ConditionalOrientationView.swift in Sources */,
 				7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */,
+				7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */,
 				7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */,
 				787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */,
 				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
 				7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */,
+				7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */,
 				789B7C932C651AC400DE4EF7 /* test.swift in Sources */,
 				7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */,
 			);
