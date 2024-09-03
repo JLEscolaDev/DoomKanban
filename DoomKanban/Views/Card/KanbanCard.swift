@@ -8,58 +8,54 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct KanbanTask: Transferable, Codable, Identifiable, Equatable, Hashable {
+struct KanbanTask: Identifiable, Equatable {
     let id: UUID
-    let projectId: Int
-    let sprintId: Int
+    var projectId: Int
+    var sprintId: Int
     let title: String
-    let color: Color
-    let value: Int
+    var color: Color
+    var value: Int
     let isWarningEnabled: Bool
     var isFlagged: Bool
-    let isComplete: Bool
+    var isComplete: Bool
     
-    static var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(contentType: .kanbanTask)
-    }
-    
-//    static func ==(lhs: KanbanTask, rhs: KanbanTask) -> Bool {
-//        return lhs.id == rhs.id
+//    static var transferRepresentation: some TransferRepresentation {
+//        CodableRepresentation(contentType: .kanbanTask)
 //    }
-    
-    private enum CodingKeys: String, CodingKey {
-        case id, projectId, sprintId, title, color, value, isWarningEnabled, isFlagged, isComplete
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(projectId, forKey: .id)
-        try container.encode(sprintId, forKey: .id)
-        try container.encode(title, forKey: .title)
-        try container.encode(value, forKey: .value)
-        try container.encode(isWarningEnabled, forKey: .isWarningEnabled)
-        try container.encode(isFlagged, forKey: .isFlagged)
-        try container.encode(isComplete, forKey: .isComplete)
-        
-        let colorHex = UIColor(color).toHexString()
-        try container.encode(colorHex, forKey: .color)
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(UUID.self, forKey: .id)
-        projectId = try container.decode(Int.self, forKey: .projectId)
-        sprintId = try container.decode(Int.self, forKey: .sprintId)
-        title = try container.decode(String.self, forKey: .title)
-        value = try container.decode(Int.self, forKey: .value)
-        isWarningEnabled = try container.decode(Bool.self, forKey: .isWarningEnabled)
-        isFlagged = try container.decode(Bool.self, forKey: .isFlagged)
-        isComplete = try container.decode(Bool.self, forKey: .isComplete)
-        
-        let colorHex = try container.decode(String.self, forKey: .color)
-        color = Color(hex: colorHex)
-    }
+//    
+//    private enum CodingKeys: String, CodingKey {
+//        case id, projectId, sprintId, title, color, value, isWarningEnabled, isFlagged, isComplete
+//    }
+//    
+//    func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(id, forKey: .id)
+//        try container.encode(projectId, forKey: .id)
+//        try container.encode(sprintId, forKey: .id)
+//        try container.encode(title, forKey: .title)
+//        try container.encode(value, forKey: .value)
+//        try container.encode(isWarningEnabled, forKey: .isWarningEnabled)
+//        try container.encode(isFlagged, forKey: .isFlagged)
+//        try container.encode(isComplete, forKey: .isComplete)
+//        
+//        let colorHex = UIColor(color).toHexString()
+//        try container.encode(colorHex, forKey: .color)
+//    }
+//    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        id = try container.decode(UUID.self, forKey: .id)
+//        projectId = try container.decode(Int.self, forKey: .projectId)
+//        sprintId = try container.decode(Int.self, forKey: .sprintId)
+//        title = try container.decode(String.self, forKey: .title)
+//        value = try container.decode(Int.self, forKey: .value)
+//        isWarningEnabled = try container.decode(Bool.self, forKey: .isWarningEnabled)
+//        isFlagged = try container.decode(Bool.self, forKey: .isFlagged)
+//        isComplete = try container.decode(Bool.self, forKey: .isComplete)
+//        
+//        let colorHex = try container.decode(String.self, forKey: .color)
+//        color = Color(hex: colorHex)
+//    }
     
     init(
         projectId: Int,
@@ -92,7 +88,9 @@ extension UTType {
 /// - WARNING: ⚠️ This card is not prepared to work for a height bigger than width.
 struct KanbanCard: View {
     let task: KanbanTask
+    @Environment(\.kanban) private var kanbanAppVM
     @Environment(\.pointsCounter) private var points
+//    @State private var justAppeared = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -110,12 +108,35 @@ struct KanbanCard: View {
             .background(
                 task.color
             )
-            .onChange(of: task.isComplete) {
-                if task.isComplete {
-                    points.wrappedValue = task.isWarningEnabled ? 20 : 10
+//            .onAppear {
+//                Task {
+//                    try await Task.sleep(nanoseconds: 1_000_000_000) // 1 segundo
+//                    justAppeared = true
+//                }
+//            }
+            .onChange(of: task.isComplete) { oldValue, newValue in
+                if /*justAppeared &&*/ newValue {
+                    points.wrappedValue += calculatePoints()
                 }
             }
+//            .onChange(of: task.isFlagged) { oldValue, newValue in
+//                if /*justAppeared &&*/ newValue {
+//                    points.wrappedValue += calculatePoints()
+//                }
+//            }
         }
+    }
+    
+    private func calculatePoints() -> Int {
+        let basePoints = 100
+        var addPoints = basePoints
+        if task.isWarningEnabled {
+            addPoints *= 2
+        }
+        if kanbanAppVM.wardenIsWatching {
+            addPoints *= 2
+        }
+        return addPoints
     }
 }
 

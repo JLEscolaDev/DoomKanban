@@ -26,6 +26,16 @@
 		7850D6BF2C756B28008BF8CA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6BE2C756B24008BF8CA /* ChatView.swift */; };
 		7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */; };
 		7850D6C32C763F7E008BF8CA /* ExtrudedPointCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */; };
+		7867356C2C78C685007C3901 /* RandomValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867356B2C78C67F007C3901 /* RandomValues.swift */; };
+		7867356E2C792BD7007C3901 /* WarningInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867356D2C792BD0007C3901 /* WarningInfo.swift */; };
+		786735702C794536007C3901 /* TasksTitles.json in Resources */ = {isa = PBXBuildFile; fileRef = 7867356F2C794530007C3901 /* TasksTitles.json */; };
+		786735722C7A6A38007C3901 /* GenericMedal.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735712C7A6A38007C3901 /* GenericMedal.usdz */; };
+		786735752C85062B007C3901 /* FirstWin.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735732C85062B007C3901 /* FirstWin.usdz */; };
+		786735762C85062B007C3901 /* Skill4TheWin.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735742C85062B007C3901 /* Skill4TheWin.usdz */; };
+		786735782C8542EE007C3901 /* Warden.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735772C8542EE007C3901 /* Warden.usdz */; };
+		7867357A2C8542FC007C3901 /* 2000Tasks.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735792C8542FC007C3901 /* 2000Tasks.usdz */; };
+		786735862C85BF17007C3901 /* Round Book Shelf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735852C85BF17007C3901 /* Round Book Shelf.usdz */; };
+		786735882C86714C007C3901 /* InitialMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786735872C867142007C3901 /* InitialMenuView.swift */; };
 		786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */; };
 		786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */; };
 		787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83322C5FB1B000BB0405 /* WarningStack.swift */; };
@@ -41,7 +51,7 @@
 		7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E2332C5D8949000EFA9D /* KanbanBoardShape.swift */; };
 		7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */; };
 		789B7C8F2C6514AA00DE4EF7 /* View+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */; };
-		789B7C932C651AC400DE4EF7 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C922C651AC400DE4EF7 /* test.swift */; };
+		789B7C932C651AC400DE4EF7 /* Shelf3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */; };
 		789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */; };
 		789B7C9B2C66270300DE4EF7 /* FirstWinTrophy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */; };
 		789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EBD222C63691800D0317E /* DoomKanbanLayout.swift */; };
@@ -68,6 +78,16 @@
 		7850D6BE2C756B24008BF8CA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileChatVisibility.swift; sourceTree = "<group>"; };
 		7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrudedPointCounterView.swift; sourceTree = "<group>"; };
+		7867356B2C78C67F007C3901 /* RandomValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomValues.swift; sourceTree = "<group>"; };
+		7867356D2C792BD0007C3901 /* WarningInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningInfo.swift; sourceTree = "<group>"; };
+		7867356F2C794530007C3901 /* TasksTitles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TasksTitles.json; sourceTree = "<group>"; };
+		786735712C7A6A38007C3901 /* GenericMedal.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = GenericMedal.usdz; sourceTree = "<group>"; };
+		786735732C85062B007C3901 /* FirstWin.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = FirstWin.usdz; sourceTree = "<group>"; };
+		786735742C85062B007C3901 /* Skill4TheWin.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Skill4TheWin.usdz; sourceTree = "<group>"; };
+		786735772C8542EE007C3901 /* Warden.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Warden.usdz; sourceTree = "<group>"; };
+		786735792C8542FC007C3901 /* 2000Tasks.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2000Tasks.usdz; sourceTree = "<group>"; };
+		786735852C85BF17007C3901 /* Round Book Shelf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Round Book Shelf.usdz"; sourceTree = "<group>"; };
+		786735872C867142007C3901 /* InitialMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMenuView.swift; sourceTree = "<group>"; };
 		786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 		786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableKanbanCard.swift; sourceTree = "<group>"; };
 		787A83322C5FB1B000BB0405 /* WarningStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningStack.swift; sourceTree = "<group>"; };
@@ -83,7 +103,7 @@
 		7880E2332C5D8949000EFA9D /* KanbanBoardShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoardShape.swift; sourceTree = "<group>"; };
 		7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoard.swift; sourceTree = "<group>"; };
 		789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AspectRatio.swift"; sourceTree = "<group>"; };
-		789B7C922C651AC400DE4EF7 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelf3DView.swift; sourceTree = "<group>"; };
 		789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = SESSION_1723114240_6157427_mesh.usdz; sourceTree = "<group>"; };
 		789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = FirstWinTrophy.usdz; sourceTree = "<group>"; };
 		789EBD222C63691800D0317E /* DoomKanbanLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanLayout.swift; sourceTree = "<group>"; };
@@ -129,7 +149,6 @@
 				7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */,
 				7835AD0E2C5BE14D0005C012 /* Info.plist */,
 				7835AD0B2C5BE14D0005C012 /* Preview Content */,
-				789B7C922C651AC400DE4EF7 /* test.swift */,
 			);
 			path = DoomKanban;
 			sourceTree = "<group>";
@@ -145,10 +164,16 @@
 		7835AD0B2C5BE14D0005C012 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				786735852C85BF17007C3901 /* Round Book Shelf.usdz */,
+				786735772C8542EE007C3901 /* Warden.usdz */,
+				786735712C7A6A38007C3901 /* GenericMedal.usdz */,
 				789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */,
 				787A83342C60309100BB0405 /* Debug.swift */,
 				7835AD0C2C5BE14D0005C012 /* Preview Assets.xcassets */,
 				789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */,
+				786735732C85062B007C3901 /* FirstWin.usdz */,
+				786735742C85062B007C3901 /* Skill4TheWin.usdz */,
+				786735792C8542FC007C3901 /* 2000Tasks.usdz */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -156,6 +181,7 @@
 		7835AD142C5BE1550005C012 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				786735872C867142007C3901 /* InitialMenuView.swift */,
 				7850D6B72C750360008BF8CA /* EmergingViews */,
 				7850D6B12C748DDA008BF8CA /* Reusable */,
 				786A79702C6F606900BDDF31 /* Board */,
@@ -165,6 +191,7 @@
 				7835AD152C5BE15D0005C012 /* Card */,
 				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
 				7880E1912C6235A40088BD70 /* SkillsView.swift */,
+				789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +257,7 @@
 		7850D6BA2C7567A6008BF8CA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7867356F2C794530007C3901 /* TasksTitles.json */,
 				7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */,
 				7835AD092C5BE14D0005C012 /* Assets.xcassets */,
 			);
@@ -267,6 +295,7 @@
 		787A832F2C5FB14E00BB0405 /* Triangles */ = {
 			isa = PBXGroup;
 			children = (
+				7867356D2C792BD0007C3901 /* WarningInfo.swift */,
 				7835AD222C5C65F00005C012 /* WarningTriangle.swift */,
 				787A83322C5FB1B000BB0405 /* WarningStack.swift */,
 			);
@@ -292,6 +321,7 @@
 		7880E18A2C622F520088BD70 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7867356B2C78C67F007C3901 /* RandomValues.swift */,
 				789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */,
 				7880E1932C6259740088BD70 /* ConditionalOrientationView.swift */,
 				7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */,
@@ -367,7 +397,14 @@
 				7835AD0D2C5BE14D0005C012 /* Preview Assets.xcassets in Resources */,
 				789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */,
 				7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */,
+				786735722C7A6A38007C3901 /* GenericMedal.usdz in Resources */,
+				786735702C794536007C3901 /* TasksTitles.json in Resources */,
+				7867357A2C8542FC007C3901 /* 2000Tasks.usdz in Resources */,
 				7835AD0A2C5BE14D0005C012 /* Assets.xcassets in Resources */,
+				786735782C8542EE007C3901 /* Warden.usdz in Resources */,
+				786735752C85062B007C3901 /* FirstWin.usdz in Resources */,
+				786735762C85062B007C3901 /* Skill4TheWin.usdz in Resources */,
+				786735862C85BF17007C3901 /* Round Book Shelf.usdz in Resources */,
 				789B7C9B2C66270300DE4EF7 /* FirstWinTrophy.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +431,7 @@
 				7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */,
 				786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */,
 				786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */,
+				786735882C86714C007C3901 /* InitialMenuView.swift in Sources */,
 				7835AD192C5BE5C60005C012 /* RedFlag.swift in Sources */,
 				7880E22F2C5D6D19000EFA9D /* CountDownCircle.swift in Sources */,
 				780375802C76B3B900B519FD /* PointsCounter.swift in Sources */,
@@ -403,12 +441,14 @@
 				7880E1942C62597D0088BD70 /* ConditionalOrientationView.swift in Sources */,
 				7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */,
 				7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */,
+				7867356E2C792BD7007C3901 /* WarningInfo.swift in Sources */,
 				7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */,
 				787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */,
 				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
 				7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */,
 				7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */,
-				789B7C932C651AC400DE4EF7 /* test.swift in Sources */,
+				789B7C932C651AC400DE4EF7 /* Shelf3DView.swift in Sources */,
+				7867356C2C78C685007C3901 /* RandomValues.swift in Sources */,
 				7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

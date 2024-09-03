@@ -8,18 +8,18 @@
 import SwiftUI
 
 private struct KanbanKey: EnvironmentKey {
-    static let defaultValue: Binding<KanbanAppVM> = .constant(.init())
+    static let defaultValue = KanbanAppVM()
 }
 
 extension EnvironmentValues {
-    var kanban: Binding<KanbanAppVM> {
+    var kanban: KanbanAppVM {
     get { self[KanbanKey.self] }
     set { self[KanbanKey.self] = newValue }
   }
 }
 
 extension View {
-  func kanbanVM(_ appVM: Binding<KanbanAppVM>) -> some View {
+  func kanbanVM(_ appVM: KanbanAppVM) -> some View {
     environment(\.kanban, appVM)
   }
 }
