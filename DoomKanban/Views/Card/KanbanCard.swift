@@ -8,7 +8,9 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct KanbanTask: Identifiable, Equatable {
+// ⚠️ This KanbanTask must be an @Observable class because as a simple struct it is not possible to auto-refresh the subviews hierarchy when a KanbanTask property changes
+@Observable
+class KanbanTask: Identifiable, Equatable, Hashable {
     let id: UUID
     var projectId: Int
     var sprintId: Int
@@ -18,6 +20,30 @@ struct KanbanTask: Identifiable, Equatable {
     let isWarningEnabled: Bool
     var isFlagged: Bool
     var isComplete: Bool
+    
+    static func == (lhs: KanbanTask, rhs: KanbanTask) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.projectId == rhs.projectId &&
+        lhs.sprintId == rhs.sprintId &&
+        lhs.title == rhs.title &&
+        lhs.color == rhs.color &&
+        lhs.value == rhs.value &&
+        lhs.isWarningEnabled == rhs.isWarningEnabled &&
+        lhs.isFlagged == rhs.isFlagged &&
+        lhs.isComplete == rhs.isComplete
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(projectId)
+        hasher.combine(sprintId)
+        hasher.combine(title)
+        hasher.combine(color)
+        hasher.combine(value)
+        hasher.combine(isWarningEnabled)
+        hasher.combine(isFlagged)
+        hasher.combine(isComplete)
+    }
     
 //    static var transferRepresentation: some TransferRepresentation {
 //        CodableRepresentation(contentType: .kanbanTask)
@@ -88,8 +114,8 @@ extension UTType {
 /// - WARNING: ⚠️ This card is not prepared to work for a height bigger than width.
 struct KanbanCard: View {
     let task: KanbanTask
-    @Environment(\.kanban) private var kanbanAppVM
-    @Environment(\.pointsCounter) private var points
+    @Environment(KanbanAppVM.self) var kanbanAppVM
+//    @Environment(\.pointsCounter) private var points
 //    @State private var justAppeared = false
     
     var body: some View {
@@ -116,7 +142,7 @@ struct KanbanCard: View {
 //            }
             .onChange(of: task.isComplete) { oldValue, newValue in
                 if /*justAppeared &&*/ newValue {
-                    points.wrappedValue += calculatePoints()
+                    kanbanAppVM.points += calculatePoints()
                 }
             }
 //            .onChange(of: task.isFlagged) { oldValue, newValue in
@@ -219,7 +245,17 @@ extension KanbanCard {
     // - MARK: Card Value
     /// Numeric value that will be displayed on the center of the card
     private func cardValue(with font: Font) -> some View {
-        Text("\(task.value)")
+        let value: String = {
+                switch task.value {
+                case 1...:
+                    "\(task.value)"
+                case 0:
+                    "✅"
+                default:
+                    "❌"
+                }
+            }()
+        return Text("\(value)")
             .lineLimit(1, reservesSpace: true)
             .font(font)
             .minimumScaleFactor(0.01)

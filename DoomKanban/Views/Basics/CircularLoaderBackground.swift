@@ -25,7 +25,10 @@ struct CircularLoaderBackground<Content: View>: View {
             }.padding(geometry.size.height*0.1)
         }
     }
-    
+}
+
+// - MARK: Subviews
+extension CircularLoaderBackground {
     private func backgroundCircle(geometry: GeometryProxy) -> some View {
         Circle()
             .fill(Color.backgroundLightGray)
@@ -36,31 +39,6 @@ struct CircularLoaderBackground<Content: View>: View {
         let minSize = min(geometry.size.width, geometry.size.height)
         return Circle()
             .strokeBorder(Color.black, lineWidth: minSize * 0.04)
-    }
-}
-
-struct ShadowOffsetKey: EnvironmentKey {
-    static let defaultValue: (x: CGFloat, y: CGFloat) = (0, 0)
-}
-
-extension EnvironmentValues {
-    var shadowOffset: (x: CGFloat, y: CGFloat) {
-        get { self[ShadowOffsetKey.self] }
-        set { self[ShadowOffsetKey.self] = newValue }
-    }
-}
-
-struct ShadowOffsetModifier: ViewModifier {
-    var shadowOffset: (x: CGFloat, y: CGFloat)
-
-    func body(content: Content) -> some View {
-        content.environment(\.shadowOffset, shadowOffset)
-    }
-}
-
-extension View {
-    func shadowOffset(x: CGFloat, y: CGFloat) -> some View {
-        self.modifier(ShadowOffsetModifier(shadowOffset: (x, y)))
     }
 }
 

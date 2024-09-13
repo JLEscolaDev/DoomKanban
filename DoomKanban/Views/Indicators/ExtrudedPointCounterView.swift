@@ -109,7 +109,8 @@ import RealityKit
 
 struct ExtrudedPointCounterImmersiveView: View {
     @State var contentEntity = Entity()
-    @Environment(\.pointsCounter) private var points
+    var points: Int
+//    @Environment(\.pointsCounter) private var points
     
     func setupContentEntity() -> Entity {
         // Asegura que la entidad tenga un componente de colisión
@@ -148,7 +149,7 @@ struct ExtrudedPointCounterImmersiveView: View {
             let model = setupContentEntity()
                 contentEntity = model
                 content.add(model)
-            updateText(text: "\(points.wrappedValue)")
+            updateText(text: "\(points)")
         }.gesture(
             DragGesture()
                 .targetedToEntity(
@@ -164,8 +165,8 @@ struct ExtrudedPointCounterImmersiveView: View {
                                 to: contentEntity.parent!
                             )
                     })
-        ).onChange(of: points.wrappedValue) {
-            updateText(text: "\(points.wrappedValue)")
+        ).onChange(of: points) {
+            updateText(text: "\(points)")
         }
     }
 }

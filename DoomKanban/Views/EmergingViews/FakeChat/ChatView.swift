@@ -21,10 +21,10 @@ struct ChatMessage: Identifiable {
 }
 
 struct ChatView: View {
+    @Environment(KanbanAppVM.self) var kanbanVM
     @State private var messages: [ChatMessage] = []
     @State private var timer: Timer?
     @State private var chatMessageOptions: ChatMessageOptions?
-    @Environment(\.mobileChatVisibility) private var isChatVisible
     
     var onComplete: (() -> Void)?  // Callback for notifying parent view when the last message has been displayed
 
@@ -74,17 +74,17 @@ struct ChatView: View {
                     }
                     .onAppear {
                             messages.removeAll()
-                            loadChatMessages {
-                                onComplete?()
-                            }
+//                            loadChatMessages {
+//                                onComplete?()
+//                            }
 //                            DispatchQueue.main.async {
 //                                withAnimation {
 //                                    scrollViewProxy.scrollTo(messages.last?.id, anchor: .bottom)
 //                                }
 //                            }
                     }
-                    .onChange(of: isChatVisible.wrappedValue.0) { oldValue, newValue in
-                        if newValue == .visible {
+                    .onChange(of: kanbanVM.chatVisibility.0) { _, visibility in
+                        if visibility == .visible {
                             // Delete and restart messages for new chat animation
                             messages.removeAll()
                             loadChatMessages {
@@ -129,7 +129,7 @@ struct ChatView: View {
                 }
                 currentMessageIndex += 1
                 
-                timer = Timer.scheduledTimer(withTimeInterval: Double.random(in: 2...4), repeats: true) { timer in
+                timer = Timer.scheduledTimer(withTimeInterval: Double.random(in: 1...2), repeats: true) { timer in
                     if currentMessageIndex < allMessages.count {
                         withAnimation {
                             messages.append(allMessages[currentMessageIndex])

@@ -11,33 +11,58 @@ struct InitialMenuView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.pushWindow) private var pushWindow
-
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
+    
     var body: some View {
         VStack(spacing: 30) {
             Text("DOOM KANBAN")
                 .font(.system(size: 100, weight: .bold))
                 .fontDesign(.serif)
                 .padding()
-                .padding(.bottom, 200)
-
+                .padding(.bottom, 180)
+            
             Button(action: {
-                pushWindow(id: "KanbanBoard")
+                Task {
+                    await openImmersiveSpace(id: "fireImmersiveSpace")
+                }
             }) {
-                Text("Abrir Kanban Layout")
+                Text("Activar espacio inmersivo")
                     .font(.system(size: 40, weight: .medium))
                     .frame(maxWidth: .infinity, minHeight: 120)
                     .padding()
                     .foregroundColor(.white)
                     .cornerRadius(20)
             }
-
+            
+            Button(action: {
+                pushWindow(id: "KanbanBoard")
+            }) {
+                Text("Nueva partida")
+                    .font(.system(size: 40, weight: .medium))
+                    .frame(maxWidth: .infinity, minHeight: 120)
+                    .padding()
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+            }
+            
             Button(action: {
                 openWindow(id: "Shelf")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     dismissWindow(id: "InitialMenu")
                 }
             }) {
-                Text("Abrir Window Volumétrico")
+                Text("Logros")
+                    .font(.system(size: 40, weight: .medium))
+                    .frame(maxWidth: .infinity, minHeight: 120)
+                    .padding()
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+            }
+            
+            Button(action: {
+                openWindow(id: "PodiumView")
+            }) {
+                Text("Podio")
                     .font(.system(size: 40, weight: .medium))
                     .frame(maxWidth: .infinity, minHeight: 120)
                     .padding()
@@ -53,7 +78,6 @@ struct InitialMenuView: View {
         }
     }
 }
-
 
 struct InitialMenuView_Previews: PreviewProvider {
     static var previews: some View {

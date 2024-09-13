@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		780375802C76B3B900B519FD /* PointsCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803757F2C76B3B600B519FD /* PointsCounter.swift */; };
+		780F27A62C8A6D3A00C72B53 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F27A52C8A6D3700C72B53 /* AudioPlayerManager.swift */; };
+		780F27B22C8A6E9800C72B53 /* rythm2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AA2C8A6E9800C72B53 /* rythm2.mp3 */; };
+		780F27B32C8A6E9800C72B53 /* rythm5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AD2C8A6E9800C72B53 /* rythm5.mp3 */; };
+		780F27B42C8A6E9800C72B53 /* rythm1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27A92C8A6E9800C72B53 /* rythm1.mp3 */; };
+		780F27B52C8A6E9800C72B53 /* rythm6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AE2C8A6E9800C72B53 /* rythm6.mp3 */; };
+		780F27B62C8A6E9800C72B53 /* rythm7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AF2C8A6E9800C72B53 /* rythm7.mp3 */; };
+		780F27B72C8A6E9800C72B53 /* rythm9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27B12C8A6E9800C72B53 /* rythm9.mp3 */; };
+		780F27B82C8A6E9800C72B53 /* rythm3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AB2C8A6E9800C72B53 /* rythm3.mp3 */; };
+		780F27B92C8A6E9800C72B53 /* rythm8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27B02C8A6E9800C72B53 /* rythm8.mp3 */; };
+		780F27BA2C8A6E9800C72B53 /* rythm4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AC2C8A6E9800C72B53 /* rythm4.mp3 */; };
 		7835AD042C5BE14C0005C012 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 7835AD032C5BE14C0005C012 /* RealityKitContent */; };
 		7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */; };
 		7835AD082C5BE14C0005C012 /* SprintsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */; };
@@ -20,7 +30,7 @@
 		7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD222C5C65F00005C012 /* WarningTriangle.swift */; };
 		784103092C676F0900B00038 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 784103082C676F0900B00038 /* Algorithms */; };
 		7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */; };
-		7850D6B62C74988E008BF8CA /* Kanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B52C749888008BF8CA /* Kanban.swift */; };
+		7850D6B62C74988E008BF8CA /* ShadowOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B52C749888008BF8CA /* ShadowOffset.swift */; };
 		7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */; };
 		7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */ = {isa = PBXBuildFile; fileRef = 7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */; };
 		7850D6BF2C756B28008BF8CA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6BE2C756B24008BF8CA /* ChatView.swift */; };
@@ -29,18 +39,23 @@
 		7867356C2C78C685007C3901 /* RandomValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867356B2C78C67F007C3901 /* RandomValues.swift */; };
 		7867356E2C792BD7007C3901 /* WarningInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867356D2C792BD0007C3901 /* WarningInfo.swift */; };
 		786735702C794536007C3901 /* TasksTitles.json in Resources */ = {isa = PBXBuildFile; fileRef = 7867356F2C794530007C3901 /* TasksTitles.json */; };
-		786735722C7A6A38007C3901 /* GenericMedal.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735712C7A6A38007C3901 /* GenericMedal.usdz */; };
+		786735722C7A6A38007C3901 /* outscoreTheCreator.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735712C7A6A38007C3901 /* outscoreTheCreator.usdz */; };
 		786735752C85062B007C3901 /* FirstWin.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735732C85062B007C3901 /* FirstWin.usdz */; };
 		786735762C85062B007C3901 /* Skill4TheWin.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735742C85062B007C3901 /* Skill4TheWin.usdz */; };
 		786735782C8542EE007C3901 /* Warden.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735772C8542EE007C3901 /* Warden.usdz */; };
 		7867357A2C8542FC007C3901 /* 2000Tasks.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735792C8542FC007C3901 /* 2000Tasks.usdz */; };
 		786735862C85BF17007C3901 /* Round Book Shelf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735852C85BF17007C3901 /* Round Book Shelf.usdz */; };
 		786735882C86714C007C3901 /* InitialMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786735872C867142007C3901 /* InitialMenuView.swift */; };
+		7869CDEE2C87593C0063E690 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7869CDED2C8759390063E690 /* TestView.swift */; };
 		786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */; };
 		786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */; };
 		787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83322C5FB1B000BB0405 /* WarningStack.swift */; };
 		787A83352C60309700BB0405 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83342C60309100BB0405 /* Debug.swift */; };
 		787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83392C60DB9200BB0405 /* WardenEye.swift */; };
+		787A8A092C92FAB300739626 /* Shelf3dViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A8A082C92FAB200739626 /* Shelf3dViewModel.swift */; };
+		787A8A0D2C92FB8A00739626 /* Archivement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A8A0C2C92FB8500739626 /* Archivement.swift */; };
+		787A8A122C93028F00739626 /* KanbanSprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A8A112C93028D00739626 /* KanbanSprint.swift */; };
+		787A8A142C9302B400739626 /* RunningSprintVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A8A132C9302B200739626 /* RunningSprintVM.swift */; };
 		7880E1892C622E740088BD70 /* CircularLoaderBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */; };
 		7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */; };
 		7880E1922C6235A40088BD70 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E1912C6235A40088BD70 /* SkillsView.swift */; };
@@ -59,6 +74,16 @@
 
 /* Begin PBXFileReference section */
 		7803757F2C76B3B600B519FD /* PointsCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCounter.swift; sourceTree = "<group>"; };
+		780F27A52C8A6D3700C72B53 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
+		780F27A92C8A6E9800C72B53 /* rythm1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm1.mp3; sourceTree = "<group>"; };
+		780F27AA2C8A6E9800C72B53 /* rythm2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm2.mp3; sourceTree = "<group>"; };
+		780F27AB2C8A6E9800C72B53 /* rythm3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm3.mp3; sourceTree = "<group>"; };
+		780F27AC2C8A6E9800C72B53 /* rythm4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm4.mp3; sourceTree = "<group>"; };
+		780F27AD2C8A6E9800C72B53 /* rythm5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm5.mp3; sourceTree = "<group>"; };
+		780F27AE2C8A6E9800C72B53 /* rythm6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm6.mp3; sourceTree = "<group>"; };
+		780F27AF2C8A6E9800C72B53 /* rythm7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm7.mp3; sourceTree = "<group>"; };
+		780F27B02C8A6E9800C72B53 /* rythm8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm8.mp3; sourceTree = "<group>"; };
+		780F27B12C8A6E9800C72B53 /* rythm9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm9.mp3; sourceTree = "<group>"; };
 		7835ACFE2C5BE14C0005C012 /* DoomKanban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoomKanban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7835AD022C5BE14C0005C012 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanApp.swift; sourceTree = "<group>"; };
@@ -72,7 +97,7 @@
 		7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSprintIndicatorView.swift; sourceTree = "<group>"; };
 		7835AD222C5C65F00005C012 /* WarningTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningTriangle.swift; sourceTree = "<group>"; };
 		7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientStrokeView.swift; sourceTree = "<group>"; };
-		7850D6B52C749888008BF8CA /* Kanban.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanban.swift; sourceTree = "<group>"; };
+		7850D6B52C749888008BF8CA /* ShadowOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowOffset.swift; sourceTree = "<group>"; };
 		7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMobileChat.swift; sourceTree = "<group>"; };
 		7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeMobileChat.json; sourceTree = "<group>"; };
 		7850D6BE2C756B24008BF8CA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -81,18 +106,24 @@
 		7867356B2C78C67F007C3901 /* RandomValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomValues.swift; sourceTree = "<group>"; };
 		7867356D2C792BD0007C3901 /* WarningInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningInfo.swift; sourceTree = "<group>"; };
 		7867356F2C794530007C3901 /* TasksTitles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TasksTitles.json; sourceTree = "<group>"; };
-		786735712C7A6A38007C3901 /* GenericMedal.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = GenericMedal.usdz; sourceTree = "<group>"; };
+		786735712C7A6A38007C3901 /* outscoreTheCreator.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = outscoreTheCreator.usdz; sourceTree = "<group>"; };
 		786735732C85062B007C3901 /* FirstWin.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = FirstWin.usdz; sourceTree = "<group>"; };
 		786735742C85062B007C3901 /* Skill4TheWin.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Skill4TheWin.usdz; sourceTree = "<group>"; };
 		786735772C8542EE007C3901 /* Warden.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Warden.usdz; sourceTree = "<group>"; };
 		786735792C8542FC007C3901 /* 2000Tasks.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2000Tasks.usdz; sourceTree = "<group>"; };
 		786735852C85BF17007C3901 /* Round Book Shelf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Round Book Shelf.usdz"; sourceTree = "<group>"; };
 		786735872C867142007C3901 /* InitialMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMenuView.swift; sourceTree = "<group>"; };
+		7869CDED2C8759390063E690 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 		786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableKanbanCard.swift; sourceTree = "<group>"; };
 		787A83322C5FB1B000BB0405 /* WarningStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningStack.swift; sourceTree = "<group>"; };
 		787A83342C60309100BB0405 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		787A83392C60DB9200BB0405 /* WardenEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardenEye.swift; sourceTree = "<group>"; };
+		787A8A062C922A7000739626 /* DoomKanban.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoomKanban.entitlements; sourceTree = "<group>"; };
+		787A8A082C92FAB200739626 /* Shelf3dViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelf3dViewModel.swift; sourceTree = "<group>"; };
+		787A8A0C2C92FB8500739626 /* Archivement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archivement.swift; sourceTree = "<group>"; };
+		787A8A112C93028D00739626 /* KanbanSprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanSprint.swift; sourceTree = "<group>"; };
+		787A8A132C9302B200739626 /* RunningSprintVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSprintVM.swift; sourceTree = "<group>"; };
 		7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLoaderBackground.swift; sourceTree = "<group>"; };
 		7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex+Darker.swift"; sourceTree = "<group>"; };
 		7880E1912C6235A40088BD70 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
@@ -122,6 +153,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		780F27A72C8A6D9D00C72B53 /* 3D */ = {
+			isa = PBXGroup;
+			children = (
+				786735852C85BF17007C3901 /* Round Book Shelf.usdz */,
+				786735772C8542EE007C3901 /* Warden.usdz */,
+				786735712C7A6A38007C3901 /* outscoreTheCreator.usdz */,
+				786735732C85062B007C3901 /* FirstWin.usdz */,
+				786735742C85062B007C3901 /* Skill4TheWin.usdz */,
+				786735792C8542FC007C3901 /* 2000Tasks.usdz */,
+			);
+			path = 3D;
+			sourceTree = "<group>";
+		};
+		780F27A82C8A6E8400C72B53 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				780F27A92C8A6E9800C72B53 /* rythm1.mp3 */,
+				780F27AA2C8A6E9800C72B53 /* rythm2.mp3 */,
+				780F27AB2C8A6E9800C72B53 /* rythm3.mp3 */,
+				780F27AC2C8A6E9800C72B53 /* rythm4.mp3 */,
+				780F27AD2C8A6E9800C72B53 /* rythm5.mp3 */,
+				780F27AE2C8A6E9800C72B53 /* rythm6.mp3 */,
+				780F27AF2C8A6E9800C72B53 /* rythm7.mp3 */,
+				780F27B02C8A6E9800C72B53 /* rythm8.mp3 */,
+				780F27B12C8A6E9800C72B53 /* rythm9.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		7835ACF52C5BE14C0005C012 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +202,8 @@
 		7835AD002C5BE14C0005C012 /* DoomKanban */ = {
 			isa = PBXGroup;
 			children = (
+				787A8A062C922A7000739626 /* DoomKanban.entitlements */,
+				780F27A52C8A6D3700C72B53 /* AudioPlayerManager.swift */,
 				7850D6BA2C7567A6008BF8CA /* Resources */,
 				7850D6B42C74987E008BF8CA /* EnvironmentVars */,
 				7880E18A2C622F520088BD70 /* Utils */,
@@ -164,16 +226,11 @@
 		7835AD0B2C5BE14D0005C012 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				786735852C85BF17007C3901 /* Round Book Shelf.usdz */,
-				786735772C8542EE007C3901 /* Warden.usdz */,
-				786735712C7A6A38007C3901 /* GenericMedal.usdz */,
+				7869CDED2C8759390063E690 /* TestView.swift */,
 				789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */,
 				787A83342C60309100BB0405 /* Debug.swift */,
 				7835AD0C2C5BE14D0005C012 /* Preview Assets.xcassets */,
 				789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */,
-				786735732C85062B007C3901 /* FirstWin.usdz */,
-				786735742C85062B007C3901 /* Skill4TheWin.usdz */,
-				786735792C8542FC007C3901 /* 2000Tasks.usdz */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -181,6 +238,7 @@
 		7835AD142C5BE1550005C012 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				787A8A072C92FA9D00739626 /* ArchivementsShelf */,
 				786735872C867142007C3901 /* InitialMenuView.swift */,
 				7850D6B72C750360008BF8CA /* EmergingViews */,
 				7850D6B12C748DDA008BF8CA /* Reusable */,
@@ -191,7 +249,6 @@
 				7835AD152C5BE15D0005C012 /* Card */,
 				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
 				7880E1912C6235A40088BD70 /* SkillsView.swift */,
-				789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,8 +277,8 @@
 		7835AD1F2C5C53AD0005C012 /* Indicators */ = {
 			isa = PBXGroup;
 			children = (
+				787A8A0E2C93026900739626 /* Sprints */,
 				787A832E2C5FB14800BB0405 /* Warnings */,
-				7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */,
 				7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */,
 				7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */,
 			);
@@ -241,7 +298,7 @@
 			children = (
 				7803757F2C76B3B600B519FD /* PointsCounter.swift */,
 				7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */,
-				7850D6B52C749888008BF8CA /* Kanban.swift */,
+				7850D6B52C749888008BF8CA /* ShadowOffset.swift */,
 			);
 			path = EnvironmentVars;
 			sourceTree = "<group>";
@@ -257,6 +314,8 @@
 		7850D6BA2C7567A6008BF8CA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				780F27A82C8A6E8400C72B53 /* Sounds */,
+				780F27A72C8A6D9D00C72B53 /* 3D */,
 				7867356F2C794530007C3901 /* TasksTitles.json */,
 				7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */,
 				7835AD092C5BE14D0005C012 /* Assets.xcassets */,
@@ -308,6 +367,58 @@
 				787A83392C60DB9200BB0405 /* WardenEye.swift */,
 			);
 			path = Eye;
+			sourceTree = "<group>";
+		};
+		787A8A072C92FA9D00739626 /* ArchivementsShelf */ = {
+			isa = PBXGroup;
+			children = (
+				787A8A0B2C92FB6400739626 /* VM */,
+				787A8A0A2C92FB5E00739626 /* Model */,
+				789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */,
+			);
+			path = ArchivementsShelf;
+			sourceTree = "<group>";
+		};
+		787A8A0A2C92FB5E00739626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				787A8A0C2C92FB8500739626 /* Archivement.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		787A8A0B2C92FB6400739626 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				787A8A082C92FAB200739626 /* Shelf3dViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		787A8A0E2C93026900739626 /* Sprints */ = {
+			isa = PBXGroup;
+			children = (
+				787A8A102C93027900739626 /* VM */,
+				787A8A0F2C93027400739626 /* Model */,
+				7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */,
+			);
+			path = Sprints;
+			sourceTree = "<group>";
+		};
+		787A8A0F2C93027400739626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				787A8A112C93028D00739626 /* KanbanSprint.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		787A8A102C93027900739626 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				787A8A132C9302B200739626 /* RunningSprintVM.swift */,
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 		7880E1872C622E640088BD70 /* Basics */ = {
@@ -397,10 +508,19 @@
 				7835AD0D2C5BE14D0005C012 /* Preview Assets.xcassets in Resources */,
 				789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */,
 				7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */,
-				786735722C7A6A38007C3901 /* GenericMedal.usdz in Resources */,
+				786735722C7A6A38007C3901 /* outscoreTheCreator.usdz in Resources */,
 				786735702C794536007C3901 /* TasksTitles.json in Resources */,
 				7867357A2C8542FC007C3901 /* 2000Tasks.usdz in Resources */,
 				7835AD0A2C5BE14D0005C012 /* Assets.xcassets in Resources */,
+				780F27B22C8A6E9800C72B53 /* rythm2.mp3 in Resources */,
+				780F27B32C8A6E9800C72B53 /* rythm5.mp3 in Resources */,
+				780F27B42C8A6E9800C72B53 /* rythm1.mp3 in Resources */,
+				780F27B52C8A6E9800C72B53 /* rythm6.mp3 in Resources */,
+				780F27B62C8A6E9800C72B53 /* rythm7.mp3 in Resources */,
+				780F27B72C8A6E9800C72B53 /* rythm9.mp3 in Resources */,
+				780F27B82C8A6E9800C72B53 /* rythm3.mp3 in Resources */,
+				780F27B92C8A6E9800C72B53 /* rythm8.mp3 in Resources */,
+				780F27BA2C8A6E9800C72B53 /* rythm4.mp3 in Resources */,
 				786735782C8542EE007C3901 /* Warden.usdz in Resources */,
 				786735752C85062B007C3901 /* FirstWin.usdz in Resources */,
 				786735762C85062B007C3901 /* Skill4TheWin.usdz in Resources */,
@@ -427,7 +547,8 @@
 				7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */,
 				7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */,
 				7850D6C32C763F7E008BF8CA /* ExtrudedPointCounterView.swift in Sources */,
-				7850D6B62C74988E008BF8CA /* Kanban.swift in Sources */,
+				7850D6B62C74988E008BF8CA /* ShadowOffset.swift in Sources */,
+				787A8A0D2C92FB8A00739626 /* Archivement.swift in Sources */,
 				7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */,
 				786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */,
 				786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */,
@@ -437,17 +558,22 @@
 				780375802C76B3B900B519FD /* PointsCounter.swift in Sources */,
 				7880E22D2C5D08B1000EFA9D /* TriangleShape.swift in Sources */,
 				7835AD172C5BE1980005C012 /* KanbanCard.swift in Sources */,
+				7869CDEE2C87593C0063E690 /* TestView.swift in Sources */,
 				7880E1922C6235A40088BD70 /* SkillsView.swift in Sources */,
 				7880E1942C62597D0088BD70 /* ConditionalOrientationView.swift in Sources */,
 				7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */,
 				7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */,
+				787A8A092C92FAB300739626 /* Shelf3dViewModel.swift in Sources */,
 				7867356E2C792BD7007C3901 /* WarningInfo.swift in Sources */,
 				7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */,
 				787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */,
 				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
+				780F27A62C8A6D3A00C72B53 /* AudioPlayerManager.swift in Sources */,
 				7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */,
 				7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */,
 				789B7C932C651AC400DE4EF7 /* Shelf3DView.swift in Sources */,
+				787A8A142C9302B400739626 /* RunningSprintVM.swift in Sources */,
+				787A8A122C93028F00739626 /* KanbanSprint.swift in Sources */,
 				7867356C2C78C685007C3901 /* RandomValues.swift in Sources */,
 				7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */,
 			);
@@ -580,10 +706,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoomKanban/DoomKanban.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoomKanban/Preview Content\"";
-				DEVELOPMENT_TEAM = NFHBGVPL44;
+				DEVELOPMENT_TEAM = XSXBSCC4SL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -592,7 +719,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jle.developement.DoomKanban;
+				PRODUCT_BUNDLE_IDENTIFIER = InversionesMezcola.Games.DoomKanban;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -607,10 +734,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DoomKanban/DoomKanban.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoomKanban/Preview Content\"";
-				DEVELOPMENT_TEAM = NFHBGVPL44;
+				DEVELOPMENT_TEAM = XSXBSCC4SL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -619,7 +747,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jle.developement.DoomKanban;
+				PRODUCT_BUNDLE_IDENTIFIER = InversionesMezcola.Games.DoomKanban;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;

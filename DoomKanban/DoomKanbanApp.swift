@@ -43,14 +43,18 @@ class KanbanAppVM {
         inProgressTasks = []
         testingTasks = []
         doneTasks = []
-        startNewRound()  // Inicializa la primera ronda al iniciar
+        startNewRound()
         startWardenMonitoring()
     }
 
+    var points = 0
+    
     var round: Int = 0
     let roundAdvanceModifier: CGFloat = 0.25
     
-    var wardenIsWatching = false
+    var wardenIsWatching: Bool = false
+    var chatVisibility: (Visibility, KanbanTask?) = (.hidden, nil)
+    var warningList: [WarningsInfo] = []
 
     // --- Kanban Content -----
     var sprints: [KanbanSprint]
@@ -73,11 +77,39 @@ class KanbanAppVM {
         return max(1, 3 - roundAdvanceModifier * CGFloat(round))
     }
     // ----------------------- //
+    
+    
+    // --- Skills management
+    var showNextTaskCounterView: Bool = false // Skill chronoMaster
+    var tasksAutocompletesFaster: Bool = false // Skill devFlowProblemsTow
+    // ----------------------- //
 }
 
 // - MARK: KanbanBoard Content Generation
 extension KanbanAppVM {
+    func reset() {
+        self.points = 0
+        self.round = 0
+        self.wardenIsWatching = false
+        self.chatVisibility = (.hidden, nil)
+        self.warningList = []
+
+        // Reset kanban board state
+        self.sprints.removeAll()
+        self.originalTasks.removeAll()
+        self.mixedTasks.removeAll()
+        self.toDoTasks.removeAll()
+        self.inProgressTasks.removeAll()
+        self.testingTasks.removeAll()
+        self.doneTasks.removeAll()
+
+        // Restart logic
+        startNewRound()
+        startWardenMonitoring()
+    }
+    
     func startNewRound() {
+        warningList.removeAll()
         round += 1
         sprints = KanbanAppVM.generateSprints(for: round)
         
@@ -174,18 +206,37 @@ extension KanbanAppVM {
 //    }
     
     private func startWardenMonitoring() {
-            Task {
-                while true {
+        Task {
+            while true {
+                if round > 2 {
                     let watchTime = Double.random(in: 3...8)  // Tiempo que el Warden estará observando
                     wardenIsWatching = true
                     try await Task.sleep(nanoseconds: UInt64(watchTime * 1_000_000_000))
-                    
-                    wardenIsWatching = false
-                    let restTime = Double.random(in: 6...20)  // Tiempo que el Warden estará inactivo
-                    try await Task.sleep(nanoseconds: UInt64(restTime * 1_000_000_000))
                 }
+                
+                wardenIsWatching = false
+                let restTime = Double.random(in: 6...20)  // Tiempo que el Warden estará inactivo
+                try await Task.sleep(nanoseconds: UInt64(restTime * 1_000_000_000))
             }
         }
+    }
+    
+    func addWarning(causedBy task: KanbanTask) {
+        let projectId = task.projectId
+        var numberOfWarningsToAdd = 1
+        if task.isWarningEnabled {
+            numberOfWarningsToAdd *= 2
+        }
+        if self.wardenIsWatching {
+            numberOfWarningsToAdd *= 2
+        }
+        var warningInfo = self.warningList.getOrCreate(id: projectId)
+        warningInfo.numberOfWarnings += numberOfWarningsToAdd
+        warningInfo.projectColor = task.color
+        
+        // Actualizamos el array con el nuevo valor
+        self.warningList.update(warningInfo)
+    }
 }
 
 extension KanbanAppVM {
@@ -199,6 +250,8 @@ extension KanbanAppVM {
             testingTasks[index] = task
         } else if let index = doneTasks.firstIndex(where: { $0.id == task.id }) {
             doneTasks[index] = task
+        } else if let draggedCard, draggedCard.id == task.id {
+            self.draggedCard = task
         }
 //        print("👹 La task recivida es: \(task.isComplete) . Task updated inProgress and new state isComplete is: \(inProgressTasks.first(where: {task.id == $0.id})?.isComplete)")
     }
@@ -275,7 +328,7 @@ extension KanbanAppVM {
     @MainActor
     func remove(_ task: KanbanTask, from column: KanbanColumn.KanbanColumnType) {
         performAction(on: column) { taskList in
-            if let index = taskList.firstIndex(of: task) {
+            if let index = taskList.firstIndex(where: {$0.id == task.id}) {
                 taskList.remove(at: index)
             }
         }
@@ -293,8 +346,8 @@ extension KanbanAppVM {
 @main
 struct DoomKanbanApp: App {
     @State var appVM: KanbanAppVM = KanbanAppVM()
-    @State private var mixedTasks: [KanbanTask] = []
-    
+//    @State private var mixedTasks: [KanbanTask] = []
+//    @State private var isFireActive: Bool = false
     let defaultSize = Size3D(width: 2, height: 2, depth: 2)
     
     // Hide bottom bar controls. We encourage the user to use the provided window size, but they will still be able to resize or move the window if they choose to.
@@ -302,7 +355,7 @@ struct DoomKanbanApp: App {
     // Although we could attempt to reopen a new view after closing, this might interfere with our countdown logic and other features, so we have decided against it.
     // The user will be responsible for not closing their windows while playing.
     private var bottomWindowControlsVisibility: Visibility = .hidden
-    @State private var points = 0
+//    @State private var points = 0
     
     var body: some Scene {
         WindowGroup(id: "InitialMenu") {
@@ -315,15 +368,14 @@ struct DoomKanbanApp: App {
                 DoomKanbanLayout()
                     .frame(width: geometry.size.width - 100, height: geometry.size.height - 100)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    .kanbanVM(appVM)
-                    .pointsCounter($points)
+                    .environment(appVM)
             }.keepAspectRatio()
         }
         .defaultSize(width: 1200, height: 1200)
         
         ImmersiveSpace(id: "Points") {
-            ExtrudedPointCounterImmersiveView()
-                .pointsCounter($points)
+            ExtrudedPointCounterImmersiveView(points: appVM.points)
+//                .pointsCounter($appVM.points)
         }.defaultSize(width: 1200, height: 1200)
         
         WindowGroup(id: "RunningSprints") {
@@ -331,7 +383,7 @@ struct DoomKanbanApp: App {
                 SprintsLayoutView()
                     .frame(width: 320, height: max(geometry.size.height, 320))
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    .kanbanVM(appVM)
+                    .environment(appVM)
             }
         }
         .windowStyle(.plain)
@@ -348,10 +400,11 @@ struct DoomKanbanApp: App {
         
         WindowGroup(id: "SkillsView") {
             SkillsView(skills: [
-                SkillsView.Skill(icon: Image(.chrono), coolDown: 5, action: {}),
-                SkillsView.Skill(icon: Image(.ancientKnoeledgeIlumination), coolDown: 10, action: {}),
-                SkillsView.Skill(icon: Image(.augustWork), coolDown: 15, action: {})
+                SkillsView.Skill(icon: Image(.chrono), coolDown: 10, type: .chronoMaster),
+                SkillsView.Skill(icon: Image(.clientContact), coolDown: 15, type: .businessMan),
+                SkillsView.Skill(icon: Image(.programmerAscension), coolDown: 20, type: .programmerAscension)
             ], orientation: .vertical)
+            .environment(appVM)
         }
         .windowStyle(.plain)
         .defaultSize(width: 320, height: 1200)
@@ -370,6 +423,16 @@ struct DoomKanbanApp: App {
         }
         .windowStyle(.volumetric)
         .defaultSize(defaultSize, in: .meters)
+        
+        ImmersiveSpace(id: "fireImmersiveSpace") {
+            ImmersiveSpaceView()
+                .environment(appVM)
+        }.immersionStyle(selection: .constant(.full), in: .full)
+        
+        WindowGroup(id: "PodiumView") {
+            PodiumView()
+        }
+        .defaultSize(width: 800, height: 800)
 //        WindowGroup(id: "MobileChat") {
 //            FakeMobileChat()
 //        }

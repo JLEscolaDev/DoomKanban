@@ -10,6 +10,13 @@ import SwiftUI
 import SwiftUI
 
 struct KanbanColumn: View {
+    init(columnType: KanbanColumn.KanbanColumnType, title: String, headerColor: Color, geometry: GeometryProxy) {
+        self.columnType = columnType
+        self.title = title
+        self.headerColor = headerColor
+        self.geometry = geometry
+    }
+    
     enum KanbanColumnType: Int {
         case ToDo
         case Doing
@@ -44,23 +51,51 @@ struct KanbanColumn: View {
 //            return $kanbanVM.doneTasks
 //        }
 //    }
-    @Environment(\.kanban) private var kanbanVM
+    @Environment(KanbanAppVM.self) var kanbanVM
+    @State var tasks: [KanbanTask] = []
+    var tasksVM: [KanbanTask] {
+        switch columnType {
+        case .ToDo:
+            kanbanVM.toDoTasks
+        case .Doing:
+            kanbanVM.inProgressTasks
+        case .Testing:
+            kanbanVM.testingTasks
+        case .Done:
+            kanbanVM.doneTasks
+        }
+    }
 
     var body: some View {
 //        print("Tipo: \(columnType), valor: \(tasksBinding.wrappedValue.count)")
 //        @Bindable var kanbanVM: KanbanAppVM
-        var tasks: [KanbanTask] {
-            switch columnType {
-            case .ToDo:
-                return kanbanVM.toDoTasks
-            case .Doing:
-                return kanbanVM.inProgressTasks
-            case .Testing:
-                return kanbanVM.testingTasks
-            case .Done:
-                return kanbanVM.doneTasks
-            }
-        }
+//        var tasks: [KanbanTask] {
+//            switch columnType {
+//            case .ToDo:
+//                    return kanbanVM.toDoTasks
+//            case .Doing:
+//                    return kanbanVM.inProgressTasks
+//            case .Testing:
+//                    print(kanbanVM.testingTasks)
+//                return kanbanVM.testingTasks
+//            case .Done:
+//                    return kanbanVM.doneTasks
+//            }
+//        }
+//        @Bindable var kanbanVM = kanbanVM
+//        var tasksBinding: Binding<[KanbanTask]> {
+//            switch columnType {
+//            case .ToDo:
+//                $kanbanVM.toDoTasks
+//            case .Doing:
+//                $kanbanVM.inProgressTasks
+//            case .Testing:
+//                $kanbanVM.testingTasks
+//            case .Done:
+//                $kanbanVM.doneTasks
+//            }
+//        }
+//        print(tasks)
         return HStack(alignment: .top, spacing: 0) {
             VStack(spacing: 0) {
                 ZStack {
@@ -101,28 +136,38 @@ struct KanbanColumn: View {
                                 ForEach(tasks.reversed()) { task in
                                     DraggableKanbanCard(
                                         task: task,
+                                        in: columnType,
                                         geometry: geometry,
                                         cardDragStatus: $cardDragStatus,
                                         autoComplete: columnType == .ToDo || columnType == .Done ? false : true,
                                         activateFlagProbability: columnType == .Testing,
-                                        onDrag: { value in
+                                        onDrag: { value, currentDraggingTask in
                                             if draggedCard == nil {
-                                                draggedCard = task
-                                                kanbanVM.draggedCard = task
+                                                draggedCard = currentDraggingTask
+                                                kanbanVM.draggedCard = currentDraggingTask
                                                 print("ENTRA")
                                             }
                                             let globalPosition = CGPoint(
                                                 x: geometry.frame(in: .global).origin.x + value.translation.width,
                                                 y: geometry.frame(in: .global).origin.y + value.translation.height
                                             )
-                                            self.cardDragStatus = isInValidDropArea(columnIndex: columnType.rawValue, task: task, location: globalPosition, geometry: geometry)
+                                            if let task = draggedCard {
+                                                print("DRAGGED isComplete: \(task.isComplete)")
+                                                self.cardDragStatus = isInValidDropArea(columnIndex: columnType.rawValue, task: task, location: globalPosition, geometry: geometry)
+                                            }
                                         },
-                                        onEnded: { value in
+                                        onEnded: { value, task in
                                             let globalPosition = CGPoint(
                                                 x: geometry.frame(in: .global).origin.x + value.translation.width,
                                                 y: geometry.frame(in: .global).origin.y + value.translation.height
                                             )
-                                            handleCardDrop(columnIndex: columnType.rawValue, from: tasks, in: globalPosition, ofSize: geometry)
+                                            if draggedCard?.id == task.id {
+                                                draggedCard = task
+                                                print("onEnded Received. isComplete:\(draggedCard?.isComplete)")
+                                            }
+//                                            kanbanVM.draggedCard?.value = task.value
+                                            handleCardDrop(columnIndex: columnType.rawValue, from: $tasks, in: globalPosition, ofSize: geometry)
+                                            print(tasks.first(where: {$0.id == kanbanVM.draggedCard?.id}))
                                             draggedCard = nil
                                             kanbanVM.draggedCard = nil
                                         }
@@ -142,6 +187,9 @@ struct KanbanColumn: View {
         .onAppear {
             // Sync tasks with the initial state of the view
 //            updateTasks()
+        }
+        .onChange(of: tasksVM) { oldValue, newValue in
+            tasks = newValue
         }
     }
 
@@ -175,10 +223,10 @@ struct KanbanColumn: View {
         let forceOutOfBounds = newColumnIndex <= -0.2 || newColumnIndex >= 3.8 || !isInYRange
 
         let isFlaggedTaskInTestingTryingToMoveBackwards = newColumnIndex < CGFloat(columnIndex) && !task.isFlagged
-        let isFlaggedTaskTryingToMoveToDone = columnIndex == 2 && newColumnIndex > 3.8 && task.isFlagged
+        let isTaskTryingToMoveToDone =  newColumnIndex > 2.95 && !task.isComplete
         let notFlaggedTaskAndIncompleteTryingToMove = !task.isFlagged && !task.isComplete && columnIndex != 0
-        let forceForbidden = isFlaggedTaskInTestingTryingToMoveBackwards || isFlaggedTaskTryingToMoveToDone || notFlaggedTaskAndIncompleteTryingToMove
-        
+        let forceForbidden = isFlaggedTaskInTestingTryingToMoveBackwards || isTaskTryingToMoveToDone || notFlaggedTaskAndIncompleteTryingToMove
+        print("\(newColumnIndex), taskIsFlagged:\(task.isFlagged), taskIsComplete: \(task.isComplete)")
         /// An offset that we apply so the card is dragged in the correct column when its center is closer to that column (example: column 2 is in the drag range of 2-0.05 and 3-0.05)
         let userExperienceKanbanDropAreaOffset = 0.05
         let newColumnIsInProgress = ((Double(KanbanColumnType.Doing.rawValue)-userExperienceKanbanDropAreaOffset)...(Double(KanbanColumnType.Testing.rawValue)-userExperienceKanbanDropAreaOffset)) ~= newColumnIndex
@@ -214,8 +262,9 @@ struct KanbanColumn: View {
 
     @MainActor
     /// Handles the logic of the card movement between the different KanbanColumns calculating based on the drag values, which should be the next column.
-    private func handleCardDrop(columnIndex: Int, from cardList: [KanbanTask], in location: CGPoint, ofSize geometry: GeometryProxy) {
-        if let index = cardList.firstIndex(where: { $0 == draggedCard }) {
+    private func handleCardDrop(columnIndex: Int, from cardList: Binding<[KanbanTask]>, in location: CGPoint, ofSize geometry: GeometryProxy) {
+        if let draggedCard, let index = cardList.wrappedValue.firstIndex(where: { $0.id == draggedCard.id }) {
+            cardList.wrappedValue[index] = draggedCard
             let removedCard = kanbanVM.remove(from: KanbanColumnType(rawValue: columnIndex) ?? .ToDo, at: index)
             
             if isInValidDropArea(columnIndex: columnIndex, task: removedCard, location: location, geometry: geometry) == .valid {
