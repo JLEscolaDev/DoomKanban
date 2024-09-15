@@ -7,142 +7,110 @@
 
 import SwiftUI
 
-struct ChatMessageOptions: Codable {
-    let firstMessageOptions: [String]
-    let secondMessageOptions: [String]
-    let thirdMessageOptions: [String]
-    let forthMessageOptions: [String]
-}
-
-struct ChatMessage: Identifiable {
-    let id = UUID()
-    let text: String
-    let isFromCurrentUser: Bool
-}
-
 struct ChatView: View {
     @Environment(KanbanAppVM.self) var kanbanVM
-    @State private var messages: [ChatMessage] = []
-    @State private var timer: Timer?
-    @State private var chatMessageOptions: ChatMessageOptions?
+    @State private var vm = ChatViewModel()
     
-    var onComplete: (() -> Void)?  // Callback for notifying parent view when the last message has been displayed
+    var onComplete: (() -> Void)?
 
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 ScrollViewReader { scrollViewProxy in
                     VStack {
-                        ForEach(messages) { message in
-                            HStack {
-                                if message.isFromCurrentUser {
-                                    Spacer()
-                                    Text(message.text)
-                                        .padding(.vertical, geometry.size.width*0.03)
-                                        .padding(.horizontal, geometry.size.width*0.05)
-                                        .font(.system(size: geometry.size.width*0.04))
-                                        .background(Color.blue)
-                                        .clipShape(RoundedRectangle(cornerRadius: geometry.size.width*0.1))
-                                        .foregroundColor(.white)
-                                        .frame(maxWidth: geometry.size.width * 0.75, alignment: .trailing)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .id(message.id)
-                                } else {
-                                    Text(message.text)
-                                        .padding(.vertical, geometry.size.width*0.03)
-                                        .padding(.horizontal, geometry.size.width*0.05)
-                                        .font(.system(size: geometry.size.width*0.04))
-                                        .background(Color.gray.opacity(0.2))
-                                        .clipShape(RoundedRectangle(cornerRadius: geometry.size.width*0.1))
-                                        .foregroundColor(.black)
-                                        .frame(maxWidth: geometry.size.width * 0.75, alignment: .leading)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .id(message.id)
-                                    Spacer()
-                                }
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 1)
-                        }
+                        chatMessagesView(geometry: geometry)
                     }
-                        .padding(.vertical, geometry.size.height*0.05)
-                        .frame(width: geometry.size.width, height: geometry.size.height*0.7)
-                    .onChange(of: messages.count) {
-                        withAnimation {
-                            scrollViewProxy.scrollTo(messages.last?.id, anchor: .bottom)
-                        }
+                    .padding(.vertical, geometry.size.height * 0.05)
+                    .frame(width: geometry.size.width, height: geometry.size.height * 0.7)
+                    .onChange(of: vm.messages.count) {
+                        handleMessagesChange(scrollViewProxy: scrollViewProxy)
                     }
                     .onAppear {
-                            messages.removeAll()
-//                            loadChatMessages {
-//                                onComplete?()
-//                            }
-//                            DispatchQueue.main.async {
-//                                withAnimation {
-//                                    scrollViewProxy.scrollTo(messages.last?.id, anchor: .bottom)
-//                                }
-//                            }
+                        handleOnAppear(scrollViewProxy: scrollViewProxy)
                     }
                     .onChange(of: kanbanVM.chatVisibility.0) { _, visibility in
-                        if visibility == .visible {
-                            // Delete and restart messages for new chat animation
-                            messages.removeAll()
-                            loadChatMessages {
-                                onComplete?()
-                            }
-                            DispatchQueue.main.async {
-                                withAnimation {
-                                    scrollViewProxy.scrollTo(messages.last?.id, anchor: .bottom)
-                                }
-                            }
-                        } else {
-                            timer?.invalidate()
-                        }
+                        handleChatVisibilityChange(visibility: visibility, scrollViewProxy: scrollViewProxy)
                     }
                     .onDisappear {
-                        timer?.invalidate()
+                        handleOnDisappear()
                     }
                 }
             }
         }
     }
-    
-    func loadChatMessages(onCompletion: @escaping () -> Void) {
-        if let url = Bundle.main.url(forResource: "FakeMobileChat", withExtension: "json"),
-           let data = try? Data(contentsOf: url),
-           let chatMessageOptions = try? JSONDecoder().decode(ChatMessageOptions.self, from: data) {
-            self.chatMessageOptions = chatMessageOptions
-            
-            let allMessages = [
-                ChatMessage(text: chatMessageOptions.firstMessageOptions.randomElement() ?? "", isFromCurrentUser: true),
-                ChatMessage(text: chatMessageOptions.secondMessageOptions.randomElement() ?? "", isFromCurrentUser: false),
-                ChatMessage(text: chatMessageOptions.thirdMessageOptions.randomElement() ?? "", isFromCurrentUser: true),
-                ChatMessage(text: chatMessageOptions.forthMessageOptions.randomElement() ?? "", isFromCurrentUser: false),
-                ChatMessage(text: "👍", isFromCurrentUser: true)
-            ]
-            
-            var currentMessageIndex = 0
-            
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                withAnimation {
-                    messages.append(allMessages[currentMessageIndex])
+}
+
+
+// - MARK: Subviews
+extension ChatView {
+    /// Display the chat messages in a list
+    private func chatMessagesView(geometry: GeometryProxy) -> some View {
+        ForEach(vm.messages) { message in
+            HStack {
+                if message.isFromCurrentUser {
+                    Spacer()
+                    chatBubble(message.text, isCurrentUser: true, geometry: geometry)
+                        .id(message.id)
+                } else {
+                    chatBubble(message.text, isCurrentUser: false, geometry: geometry)
+                        .id(message.id)
+                    Spacer()
                 }
-                currentMessageIndex += 1
-                
-                timer = Timer.scheduledTimer(withTimeInterval: Double.random(in: 1...2), repeats: true) { timer in
-                    if currentMessageIndex < allMessages.count {
-                        withAnimation {
-                            messages.append(allMessages[currentMessageIndex])
-                        }
-                        currentMessageIndex += 1
-                    } else {
-                        timer.invalidate()
-                        onCompletion()  // Llamada al callback cuando termina de mostrar todos los mensajes
-                    }
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 1)
+        }
+    }
+
+    /// Chat bubble for each message
+    private func chatBubble(_ text: String, isCurrentUser: Bool, geometry: GeometryProxy) -> some View {
+        Text(text)
+            .padding(.vertical, geometry.size.width * 0.03)
+            .padding(.horizontal, geometry.size.width * 0.05)
+            .font(.system(size: geometry.size.width * 0.04))
+            .background(isCurrentUser ? Color.blue : Color.gray.opacity(0.2))
+            .clipShape(RoundedRectangle(cornerRadius: geometry.size.width * 0.1))
+            .foregroundColor(isCurrentUser ? .white : .black)
+            .frame(maxWidth: geometry.size.width * 0.75, alignment: isCurrentUser ? .trailing : .leading)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /// Handle scrolling when new messages arrive
+    private func handleMessagesChange(scrollViewProxy: ScrollViewProxy) {
+        withAnimation {
+            scrollViewProxy.scrollTo(vm.messages.last?.id, anchor: .bottom)
+        }
+    }
+
+    /// Handle view appearance
+    private func handleOnAppear(scrollViewProxy: ScrollViewProxy) {
+        vm.messages.removeAll()
+        DispatchQueue.main.async {
+            withAnimation {
+                scrollViewProxy.scrollTo(vm.messages.last?.id, anchor: .bottom)
+            }
+        }
+    }
+
+    /// Handle chat visibility changes
+    private func handleChatVisibilityChange(visibility: Visibility, scrollViewProxy: ScrollViewProxy) {
+        if visibility == .visible {
+            vm.messages.removeAll()
+            vm.loadChatMessages {
+                onComplete?()
+            }
+            DispatchQueue.main.async {
+                withAnimation {
+                    scrollViewProxy.scrollTo(vm.messages.last?.id, anchor: .bottom)
                 }
             }
         } else {
-            print("Error loading FakeMobileChat.json")
+            vm.timer?.invalidate()
         }
+    }
+
+    /// Handle view disappearance
+    private func handleOnDisappear() {
+        vm.timer?.invalidate()
     }
 }

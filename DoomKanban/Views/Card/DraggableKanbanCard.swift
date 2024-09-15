@@ -8,113 +8,59 @@
 import SwiftUI
 
 struct DraggableKanbanCard: View {
-    @State var task: KanbanTask
-    let geometry: GeometryProxy
-    let column: KanbanColumn.KanbanColumnType
-    @Binding var cardDragStatus: KanbanColumn.DragStatus
-    @State private var dragOffset: CGSize = .zero
-    @State private var isDragging: Bool = false
-    private var isAutoCompleteEnabled: Bool
-    private let activateFlagProbability: Bool
+    @Environment(KanbanAppVM.self) var kanbanAppVM
 
+    @State private var vm: KanbanCardViewModel
+    let geometry: GeometryProxy
+    @Binding var cardDragStatus: KanbanColumn.DragStatus
     let onDrag: (DragGesture.Value, KanbanTask) -> Void
     let onEnded: (DragGesture.Value, KanbanTask) -> Void
 
-    @State private var progress: Double = 0.0
-//    @Environment(\.mobileChatVisibility) private var isChatVisible
-    @Environment(KanbanAppVM.self) var kanbanAppVM
-//    @State private var timeRemaining: Int
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
     init(
-        task: KanbanTask,
-        in column: KanbanColumn.KanbanColumnType,
+        vm: KanbanCardViewModel,
         geometry: GeometryProxy,
         cardDragStatus: Binding<KanbanColumn.DragStatus>,
-        autoComplete: Bool = true,
-        activateFlagProbability: Bool = false,
         onDrag: @escaping (DragGesture.Value, KanbanTask) -> Void,
         onEnded: @escaping (DragGesture.Value, KanbanTask) -> Void
     ) {
-        self.task = task
-        self.column = column
+        self.vm = vm
         self.geometry = geometry
         self._cardDragStatus = cardDragStatus
-        self.isAutoCompleteEnabled = autoComplete
-        self.activateFlagProbability = activateFlagProbability
         self.onDrag = onDrag
         self.onEnded = onEnded
     }
 
     var body: some View {
         let cardHeight = geometry.size.height * 0.13
-        
-        KanbanCard(task: task)
+
+        KanbanCard(task: vm.task)
             .hoverEffect { effect, isActive, proxy in
                 effect.scaleEffect(isActive ? 0.9 : 1.0)
             }
-            .background(
-                AnimatedGradientStrokeView(progress: progress, lineWidth: cardHeight * 0.2)
-                    .drawingGroup()
-            )
-            .frame(depth: isDragging ? 30 : 4)
-            .shadow(color: .black.opacity(isDragging ? 0.7 : 0.1), radius: isDragging ? 12 : 18, x: 0, y: isDragging ? geometry.size.height * 0.03 : geometry.size.height * 0.005)
+            .background(cardBackground(cardHeight: cardHeight))
+            .frame(depth: vm.isDragging ? 30 : 4)
+            .shadow(color: shadowColor(), radius: shadowRadius(), x: 0, y: shadowYOffset())
             .frame(height: cardHeight)
             .overlay(topRightDragAvailabilityIndicator)
-            .offset(dragOffset)
-            .scaleEffect(isDragging ? 1.2 : 1)
-            .gesture(dragCardGesture)
-            .simultaneousGesture(
-                TapGesture()
-                    .onEnded {
-                        if kanbanAppVM.chatVisibility.0 != .visible, task.isFlagged {
-                            kanbanAppVM.chatVisibility = (.visible, task)
-                        }
-                    }
-            )
-            .zIndex(isDragging ? 1 : 0)
-            .onAppear {
-                if task.value <= 0 || column == .Done {
-                    stopTimer()
-                }
-                initializeCard()
-                if column == .Done {
-                    kanbanAppVM.points += task.value
-                    task.value = 0
-                }
-            }
-            .onChange(of: task.isFlagged) {
-                if !task.isFlagged {
-                    task.isComplete = true
-                    kanbanAppVM.update(task: task)
-                }
-            }.onReceive(timer) { time in
-                if task.value > 0 {
-                    task.value -= 1
-                }else {
-                    stopTimer()
-                    if column != .Done {
-                        kanbanAppVM.remove(task, from: column)
-                        kanbanAppVM.addWarning(causedBy: task)
-                    }
-                }
-            }.onDisappear {
-                stopTimer()
-                kanbanAppVM.update(task: task)
-            }
+            .offset(vm.dragOffset)
+            .scaleEffect(vm.isDragging ? 1.2 : 1)
+            .gesture(dragCardGesture())
+            .simultaneousGesture(tapGesture())
+            .zIndex(vm.isDragging ? 1 : 0)
+            .onAppear { handleOnAppear() }
+            .onChange(of: vm.task.isFlagged) { handleTaskFlagChange() }
+            .onReceive(vm.timer) { _ in handleTimerUpdate() }
+            .onDisappear { handleOnDisappear() }
     }
     
-    private func stopTimer() {
-        self.timer.upstream.connect().cancel()
-    }
-
+    /// View displayed on the top right corner of the card that shows the user when drop is allowed
     private var topRightDragAvailabilityIndicator: some View {
         let kanbanCardWidth = geometry.size.width * 0.21
         return Group {
-            if cardDragStatus == .notAllowed && isDragging {
+            if cardDragStatus == .notAllowed && vm.isDragging {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundColor(.red)
-            } else if cardDragStatus == .valid && isDragging {
+            } else if cardDragStatus == .valid && vm.isDragging {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundColor(.green)
             }
@@ -123,29 +69,104 @@ struct DraggableKanbanCard: View {
         .padding()
         .position(x: kanbanCardWidth * 0.9 - 3)
     }
+}
 
-    private var dragCardGesture: some Gesture {
+// - MARK: Card events and life cycle
+extension DraggableKanbanCard {
+    private func handleOnAppear() {
+        if vm.task.value <= 0 || vm.column == .Done {
+            vm.stopTimer()
+        }
+        initializeCard()
+        if vm.column == .Done {
+            kanbanAppVM.points += vm.task.value
+            vm.task.value = 0
+        }
+    }
+    
+    private func tapGesture() -> some Gesture {
+        TapGesture()
+            .onEnded {
+                if kanbanAppVM.removeAllTasksFromSelectedProject {
+                    kanbanAppVM.removeAllTasksFrom(project: vm.task.projectId)
+                } else if kanbanAppVM.chatVisibility.0 != .visible, vm.task.isFlagged {
+                    kanbanAppVM.chatVisibility = (.visible, vm.task)
+                }
+            }
+    }
+    
+    private func dragCardGesture() -> some Gesture {
         DragGesture()
             .onChanged { value in
                 withAnimation(.easeInOut(duration: 0.1)) {
-                    isDragging = true
+                    vm.isDragging = true
                 }
-                dragOffset = value.translation
-                onDrag(value, task)
+                vm.dragOffset = value.translation
+                onDrag(value, vm.task)
             }
             .onEnded { value in
-                isDragging = false
-                dragOffset = .zero
-                print("onEnded -> isComplete:\(task.isComplete)")
-                onEnded(value, task)
+                vm.isDragging = false
+                vm.dragOffset = .zero
+                onEnded(value, vm.task)
             }
     }
 
+    private func handleTaskFlagChange() {
+        if !vm.task.isFlagged {
+            vm.task.isComplete = true
+            kanbanAppVM.update(task: vm.task)
+        }
+    }
+    
+    func handleTimerUpdate() {
+        if vm.task.value > 0 {
+            vm.task.value -= 1
+        } else {
+            vm.stopTimer()
+            if vm.column != .Done {
+                kanbanAppVM.remove(vm.task, from: vm.column)
+                kanbanAppVM.addWarning(causedBy: vm.task)
+            }
+        }
+    }
+
+    private func handleOnDisappear() {
+        vm.stopTimer()
+        kanbanAppVM.update(task: vm.task)
+    }
+}
+
+// - MARK: KanbanCard modifiers
+extension DraggableKanbanCard {
+    private func cardBackground(cardHeight: CGFloat) -> some View {
+        AnimatedGradientStrokeView(progress: vm.progress, lineWidth: cardHeight * 0.2)
+            .drawingGroup()
+    }
+
+    private func shadowColor() -> Color {
+        .black.opacity(vm.isDragging ? 0.7 : 0.1)
+    }
+
+    private func shadowRadius() -> CGFloat {
+        vm.isDragging ? 12 : 18
+    }
+
+    private func shadowYOffset() -> CGFloat {
+        vm.isDragging ? geometry.size.height * 0.03 : geometry.size.height * 0.005
+    }
+    
+    private func startBackgroundStrokeAnimation() {
+        withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
+            vm.progress = 1.0
+        }
+    }
+}
+
+// - MARK: Card state modification
+extension DraggableKanbanCard {
     @MainActor
     private func initializeCard() {
-        task.isComplete = false
-//        kanbanAppVM.update(task: task)
-        print("onAppeear isComplete:\(kanbanAppVM.draggedCard?.isComplete)")
+        vm.task.isComplete = false
         startBackgroundStrokeAnimation()
         flagTask()
         complete()
@@ -154,56 +175,35 @@ struct DraggableKanbanCard: View {
     @MainActor
     private func complete() {
         Task {
-            guard !task.isFlagged, isAutoCompleteEnabled else { return }
+            guard !vm.task.isFlagged, vm.isAutoCompleteEnabled else { return }
             
             let maxCompletionTime = 5
             let completionTimeRange = CGFloat(kanbanAppVM.tasksAutocompletesFaster ? maxCompletionTime / 2 : maxCompletionTime)
             let completionTime = CGFloat.random(in: 1...completionTimeRange) * kanbanAppVM.roundAdvanceModifier * CGFloat(kanbanAppVM.round)
             try await Task.sleep(nanoseconds: UInt64(completionTime * 1_000_000_000))
             
-            task.isComplete = true
-            kanbanAppVM.update(task: task)
+            vm.task.isComplete = true
+            kanbanAppVM.update(task: vm.task)
         }
     }
 
     @MainActor
     private func flagTask() {
-        guard activateFlagProbability else { return }
+        guard vm.activateFlagProbability else { return }
 
         let unflaggedToFlaggedProbability: Float = 10
         let flaggedToUnflaggedProbability: Float = 3
 
-        if task.isFlagged {
+        if vm.task.isFlagged {
             if Bool.random(with: flaggedToUnflaggedProbability) {
-                task.isFlagged = false
-                task.isComplete = true
+                vm.task.isFlagged = false
+                vm.task.isComplete = true
             }
         } else {
             if Bool.random(with: unflaggedToFlaggedProbability) {
-                task.isFlagged = true
+                vm.task.isFlagged = true
             }
         }
-        kanbanAppVM.update(task: task)
-    }
-
-    private func startBackgroundStrokeAnimation() {
-        withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
-            progress = 1.0
-        }
+        kanbanAppVM.update(task: vm.task)
     }
 }
-
-
-//struct ConditionalEmptyView<Content: View>: View {
-//    let content: Content
-//    let condition: () -> Bool
-//
-//    @ViewBuilder
-//    var body: some View {
-//        if condition() {
-//            content
-//        } else {
-//            EmptyView()
-//        }
-//    }
-//}

@@ -18,13 +18,19 @@ class Offset {
     let y: CGFloat
 }
 
-// Default value
+struct ShadowOffsetKey: EnvironmentKey {
+    static let defaultValue: Offset = Offset(x: 0, y: 0)
+}
+
 extension EnvironmentValues {
-    @Entry var shadowOffset: Offset = .init(x: 0, y: 0)
+    var shadowOffset: Offset {
+        get { self[ShadowOffsetKey.self] }
+        set { self[ShadowOffsetKey.self] = newValue }
+    }
 }
 
 extension View {
     func shadowOffset(_ offset: Offset) -> some View {
-        environment(offset)
+        environment(\.shadowOffset, offset)
     }
 }

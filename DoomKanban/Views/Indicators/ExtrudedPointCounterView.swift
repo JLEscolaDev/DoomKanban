@@ -126,13 +126,15 @@ struct ExtrudedPointCounterImmersiveView: View {
                                                            extrusionDepth: 0.05,
                                                            font: .systemFont(ofSize: 0.3),
                                                            containerFrame: .zero,
-                                                           alignment: .center,
+                                                           alignment: .left,
                                                            lineBreakMode: .byWordWrapping)
 
         let material = SimpleMaterial(color: .red, roughness: 1.5, isMetallic: true)
 
         let textEntity = ModelEntity(mesh: textMeshResource, materials: [material])
-        textEntity.position = SIMD3(x: -(textMeshResource.bounds.extents.x)-0.2, y: 0.3, z: -2)
+//        textEntity.position = [-0.4,-0.45,0.5]
+        textEntity.position = [-0.8,-0.18,0]
+//        textEntity.position = SIMD3(x: -(textMeshResource.bounds.extents.x)-0.2, y: 0.3, z: -2)
 
         // Añadir un componente de colisión para que el texto responda a toques
         let collisionShape = ShapeResource.generateBox(size: textMeshResource.bounds.extents)

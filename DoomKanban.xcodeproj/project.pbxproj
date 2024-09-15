@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		780375802C76B3B900B519FD /* PointsCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7803757F2C76B3B600B519FD /* PointsCounter.swift */; };
 		780F27A62C8A6D3A00C72B53 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F27A52C8A6D3700C72B53 /* AudioPlayerManager.swift */; };
 		780F27B22C8A6E9800C72B53 /* rythm2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AA2C8A6E9800C72B53 /* rythm2.mp3 */; };
 		780F27B32C8A6E9800C72B53 /* rythm5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 780F27AD2C8A6E9800C72B53 /* rythm5.mp3 */; };
@@ -28,13 +27,14 @@
 		7835AD1E2C5C4C5E0005C012 /* FlowArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD1D2C5C4C5E0005C012 /* FlowArrow.swift */; };
 		7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */; };
 		7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835AD222C5C65F00005C012 /* WarningTriangle.swift */; };
+		783830E22C94D956009DCD63 /* RoundStartCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783830E12C94D94D009DCD63 /* RoundStartCountDownView.swift */; };
 		784103092C676F0900B00038 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 784103082C676F0900B00038 /* Algorithms */; };
 		7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */; };
 		7850D6B62C74988E008BF8CA /* ShadowOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B52C749888008BF8CA /* ShadowOffset.swift */; };
 		7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */; };
 		7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */ = {isa = PBXBuildFile; fileRef = 7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */; };
 		7850D6BF2C756B28008BF8CA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6BE2C756B24008BF8CA /* ChatView.swift */; };
-		7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */; };
+		7850D6C12C75F2A3008BF8CA /* SecondaryColorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C02C75F28F008BF8CA /* SecondaryColorKey.swift */; };
 		7850D6C32C763F7E008BF8CA /* ExtrudedPointCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */; };
 		7867356C2C78C685007C3901 /* RandomValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867356B2C78C67F007C3901 /* RandomValues.swift */; };
 		7867356E2C792BD7007C3901 /* WarningInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867356D2C792BD0007C3901 /* WarningInfo.swift */; };
@@ -46,7 +46,6 @@
 		7867357A2C8542FC007C3901 /* 2000Tasks.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735792C8542FC007C3901 /* 2000Tasks.usdz */; };
 		786735862C85BF17007C3901 /* Round Book Shelf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 786735852C85BF17007C3901 /* Round Book Shelf.usdz */; };
 		786735882C86714C007C3901 /* InitialMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786735872C867142007C3901 /* InitialMenuView.swift */; };
-		7869CDEE2C87593C0063E690 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7869CDED2C8759390063E690 /* TestView.swift */; };
 		786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */; };
 		786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */; };
 		787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787A83322C5FB1B000BB0405 /* WarningStack.swift */; };
@@ -67,13 +66,35 @@
 		7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */; };
 		789B7C8F2C6514AA00DE4EF7 /* View+AspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */; };
 		789B7C932C651AC400DE4EF7 /* Shelf3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */; };
-		789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */; };
 		789B7C9B2C66270300DE4EF7 /* FirstWinTrophy.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */; };
+		789DF99A2C96D6090090DB63 /* ImmersiveSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9992C96D6080090DB63 /* ImmersiveSpaceView.swift */; };
+		789DF99D2C96D6780090DB63 /* VisionProPose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF99C2C96D6770090DB63 /* VisionProPose.swift */; };
+		789DF99F2C96D9460090DB63 /* ImmersiveSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF99E2C96D9450090DB63 /* ImmersiveSpaceViewModel.swift */; };
+		789DF9A52C96DAD80090DB63 /* UserPodiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9A42C96DAD70090DB63 /* UserPodiumViewModel.swift */; };
+		789DF9A82C96DAF80090DB63 /* LeaderboardEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9A72C96DAF70090DB63 /* LeaderboardEntry.swift */; };
+		789DF9AA2C96DC9A0090DB63 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9A92C96DC970090DB63 /* PodiumView.swift */; };
+		789DF9AE2C96DCF50090DB63 /* SaveScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9AD2C96DCF50090DB63 /* SaveScoreView.swift */; };
+		789DF9B12C96DDFA0090DB63 /* SaveScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9B02C96DDF90090DB63 /* SaveScoreViewModel.swift */; };
+		789DF9B42C96E3A10090DB63 /* KanbanAppVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9B32C96E3A00090DB63 /* KanbanAppVM.swift */; };
+		789DF9B72C96E3F30090DB63 /* KanbanBoardVM+ContentGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9B62C96E3ED0090DB63 /* KanbanBoardVM+ContentGeneration.swift */; };
+		789DF9B92C96E4500090DB63 /* KanbanBoardVM+ColumnManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9B82C96E4440090DB63 /* KanbanBoardVM+ColumnManagement.swift */; };
+		789DF9BB2C96EEE00090DB63 /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9BA2C96EEDE0090DB63 /* GameCenterHelper.swift */; };
+		789DF9BF2C96EF440090DB63 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9BE2C96EF430090DB63 /* CloudKitManager.swift */; };
+		789DF9C32C96F1C70090DB63 /* SkillType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9C22C96F1C70090DB63 /* SkillType.swift */; };
+		789DF9C62C96F21F0090DB63 /* SkillsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9C52C96F21B0090DB63 /* SkillsViewModel.swift */; };
+		789DF9C82C96F29F0090DB63 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9C72C96F29D0090DB63 /* Skill.swift */; };
+		789DF9CA2C9731350090DB63 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9C92C9731310090DB63 /* Colors+.swift */; };
+		789DF9CD2C97323B0090DB63 /* ChatMessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9CC2C97323B0090DB63 /* ChatMessageOptions.swift */; };
+		789DF9CF2C9732570090DB63 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9CE2C9732570090DB63 /* ChatMessage.swift */; };
+		789DF9D22C9734FA0090DB63 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9D12C9734FA0090DB63 /* ChatViewModel.swift */; };
+		789DF9D52C973B7C0090DB63 /* KanbanTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9D42C973B7C0090DB63 /* KanbanTask.swift */; };
+		789DF9D82C9745570090DB63 /* KanbanCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9D72C9745570090DB63 /* KanbanCardViewModel.swift */; };
+		789DF9DB2C974C6D0090DB63 /* KanbanBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */; };
+		789DF9DD2C975C680090DB63 /* WarningsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */; };
 		789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EBD222C63691800D0317E /* DoomKanbanLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7803757F2C76B3B600B519FD /* PointsCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsCounter.swift; sourceTree = "<group>"; };
 		780F27A52C8A6D3700C72B53 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		780F27A92C8A6E9800C72B53 /* rythm1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm1.mp3; sourceTree = "<group>"; };
 		780F27AA2C8A6E9800C72B53 /* rythm2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rythm2.mp3; sourceTree = "<group>"; };
@@ -96,12 +117,13 @@
 		7835AD1D2C5C4C5E0005C012 /* FlowArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowArrow.swift; sourceTree = "<group>"; };
 		7835AD202C5C53CA0005C012 /* RunningSprintIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSprintIndicatorView.swift; sourceTree = "<group>"; };
 		7835AD222C5C65F00005C012 /* WarningTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningTriangle.swift; sourceTree = "<group>"; };
+		783830E12C94D94D009DCD63 /* RoundStartCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundStartCountDownView.swift; sourceTree = "<group>"; };
 		7850D6B22C748E43008BF8CA /* AnimatedGradientStrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGradientStrokeView.swift; sourceTree = "<group>"; };
 		7850D6B52C749888008BF8CA /* ShadowOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowOffset.swift; sourceTree = "<group>"; };
 		7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMobileChat.swift; sourceTree = "<group>"; };
 		7850D6BB2C7567B0008BF8CA /* FakeMobileChat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeMobileChat.json; sourceTree = "<group>"; };
 		7850D6BE2C756B24008BF8CA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileChatVisibility.swift; sourceTree = "<group>"; };
+		7850D6C02C75F28F008BF8CA /* SecondaryColorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryColorKey.swift; sourceTree = "<group>"; };
 		7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrudedPointCounterView.swift; sourceTree = "<group>"; };
 		7867356B2C78C67F007C3901 /* RandomValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomValues.swift; sourceTree = "<group>"; };
 		7867356D2C792BD0007C3901 /* WarningInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningInfo.swift; sourceTree = "<group>"; };
@@ -113,7 +135,6 @@
 		786735792C8542FC007C3901 /* 2000Tasks.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2000Tasks.usdz; sourceTree = "<group>"; };
 		786735852C85BF17007C3901 /* Round Book Shelf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Round Book Shelf.usdz"; sourceTree = "<group>"; };
 		786735872C867142007C3901 /* InitialMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMenuView.swift; sourceTree = "<group>"; };
-		7869CDED2C8759390063E690 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 		786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableKanbanCard.swift; sourceTree = "<group>"; };
 		787A83322C5FB1B000BB0405 /* WarningStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningStack.swift; sourceTree = "<group>"; };
@@ -135,8 +156,31 @@
 		7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoard.swift; sourceTree = "<group>"; };
 		789B7C8E2C65149F00DE4EF7 /* View+AspectRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AspectRatio.swift"; sourceTree = "<group>"; };
 		789B7C922C651AC400DE4EF7 /* Shelf3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelf3DView.swift; sourceTree = "<group>"; };
-		789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = SESSION_1723114240_6157427_mesh.usdz; sourceTree = "<group>"; };
 		789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = FirstWinTrophy.usdz; sourceTree = "<group>"; };
+		789DF9992C96D6080090DB63 /* ImmersiveSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveSpaceView.swift; sourceTree = "<group>"; };
+		789DF99C2C96D6770090DB63 /* VisionProPose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionProPose.swift; sourceTree = "<group>"; };
+		789DF99E2C96D9450090DB63 /* ImmersiveSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveSpaceViewModel.swift; sourceTree = "<group>"; };
+		789DF9A42C96DAD70090DB63 /* UserPodiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPodiumViewModel.swift; sourceTree = "<group>"; };
+		789DF9A72C96DAF70090DB63 /* LeaderboardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardEntry.swift; sourceTree = "<group>"; };
+		789DF9A92C96DC970090DB63 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
+		789DF9AD2C96DCF50090DB63 /* SaveScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveScoreView.swift; sourceTree = "<group>"; };
+		789DF9B02C96DDF90090DB63 /* SaveScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveScoreViewModel.swift; sourceTree = "<group>"; };
+		789DF9B32C96E3A00090DB63 /* KanbanAppVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanAppVM.swift; sourceTree = "<group>"; };
+		789DF9B62C96E3ED0090DB63 /* KanbanBoardVM+ContentGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KanbanBoardVM+ContentGeneration.swift"; sourceTree = "<group>"; };
+		789DF9B82C96E4440090DB63 /* KanbanBoardVM+ColumnManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KanbanBoardVM+ColumnManagement.swift"; sourceTree = "<group>"; };
+		789DF9BA2C96EEDE0090DB63 /* GameCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
+		789DF9BE2C96EF430090DB63 /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		789DF9C22C96F1C70090DB63 /* SkillType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillType.swift; sourceTree = "<group>"; };
+		789DF9C52C96F21B0090DB63 /* SkillsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewModel.swift; sourceTree = "<group>"; };
+		789DF9C72C96F29D0090DB63 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		789DF9C92C9731310090DB63 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
+		789DF9CC2C97323B0090DB63 /* ChatMessageOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageOptions.swift; sourceTree = "<group>"; };
+		789DF9CE2C9732570090DB63 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		789DF9D12C9734FA0090DB63 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		789DF9D42C973B7C0090DB63 /* KanbanTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanTask.swift; sourceTree = "<group>"; };
+		789DF9D72C9745570090DB63 /* KanbanCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanCardViewModel.swift; sourceTree = "<group>"; };
+		789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoardVM.swift; sourceTree = "<group>"; };
+		789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsLayout.swift; sourceTree = "<group>"; };
 		789EBD222C63691800D0317E /* DoomKanbanLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,12 +247,14 @@
 			isa = PBXGroup;
 			children = (
 				787A8A062C922A7000739626 /* DoomKanban.entitlements */,
+				789DF9BE2C96EF430090DB63 /* CloudKitManager.swift */,
+				789DF9BA2C96EEDE0090DB63 /* GameCenterHelper.swift */,
 				780F27A52C8A6D3700C72B53 /* AudioPlayerManager.swift */,
+				789DF9B22C96E3950090DB63 /* App */,
 				7850D6BA2C7567A6008BF8CA /* Resources */,
 				7850D6B42C74987E008BF8CA /* EnvironmentVars */,
 				7880E18A2C622F520088BD70 /* Utils */,
 				7835AD142C5BE1550005C012 /* Views */,
-				7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */,
 				7835AD0E2C5BE14D0005C012 /* Info.plist */,
 				7835AD0B2C5BE14D0005C012 /* Preview Content */,
 			);
@@ -226,11 +272,9 @@
 		7835AD0B2C5BE14D0005C012 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				7869CDED2C8759390063E690 /* TestView.swift */,
 				789B7C9A2C66270300DE4EF7 /* FirstWinTrophy.usdz */,
 				787A83342C60309100BB0405 /* Debug.swift */,
 				7835AD0C2C5BE14D0005C012 /* Preview Assets.xcassets */,
-				789B7C942C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -238,17 +282,16 @@
 		7835AD142C5BE1550005C012 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				787A8A072C92FA9D00739626 /* ArchivementsShelf */,
+				789DF9C02C96F1B10090DB63 /* Skills */,
 				786735872C867142007C3901 /* InitialMenuView.swift */,
 				7850D6B72C750360008BF8CA /* EmergingViews */,
 				7850D6B12C748DDA008BF8CA /* Reusable */,
-				786A79702C6F606900BDDF31 /* Board */,
-				7880E1872C622E640088BD70 /* Basics */,
+				786A79702C6F606900BDDF31 /* Boards */,
 				7835AD1F2C5C53AD0005C012 /* Indicators */,
 				7835AD1C2C5C4BF90005C012 /* Shapes */,
 				7835AD152C5BE15D0005C012 /* Card */,
 				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
-				7880E1912C6235A40088BD70 /* SkillsView.swift */,
+				789DF9972C96D5B20090DB63 /* 3DViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +299,8 @@
 		7835AD152C5BE15D0005C012 /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				789DF9D62C9745520090DB63 /* VM */,
+				789DF9D32C973B630090DB63 /* Model */,
 				786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */,
 				7835AD162C5BE1980005C012 /* KanbanCard.swift */,
 			);
@@ -279,8 +324,8 @@
 			children = (
 				787A8A0E2C93026900739626 /* Sprints */,
 				787A832E2C5FB14800BB0405 /* Warnings */,
-				7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */,
 				7850D6C22C763F7E008BF8CA /* ExtrudedPointCounterView.swift */,
+				789DF9A02C96DA3F0090DB63 /* CountDown */,
 			);
 			path = Indicators;
 			sourceTree = "<group>";
@@ -296,8 +341,7 @@
 		7850D6B42C74987E008BF8CA /* EnvironmentVars */ = {
 			isa = PBXGroup;
 			children = (
-				7803757F2C76B3B600B519FD /* PointsCounter.swift */,
-				7850D6C02C75F28F008BF8CA /* MobileChatVisibility.swift */,
+				7850D6C02C75F28F008BF8CA /* SecondaryColorKey.swift */,
 				7850D6B52C749888008BF8CA /* ShadowOffset.swift */,
 			);
 			path = EnvironmentVars;
@@ -314,6 +358,7 @@
 		7850D6BA2C7567A6008BF8CA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				789DF9C92C9731310090DB63 /* Colors+.swift */,
 				780F27A82C8A6E8400C72B53 /* Sounds */,
 				780F27A72C8A6D9D00C72B53 /* 3D */,
 				7867356F2C794530007C3901 /* TasksTitles.json */,
@@ -326,20 +371,21 @@
 		7850D6BD2C756B10008BF8CA /* FakeChat */ = {
 			isa = PBXGroup;
 			children = (
+				789DF9CB2C9732350090DB63 /* Model */,
+				789DF9D02C9734EF0090DB63 /* ViewModel */,
 				7850D6BE2C756B24008BF8CA /* ChatView.swift */,
 				7850D6B82C7503C0008BF8CA /* FakeMobileChat.swift */,
 			);
 			path = FakeChat;
 			sourceTree = "<group>";
 		};
-		786A79702C6F606900BDDF31 /* Board */ = {
+		786A79702C6F606900BDDF31 /* Boards */ = {
 			isa = PBXGroup;
 			children = (
-				7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */,
-				786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */,
-				789EBD222C63691800D0317E /* DoomKanbanLayout.swift */,
+				789DF9A22C96DABB0090DB63 /* Leaderboard */,
+				789DF9A12C96DAAE0090DB63 /* KanbanBoard */,
 			);
-			path = Board;
+			path = Boards;
 			sourceTree = "<group>";
 		};
 		787A832E2C5FB14800BB0405 /* Warnings */ = {
@@ -421,14 +467,6 @@
 			path = VM;
 			sourceTree = "<group>";
 		};
-		7880E1872C622E640088BD70 /* Basics */ = {
-			isa = PBXGroup;
-			children = (
-				7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */,
-			);
-			path = Basics;
-			sourceTree = "<group>";
-		};
 		7880E18A2C622F520088BD70 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +476,194 @@
 				7880E18B2C622F5A0088BD70 /* Color+Hex+Darker.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		789DF9972C96D5B20090DB63 /* 3DViews */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9982C96D5FC0090DB63 /* OfficeImmersiveSpace */,
+				787A8A072C92FA9D00739626 /* ArchivementsShelf */,
+			);
+			path = 3DViews;
+			sourceTree = "<group>";
+		};
+		789DF9982C96D5FC0090DB63 /* OfficeImmersiveSpace */ = {
+			isa = PBXGroup;
+			children = (
+				789DF99B2C96D6710090DB63 /* VM */,
+				789DF9992C96D6080090DB63 /* ImmersiveSpaceView.swift */,
+			);
+			path = OfficeImmersiveSpace;
+			sourceTree = "<group>";
+		};
+		789DF99B2C96D6710090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF99E2C96D9450090DB63 /* ImmersiveSpaceViewModel.swift */,
+				789DF99C2C96D6770090DB63 /* VisionProPose.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		789DF9A02C96DA3F0090DB63 /* CountDown */ = {
+			isa = PBXGroup;
+			children = (
+				7880E1882C622E740088BD70 /* CircularLoaderBackground.swift */,
+				7880E22E2C5D6D19000EFA9D /* CountDownCircle.swift */,
+				783830E12C94D94D009DCD63 /* RoundStartCountDownView.swift */,
+			);
+			path = CountDown;
+			sourceTree = "<group>";
+		};
+		789DF9A12C96DAAE0090DB63 /* KanbanBoard */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */,
+				789DF9D92C974C670090DB63 /* VM */,
+				7880E2352C5D8F0D000EFA9D /* KanbanBoard.swift */,
+				786A796E2C6F603A00BDDF31 /* KanbanColumn.swift */,
+				789EBD222C63691800D0317E /* DoomKanbanLayout.swift */,
+			);
+			path = KanbanBoard;
+			sourceTree = "<group>";
+		};
+		789DF9A22C96DABB0090DB63 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9AC2C96DCE80090DB63 /* SaveScore */,
+				789DF9AB2C96DCD90090DB63 /* Podium */,
+				789DF9A62C96DAEF0090DB63 /* Model */,
+			);
+			path = Leaderboard;
+			sourceTree = "<group>";
+		};
+		789DF9A32C96DAD00090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9A42C96DAD70090DB63 /* UserPodiumViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		789DF9A62C96DAEF0090DB63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9A72C96DAF70090DB63 /* LeaderboardEntry.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789DF9AB2C96DCD90090DB63 /* Podium */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9A32C96DAD00090DB63 /* VM */,
+				789DF9A92C96DC970090DB63 /* PodiumView.swift */,
+			);
+			path = Podium;
+			sourceTree = "<group>";
+		};
+		789DF9AC2C96DCE80090DB63 /* SaveScore */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9AF2C96DDF10090DB63 /* VM */,
+				789DF9AD2C96DCF50090DB63 /* SaveScoreView.swift */,
+			);
+			path = SaveScore;
+			sourceTree = "<group>";
+		};
+		789DF9AF2C96DDF10090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9B02C96DDF90090DB63 /* SaveScoreViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		789DF9B22C96E3950090DB63 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9B52C96E3E60090DB63 /* VM */,
+				7835AD052C5BE14C0005C012 /* DoomKanbanApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		789DF9B52C96E3E60090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9B82C96E4440090DB63 /* KanbanBoardVM+ColumnManagement.swift */,
+				789DF9B62C96E3ED0090DB63 /* KanbanBoardVM+ContentGeneration.swift */,
+				789DF9B32C96E3A00090DB63 /* KanbanAppVM.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		789DF9C02C96F1B10090DB63 /* Skills */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9C12C96F1BF0090DB63 /* Model */,
+				789DF9C42C96F2110090DB63 /* ViewModel */,
+				7880E1912C6235A40088BD70 /* SkillsView.swift */,
+			);
+			path = Skills;
+			sourceTree = "<group>";
+		};
+		789DF9C12C96F1BF0090DB63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9C72C96F29D0090DB63 /* Skill.swift */,
+				789DF9C22C96F1C70090DB63 /* SkillType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789DF9C42C96F2110090DB63 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9C52C96F21B0090DB63 /* SkillsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		789DF9CB2C9732350090DB63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9CE2C9732570090DB63 /* ChatMessage.swift */,
+				789DF9CC2C97323B0090DB63 /* ChatMessageOptions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789DF9D02C9734EF0090DB63 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9D12C9734FA0090DB63 /* ChatViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		789DF9D32C973B630090DB63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9D42C973B7C0090DB63 /* KanbanTask.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		789DF9D62C9745520090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9D72C9745570090DB63 /* KanbanCardViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		789DF9D92C974C670090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */,
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,7 +732,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7835AD0D2C5BE14D0005C012 /* Preview Assets.xcassets in Resources */,
-				789B7C952C651B6A00DE4EF7 /* SESSION_1723114240_6157427_mesh.usdz in Resources */,
 				7850D6BC2C7567BF008BF8CA /* FakeMobileChat.json in Resources */,
 				786735722C7A6A38007C3901 /* outscoreTheCreator.usdz in Resources */,
 				786735702C794536007C3901 /* TasksTitles.json in Resources */,
@@ -538,44 +763,67 @@
 			files = (
 				7835AD082C5BE14C0005C012 /* SprintsLayoutView.swift in Sources */,
 				787A83352C60309700BB0405 /* Debug.swift in Sources */,
+				789DF9DB2C974C6D0090DB63 /* KanbanBoardVM.swift in Sources */,
 				7880E1892C622E740088BD70 /* CircularLoaderBackground.swift in Sources */,
 				789B7C8F2C6514AA00DE4EF7 /* View+AspectRatio.swift in Sources */,
 				7850D6BF2C756B28008BF8CA /* ChatView.swift in Sources */,
 				787A83332C5FB1B000BB0405 /* WarningStack.swift in Sources */,
 				7835AD1E2C5C4C5E0005C012 /* FlowArrow.swift in Sources */,
 				789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */,
+				789DF9D52C973B7C0090DB63 /* KanbanTask.swift in Sources */,
 				7835AD212C5C53CA0005C012 /* RunningSprintIndicatorView.swift in Sources */,
 				7880E2362C5D8F0D000EFA9D /* KanbanBoard.swift in Sources */,
 				7850D6C32C763F7E008BF8CA /* ExtrudedPointCounterView.swift in Sources */,
+				789DF9B92C96E4500090DB63 /* KanbanBoardVM+ColumnManagement.swift in Sources */,
+				789DF9D22C9734FA0090DB63 /* ChatViewModel.swift in Sources */,
 				7850D6B62C74988E008BF8CA /* ShadowOffset.swift in Sources */,
 				787A8A0D2C92FB8A00739626 /* Archivement.swift in Sources */,
 				7835AD232C5C65F00005C012 /* WarningTriangle.swift in Sources */,
 				786A79722C6F60A900BDDF31 /* DraggableKanbanCard.swift in Sources */,
 				786A796F2C6F604000BDDF31 /* KanbanColumn.swift in Sources */,
 				786735882C86714C007C3901 /* InitialMenuView.swift in Sources */,
+				789DF9CA2C9731350090DB63 /* Colors+.swift in Sources */,
 				7835AD192C5BE5C60005C012 /* RedFlag.swift in Sources */,
 				7880E22F2C5D6D19000EFA9D /* CountDownCircle.swift in Sources */,
-				780375802C76B3B900B519FD /* PointsCounter.swift in Sources */,
+				789DF9B42C96E3A10090DB63 /* KanbanAppVM.swift in Sources */,
+				789DF9C82C96F29F0090DB63 /* Skill.swift in Sources */,
+				789DF99A2C96D6090090DB63 /* ImmersiveSpaceView.swift in Sources */,
+				789DF99D2C96D6780090DB63 /* VisionProPose.swift in Sources */,
+				789DF9A82C96DAF80090DB63 /* LeaderboardEntry.swift in Sources */,
 				7880E22D2C5D08B1000EFA9D /* TriangleShape.swift in Sources */,
+				789DF9BF2C96EF440090DB63 /* CloudKitManager.swift in Sources */,
 				7835AD172C5BE1980005C012 /* KanbanCard.swift in Sources */,
-				7869CDEE2C87593C0063E690 /* TestView.swift in Sources */,
 				7880E1922C6235A40088BD70 /* SkillsView.swift in Sources */,
+				789DF9AA2C96DC9A0090DB63 /* PodiumView.swift in Sources */,
 				7880E1942C62597D0088BD70 /* ConditionalOrientationView.swift in Sources */,
+				789DF9C62C96F21F0090DB63 /* SkillsViewModel.swift in Sources */,
 				7835AD062C5BE14C0005C012 /* DoomKanbanApp.swift in Sources */,
-				7850D6C12C75F2A3008BF8CA /* MobileChatVisibility.swift in Sources */,
+				789DF9DD2C975C680090DB63 /* WarningsLayout.swift in Sources */,
+				7850D6C12C75F2A3008BF8CA /* SecondaryColorKey.swift in Sources */,
+				789DF99F2C96D9460090DB63 /* ImmersiveSpaceViewModel.swift in Sources */,
 				787A8A092C92FAB300739626 /* Shelf3dViewModel.swift in Sources */,
+				789DF9BB2C96EEE00090DB63 /* GameCenterHelper.swift in Sources */,
 				7867356E2C792BD7007C3901 /* WarningInfo.swift in Sources */,
+				789DF9D82C9745570090DB63 /* KanbanCardViewModel.swift in Sources */,
 				7880E2342C5D8949000EFA9D /* KanbanBoardShape.swift in Sources */,
 				787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */,
+				789DF9AE2C96DCF50090DB63 /* SaveScoreView.swift in Sources */,
 				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
+				789DF9B12C96DDFA0090DB63 /* SaveScoreViewModel.swift in Sources */,
 				780F27A62C8A6D3A00C72B53 /* AudioPlayerManager.swift in Sources */,
+				789DF9B72C96E3F30090DB63 /* KanbanBoardVM+ContentGeneration.swift in Sources */,
 				7880E18C2C622F600088BD70 /* Color+Hex+Darker.swift in Sources */,
 				7850D6B92C7503C0008BF8CA /* FakeMobileChat.swift in Sources */,
 				789B7C932C651AC400DE4EF7 /* Shelf3DView.swift in Sources */,
+				789DF9CF2C9732570090DB63 /* ChatMessage.swift in Sources */,
 				787A8A142C9302B400739626 /* RunningSprintVM.swift in Sources */,
 				787A8A122C93028F00739626 /* KanbanSprint.swift in Sources */,
+				789DF9A52C96DAD80090DB63 /* UserPodiumViewModel.swift in Sources */,
 				7867356C2C78C685007C3901 /* RandomValues.swift in Sources */,
+				789DF9C32C96F1C70090DB63 /* SkillType.swift in Sources */,
+				783830E22C94D956009DCD63 /* RoundStartCountDownView.swift in Sources */,
 				7850D6B32C748E45008BF8CA /* AnimatedGradientStrokeView.swift in Sources */,
+				789DF9CD2C97323B0090DB63 /* ChatMessageOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

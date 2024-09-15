@@ -6,108 +6,6 @@
 //
 
 import SwiftUI
-import UniformTypeIdentifiers
-
-// ⚠️ This KanbanTask must be an @Observable class because as a simple struct it is not possible to auto-refresh the subviews hierarchy when a KanbanTask property changes
-@Observable
-class KanbanTask: Identifiable, Equatable, Hashable {
-    let id: UUID
-    var projectId: Int
-    var sprintId: Int
-    let title: String
-    var color: Color
-    var value: Int
-    let isWarningEnabled: Bool
-    var isFlagged: Bool
-    var isComplete: Bool
-    
-    static func == (lhs: KanbanTask, rhs: KanbanTask) -> Bool {
-        lhs.id == rhs.id &&
-        lhs.projectId == rhs.projectId &&
-        lhs.sprintId == rhs.sprintId &&
-        lhs.title == rhs.title &&
-        lhs.color == rhs.color &&
-        lhs.value == rhs.value &&
-        lhs.isWarningEnabled == rhs.isWarningEnabled &&
-        lhs.isFlagged == rhs.isFlagged &&
-        lhs.isComplete == rhs.isComplete
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(projectId)
-        hasher.combine(sprintId)
-        hasher.combine(title)
-        hasher.combine(color)
-        hasher.combine(value)
-        hasher.combine(isWarningEnabled)
-        hasher.combine(isFlagged)
-        hasher.combine(isComplete)
-    }
-    
-//    static var transferRepresentation: some TransferRepresentation {
-//        CodableRepresentation(contentType: .kanbanTask)
-//    }
-//    
-//    private enum CodingKeys: String, CodingKey {
-//        case id, projectId, sprintId, title, color, value, isWarningEnabled, isFlagged, isComplete
-//    }
-//    
-//    func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(id, forKey: .id)
-//        try container.encode(projectId, forKey: .id)
-//        try container.encode(sprintId, forKey: .id)
-//        try container.encode(title, forKey: .title)
-//        try container.encode(value, forKey: .value)
-//        try container.encode(isWarningEnabled, forKey: .isWarningEnabled)
-//        try container.encode(isFlagged, forKey: .isFlagged)
-//        try container.encode(isComplete, forKey: .isComplete)
-//        
-//        let colorHex = UIColor(color).toHexString()
-//        try container.encode(colorHex, forKey: .color)
-//    }
-//    
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        id = try container.decode(UUID.self, forKey: .id)
-//        projectId = try container.decode(Int.self, forKey: .projectId)
-//        sprintId = try container.decode(Int.self, forKey: .sprintId)
-//        title = try container.decode(String.self, forKey: .title)
-//        value = try container.decode(Int.self, forKey: .value)
-//        isWarningEnabled = try container.decode(Bool.self, forKey: .isWarningEnabled)
-//        isFlagged = try container.decode(Bool.self, forKey: .isFlagged)
-//        isComplete = try container.decode(Bool.self, forKey: .isComplete)
-//        
-//        let colorHex = try container.decode(String.self, forKey: .color)
-//        color = Color(hex: colorHex)
-//    }
-    
-    init(
-        projectId: Int,
-        sprintId: Int,
-        title: String,
-        color: Color,
-        value: Int,
-        isWarningEnabled: Bool = false,
-        isFlagged: Bool = false,
-        isComplete: Bool = false
-    ) {
-        self.id = UUID()
-        self.projectId = projectId
-        self.sprintId = sprintId
-        self.title = title
-        self.color = color
-        self.value = value
-        self.isWarningEnabled = isWarningEnabled
-        self.isFlagged = isFlagged
-        self.isComplete = isComplete
-    }
-}
-
-extension UTType {
-    static let kanbanTask = UTType(exportedAs: "jle.developement.DoomKanban.KanbanTask")
-}
 
 /// Simple card with a Kanban board task style (colored top, value, flag and warning)
 ///
@@ -115,8 +13,6 @@ extension UTType {
 struct KanbanCard: View {
     let task: KanbanTask
     @Environment(KanbanAppVM.self) var kanbanAppVM
-//    @Environment(\.pointsCounter) private var points
-//    @State private var justAppeared = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -134,22 +30,11 @@ struct KanbanCard: View {
             .background(
                 task.color
             )
-//            .onAppear {
-//                Task {
-//                    try await Task.sleep(nanoseconds: 1_000_000_000) // 1 segundo
-//                    justAppeared = true
-//                }
-//            }
             .onChange(of: task.isComplete) { oldValue, newValue in
-                if /*justAppeared &&*/ newValue {
+                if newValue {
                     kanbanAppVM.points += calculatePoints()
                 }
             }
-//            .onChange(of: task.isFlagged) { oldValue, newValue in
-//                if /*justAppeared &&*/ newValue {
-//                    points.wrappedValue += calculatePoints()
-//                }
-//            }
         }
     }
     

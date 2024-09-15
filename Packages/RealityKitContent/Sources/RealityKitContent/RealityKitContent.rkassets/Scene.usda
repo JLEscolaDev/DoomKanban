@@ -38,7 +38,7 @@ def Xform "Root"
         int ui:nodegraph:node:stackingOrder = 1
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (4, 0.5, 4)
-        float3 xformOp:translate = (0.6, 1.2042001, -4.1270003)
+        float3 xformOp:translate = (0.6, 1.2042001, -6.0410976)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
