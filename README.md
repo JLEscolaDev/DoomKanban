@@ -29,18 +29,24 @@ In Doom Kanban Board, you will manage tasks by moving them through four distinct
 1. **Move tasks** drag and drop all tasks to Done column.
 2. **Understand the layout and indicators** 
    - If you fail a task, you will receive a warning ⚠️ from your boss. 3 warnings in the same project and you are fired.
-   ![Warning](https://github.com/JLEscolaDev/DoomKanban/tree/assets/warnings.png)
+     
+   ![Warning](https://github.com/JLEscolaDev/DoomKanban/raw/assets/warnings.png)
+
    - You have a layout on your left that will show you the next tasks based on its projects and sprint. It is posible to have multiple projects running (represented by color). Each project have multiple sprints and each sprint has multiple tasks. You have to complete them all.
-   ![Sprints](https://github.com/JLEscolaDev/DoomKanban/tree/assets/runningSprints.png)
+     
+   ![Sprints](https://github.com/JLEscolaDev/DoomKanban/raw/assets/runningSprints.png)
 
    - You have a layout on your right with 3 skills. This skills will provide you:
       1. Skill to see the remaining task for the next task to drop on To Do.
       2. Skill to reduce to half the remaining tasks.
       3. Skill to autoComplete faster the tasks (it last some seconds)
-   ![Skills](https://github.com/JLEscolaDev/DoomKanban/tree/assets/skills.png)
+         
+![Skills](https://github.com/JLEscolaDev/DoomKanban/raw/assets/skills.png)
 
    - There are tasks marked with a red flag 🚩 that you must fix, a task can be important marked with a red exclamation ❗️ that will give you double points but also double warnings if you fail.
-   ![Task](https://github.com/JLEscolaDev/DoomKanban/tree/assets/kanbanTask.png)
+
+![Task](https://github.com/JLEscolaDev/DoomKanban/raw/assets/kanbanTask.png)
+
 3. **How you win?** You dont.
 4. **How you lose?** Keep trying to be the best on the leaderboard until you burn out. See? like a real work!:D
 
@@ -52,11 +58,11 @@ Repeat this process to manage your workflow effectively.
 - Four distinct task columns: Backlog, In Progress, Review, and Done.
 - Fake mobile chat and pool of task titles based on jokes.
 - Office immersive experience that will react to the running game.
-![Office in fire](https://github.com/JLEscolaDev/DoomKanban/tree/assets/officeFire.png)
+![Office in fire](https://github.com/JLEscolaDev/DoomKanban/raw/assets/officeFire.png)
 - Leaderboard connected to iCloud and GameCenter
-![Leaderboard](https://github.com/JLEscolaDev/DoomKanban/tree/assets/leaderboard.png)
+![Leaderboard](https://github.com/JLEscolaDev/DoomKanban/raw/assets/leaderboard.png)
 - 3d model representation of Game Center archivements
-![Archivements](https://github.com/JLEscolaDev/DoomKanban/tree/assets/archivements.png)
+![Archivements](https://github.com/JLEscolaDev/DoomKanban/raw/assets/archivements.png)
 
 ## How to test
 
