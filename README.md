@@ -22,7 +22,8 @@ In Doom Kanban Board, you will manage tasks by moving them through four distinct
 4. **Done**:  
    Once the testing part is done and the task is complete you can move the task to Done. Congratulations! 🎉
    It's important to know that you must move all the tasks to Done before each of its counters/completion date gets to 0 and you will the remaining time as extra points for your final score.
-
+   
+![Warning](https://github.com/JLEscolaDev/DoomKanban/raw/assets/KanbanBoard.png)
 
 ### 🎮 Rules:
 
@@ -63,7 +64,8 @@ Repeat this process to manage your workflow effectively.
 ![Leaderboard](https://github.com/JLEscolaDev/DoomKanban/raw/assets/leaderboard.png)
 - 3d model representation of Game Center archivements
 ![Archivements](https://github.com/JLEscolaDev/DoomKanban/raw/assets/archivements.png)
-
+- In Game music
+  
 ## How to test
 
 To get started, clone the repository and run the app in xcode to test the app.
