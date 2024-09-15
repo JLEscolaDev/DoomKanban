@@ -92,6 +92,7 @@
 		789DF9DB2C974C6D0090DB63 /* KanbanBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */; };
 		789DF9DD2C975C680090DB63 /* WarningsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */; };
 		789DF9E12C977BE70090DB63 /* SprintsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9E02C977BE70090DB63 /* SprintsViewModel.swift */; };
+		789DF9E32C978C850090DB63 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 789DF9E22C978C850090DB63 /* Localizable.xcstrings */; };
 		789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EBD222C63691800D0317E /* DoomKanbanLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +184,7 @@
 		789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoardVM.swift; sourceTree = "<group>"; };
 		789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsLayout.swift; sourceTree = "<group>"; };
 		789DF9E02C977BE70090DB63 /* SprintsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsViewModel.swift; sourceTree = "<group>"; };
+		789DF9E22C978C850090DB63 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		789EBD222C63691800D0317E /* DoomKanbanLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,6 +261,7 @@
 				7835AD142C5BE1550005C012 /* Views */,
 				7835AD0E2C5BE14D0005C012 /* Info.plist */,
 				7835AD0B2C5BE14D0005C012 /* Preview Content */,
+				789DF9E22C978C850090DB63 /* Localizable.xcstrings */,
 			);
 			path = DoomKanban;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 7835ACF52C5BE14C0005C012;
 			packageReferences = (
@@ -755,6 +759,7 @@
 				786735722C7A6A38007C3901 /* outscoreTheCreator.usdz in Resources */,
 				786735702C794536007C3901 /* TasksTitles.json in Resources */,
 				7867357A2C8542FC007C3901 /* 2000Tasks.usdz in Resources */,
+				789DF9E32C978C850090DB63 /* Localizable.xcstrings in Resources */,
 				7835AD0A2C5BE14D0005C012 /* Assets.xcassets in Resources */,
 				780F27B22C8A6E9800C72B53 /* rythm2.mp3 in Resources */,
 				780F27B32C8A6E9800C72B53 /* rythm5.mp3 in Resources */,
@@ -908,6 +913,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = xros;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				XROS_DEPLOYMENT_TARGET = 1.2;
 			};
@@ -964,6 +970,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = xros;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 1.2;
 			};

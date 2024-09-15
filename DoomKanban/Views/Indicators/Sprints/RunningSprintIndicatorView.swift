@@ -130,7 +130,7 @@ extension RunningSprintIndicatorView {
             .shadow(radius: 2)
             .overlay {
                 GeometryReader { arrowGeometry in
-                    addContent(title: "Ends in", geometry: arrowGeometry, parentViewHeight: geometry)
+                    addContent(title: NSLocalizedString("Ends in", comment: ""), geometry: arrowGeometry, parentViewHeight: geometry)
                         .padding(.trailing, geometry.size.width*0.18)
                         .padding(.top, geometry.size.height*0.1)
                 }
