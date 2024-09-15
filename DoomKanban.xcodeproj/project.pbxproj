@@ -91,6 +91,7 @@
 		789DF9D82C9745570090DB63 /* KanbanCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9D72C9745570090DB63 /* KanbanCardViewModel.swift */; };
 		789DF9DB2C974C6D0090DB63 /* KanbanBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */; };
 		789DF9DD2C975C680090DB63 /* WarningsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */; };
+		789DF9E12C977BE70090DB63 /* SprintsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789DF9E02C977BE70090DB63 /* SprintsViewModel.swift */; };
 		789EBD232C63691800D0317E /* DoomKanbanLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EBD222C63691800D0317E /* DoomKanbanLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +182,7 @@
 		789DF9D72C9745570090DB63 /* KanbanCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanCardViewModel.swift; sourceTree = "<group>"; };
 		789DF9DA2C974C6D0090DB63 /* KanbanBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoardVM.swift; sourceTree = "<group>"; };
 		789DF9DC2C975C5E0090DB63 /* WarningsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsLayout.swift; sourceTree = "<group>"; };
+		789DF9E02C977BE70090DB63 /* SprintsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsViewModel.swift; sourceTree = "<group>"; };
 		789EBD222C63691800D0317E /* DoomKanbanLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomKanbanLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,7 +292,6 @@
 				7835AD1F2C5C53AD0005C012 /* Indicators */,
 				7835AD1C2C5C4BF90005C012 /* Shapes */,
 				7835AD152C5BE15D0005C012 /* Card */,
-				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
 				789DF9972C96D5B20090DB63 /* 3DViews */,
 			);
 			path = Views;
@@ -299,6 +300,7 @@
 		7835AD152C5BE15D0005C012 /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				789DF9DE2C977BD80090DB63 /* Sprints */,
 				789DF9D62C9745520090DB63 /* VM */,
 				789DF9D32C973B630090DB63 /* Model */,
 				786A79712C6F609E00BDDF31 /* DraggableKanbanCard.swift */,
@@ -666,6 +668,23 @@
 			path = VM;
 			sourceTree = "<group>";
 		};
+		789DF9DE2C977BD80090DB63 /* Sprints */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9DF2C977BE30090DB63 /* VM */,
+				7835AD072C5BE14C0005C012 /* SprintsLayoutView.swift */,
+			);
+			path = Sprints;
+			sourceTree = "<group>";
+		};
+		789DF9DF2C977BE30090DB63 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				789DF9E02C977BE70090DB63 /* SprintsViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -809,6 +828,7 @@
 				787A833A2C60DB9200BB0405 /* WardenEye.swift in Sources */,
 				789DF9AE2C96DCF50090DB63 /* SaveScoreView.swift in Sources */,
 				7880E2312C5D6FDE000EFA9D /* PieChart.swift in Sources */,
+				789DF9E12C977BE70090DB63 /* SprintsViewModel.swift in Sources */,
 				789DF9B12C96DDFA0090DB63 /* SaveScoreViewModel.swift in Sources */,
 				780F27A62C8A6D3A00C72B53 /* AudioPlayerManager.swift in Sources */,
 				789DF9B72C96E3F30090DB63 /* KanbanBoardVM+ContentGeneration.swift in Sources */,

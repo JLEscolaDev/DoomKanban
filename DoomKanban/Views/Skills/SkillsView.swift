@@ -146,7 +146,6 @@ fileprivate struct SkillsView_Preview: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            //        HStack {
             SkillsView(.init(skills: [
                 Skill(icon: Image(.chrono), coolDown: 10, type: .chronoMaster),
                 Skill(icon: Image(.ancientKnoeledgeIlumination), coolDown: 3, type: .ancientKnowledgeIllumination),
@@ -172,7 +171,6 @@ fileprivate struct SkillsView_Preview: View {
                 width: 200,
                 height: 300
             )
-            //        }
-        }
+        }.environment(KanbanAppVM())
     }
 }

@@ -1,13 +1,11 @@
 //
-//  ContentView.swift
+//  SprintsViewModel.swift
 //  DoomKanban
 //
-//  Created by Jose Luis Escolá García on 1/8/24.
+//  Created by Jose Luis Escolá García on 15/9/24.
 //
 
 import SwiftUI
-import RealityKit
-import RealityKitContent
 
 @Observable
 class SprintsViewModel {
@@ -24,7 +22,6 @@ class SprintsViewModel {
     }
     
     func createSprintList(geometry: GeometryProxy, kanbanVM: Bindable<KanbanAppVM>) -> some View {
-//        GeometryReader { geometry in
             let indicatorHeight = geometry.size.width * 0.4
             let vstackSpacing: CGFloat = 40
             let totalHeightPerIndicator = indicatorHeight + vstackSpacing
@@ -54,7 +51,6 @@ class SprintsViewModel {
                     }
                     .padding(.vertical, verticalPadding / 2)
                 }
-//        }
     }
     
     func createIndicator(from task: KanbanTask, with geometry: GeometryProxy, and indicatorHeight: CGFloat, kanbanVM: Bindable<KanbanAppVM>) -> some View {
@@ -92,42 +88,4 @@ class SprintsViewModel {
             return AnyView(EmptyView())
         }
     }
-}
-extension Collection {
-  func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
-    return Array(self.enumerated())
-  }
-}
-
-struct SprintsLayoutView: View {
-    @Environment(KanbanAppVM.self) var kanbanVM
-    @State private var localVM: SprintsViewModel = SprintsViewModel()
-    @State private var lastVisibleItemIndex: Int? = nil
-
-    var body: some View {
-        @Bindable var kanbanVMBinding = kanbanVM
-        GeometryReader { geometry in
-//            let indicatorHeight = geometry.size.width * 0.4
-//            let vstackSpacing: CGFloat = 40
-//            let totalHeightPerIndicator = indicatorHeight + vstackSpacing
-//            let verticalPadding = geometry.size.height * 0.1
-//            let availableHeight = geometry.size.height - verticalPadding
-            // Calculate the maximum amount of indicators we can display based on layout height
-//            let maxIndicators = Int(availableHeight / totalHeightPerIndicator)
-            
-            localVM.createSprintList(geometry: geometry, kanbanVM: $kanbanVMBinding)
-            // Clean tasks added locally to modify the remaining tasks counting for each indicator so that tasks already added do not show an incorrect count and local subtraction is done correctly after the view is refreshed
-            
-        }.onChange(of: kanbanVM.round) {
-            // When we start a new round, we re-init the localVM to avoid issues with previous data
-            localVM = SprintsViewModel()
-        }
-    }
-    
-    
-}
-
-#Preview {
-    SprintsLayoutView().frame(width: 150, height: 700)
-        .environment(KanbanAppVM())
 }
