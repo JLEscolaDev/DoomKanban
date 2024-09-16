@@ -18,6 +18,7 @@ struct InitialMenuView: View {
     var body: some View {
         VStack(spacing: 30) {
             gameTitle
+            Spacer()
             immersiveSpaceButton
             newGameButton
             achievementsButton
@@ -35,20 +36,22 @@ struct InitialMenuView: View {
     private var gameTitle: some View {
         Text("DOOM KANBAN")
             .font(.system(size: 100, weight: .bold))
+            .minimumScaleFactor(0.3)
             .fontDesign(.serif)
             .padding()
-            .padding(.bottom, 180)
     }
     
     // Immersive space button
     private var immersiveSpaceButton: some View {
         Button(action: toggleImmersiveSpace) {
             Text("\(isImmersiveSpaceOpen ? "Desactivar" : "Activar") espacio inmersivo")
-                .font(.system(size: 40, weight: .medium))
+                .font(.extraLargeTitle2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, minHeight: 120)
                 .padding()
                 .foregroundColor(.white)
                 .cornerRadius(20)
+                .minimumScaleFactor(0.3)
         }
     }
     
@@ -58,11 +61,13 @@ struct InitialMenuView: View {
             pushWindow(id: "KanbanBoard")
         }) {
             Text("Nueva partida")
-                .font(.system(size: 40, weight: .medium))
+                .font(.extraLargeTitle2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, minHeight: 120)
                 .padding()
                 .foregroundColor(.white)
                 .cornerRadius(20)
+                .minimumScaleFactor(0.3)
         }
     }
     
@@ -75,11 +80,13 @@ struct InitialMenuView: View {
             }
         }) {
             Text("Logros")
-                .font(.system(size: 40, weight: .medium))
+                .font(.extraLargeTitle2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, minHeight: 120)
                 .padding()
                 .foregroundColor(.white)
                 .cornerRadius(20)
+                .minimumScaleFactor(0.3)
         }
     }
     
@@ -89,11 +96,13 @@ struct InitialMenuView: View {
             openWindow(id: "PodiumView")
         }) {
             Text("Podio")
-                .font(.system(size: 40, weight: .medium))
+                .font(.extraLargeTitle2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, minHeight: 120)
                 .padding()
                 .foregroundColor(.white)
                 .cornerRadius(20)
+                .minimumScaleFactor(0.3)
         }
     }
     
