@@ -14,7 +14,7 @@ struct InitialMenuView: View {
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
     @Environment(\.scenePhase) private var scenePhase // Tracks app lifecycle
-    @State var isImmersiveSpaceOpen = false
+    @AppStorage("isImmersiveSpaceOpen") private var isImmersiveSpaceOpen = false
     @Binding var canDismissImmersiveSpace: Bool
     
     var body: some View {
