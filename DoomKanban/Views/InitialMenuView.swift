@@ -13,7 +13,9 @@ struct InitialMenuView: View {
     @Environment(\.pushWindow) private var pushWindow
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
+    @Environment(\.scenePhase) private var scenePhase // Tracks app lifecycle
     @State var isImmersiveSpaceOpen = false
+    @Binding var canDismissImmersiveSpace: Bool
     
     var body: some View {
         VStack(spacing: 30) {
@@ -27,6 +29,9 @@ struct InitialMenuView: View {
         .padding()
         .onAppear {
             handleOnAppear()
+        }
+        .onChange(of: scenePhase) { _, newScenePhase in
+            handleScenePhaseChange(newScenePhase)
         }
     }
     
@@ -58,7 +63,7 @@ struct InitialMenuView: View {
     // New game button
     private var newGameButton: some View {
         Button(action: {
-            pushWindow(id: "KanbanBoard")
+            startGame()
         }) {
             Text("Nueva partida")
                 .font(.extraLargeTitle2)
@@ -124,8 +129,32 @@ struct InitialMenuView: View {
             dismissWindow(id: "Shelf")
         }
     }
+    
+    private func startGame() {
+        // We use .inactive scenePhase to track when the app has been closed and we must force close the office immersive space.
+        // As we close this InitialMenuView, this inactive status will be triggered so we need this extra var to check if we should close the Office.
+        canDismissImmersiveSpace = false
+        pushWindow(id: "KanbanBoard")
+    }
+    
+    /// Closes the immersive space if we close the app
+    private func handleScenePhaseChange(_ newScenePhase: ScenePhase) {
+            switch newScenePhase {
+            case .background, .inactive:
+                // Dismiss immersive space when the app moves to background or becomes inactive
+                if isImmersiveSpaceOpen,
+                   canDismissImmersiveSpace {
+                    Task {
+                        await dismissImmersiveSpace()
+                        isImmersiveSpaceOpen = false
+                    }
+                }
+            default:
+                break
+            }
+        }
 }
 
 #Preview {
-    InitialMenuView()
+    InitialMenuView(canDismissImmersiveSpace: .constant(false))
 }

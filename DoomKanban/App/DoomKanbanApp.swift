@@ -13,10 +13,11 @@ struct DoomKanbanApp: App {
     /// Bottom window control visibility to hide certain UI controls
     private var bottomWindowControlsVisibility: Visibility = .hidden
     let defaultSize = Size3D(width: 2, height: 2, depth: 2)
+    @State var canDismissImmersiveSpace = true
 
     var body: some Scene {
         WindowGroup(id: "InitialMenu") {
-            InitialMenuView()
+            InitialMenuView(canDismissImmersiveSpace: $canDismissImmersiveSpace)
                 .keepAspectRatio()
         }
         .defaultSize(width: 1200, height: 1200)
@@ -35,7 +36,7 @@ struct DoomKanbanApp: App {
     private var kanbanBoardWindow: some Scene {
         WindowGroup(id: "KanbanBoard") {
             GeometryReader { geometry in
-                DoomKanbanLayout()
+                DoomKanbanLayout(canDismissImmersiveSpace: $canDismissImmersiveSpace)
                     .frame(width: geometry.size.width - 100, height: geometry.size.height - 100)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                     .environment(appVM)
