@@ -18,7 +18,6 @@ struct DoomKanbanApp: App {
     var body: some Scene {
         WindowGroup(id: "InitialMenu") {
             InitialMenuView(canDismissImmersiveSpace: $canDismissImmersiveSpace)
-                .keepAspectRatio()
         }
         .defaultSize(width: 1200, height: 1200)
 
