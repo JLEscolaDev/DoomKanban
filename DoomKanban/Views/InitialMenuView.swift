@@ -49,7 +49,7 @@ struct InitialMenuView: View {
     // Immersive space button
     private var immersiveSpaceButton: some View {
         Button(action: toggleImmersiveSpace) {
-            Text("\(isImmersiveSpaceOpen ? "Desactivar" : "Activar") espacio inmersivo")
+            Text("\(isImmersiveSpaceOpen ? NSLocalizedString("Desactivar", comment: "") : NSLocalizedString("Activar", comment: "")) espacio inmersivo")
                 .font(.extraLargeTitle2)
                 .fontWeight(.medium)
                 .frame(maxWidth: .infinity, minHeight: 120)
