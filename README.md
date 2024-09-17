@@ -30,6 +30,7 @@ In Doom Kanban Board, you will manage tasks by moving them through four distinct
 1. **Move tasks** drag and drop all tasks to Done column.
 2. **Understand the layout and indicators** 
    - If you fail a task, you will receive a warning ⚠️ from your boss. 3 warnings in the same project and you are fired.
+     Note that, from the third round, the boss will distrust you and every X seconds will come to watch you (shown with a red eye in the warnings part). If you make a mistake when the boss is watching, your penalty will be doubled. BE CAREFUL!
      
    ![Warning](https://github.com/JLEscolaDev/DoomKanban/raw/assets/warnings.png)
 
