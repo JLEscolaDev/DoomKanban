@@ -1,6 +1,7 @@
 # Doom Kanban Board
 
 Welcome to **Doom Kanban Board**, a fun and interactive game to manage your tasks using a simple Kanban board inspired by the chaos and strategy of a daily work day! 💀
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/W0kUCY8QKcc/0.jpg)](http://www.youtube.com/watch?v=W0kUCY8QKcc "Doom Kanban Trailer")
 
 ## How to Play
 
